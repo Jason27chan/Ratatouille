@@ -1,12 +1,14 @@
 package edu.gatech.oad.antlab.person;
+import java.util.Scanner;
+import java.util.Random;
 
 /**
  *  A simple class for person 2
  *  returns their name and a
  *  modified string 
  *
- * @author Bob
- * @version 1.1
+ * @author Bob, Catherine
+ * @version 1.2
  */
 public class Person2 {
     /** Holds the persons real name */
@@ -31,6 +33,9 @@ public class Person2 {
 	 */
 	private String calc(String input) {
 	  //Person 2 put your implementation here
+	  Scanner scan = new Scanner(System.in);
+	  System.out.println("Please enter a string: ");
+	  
 	  return null;
 	}
 	/**
