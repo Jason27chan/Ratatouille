@@ -33,11 +33,16 @@ public class Person2 {
 	private String calc(String input) {
 	  //Person 2 put your implementation here
 	  Random rand = new Random();
-	  char[] characters = input.toCharArray();
+	  char characters[] = input.toCharArray();
 	  String newString;
 	  for (int i == 0; i < input.length; i++) {
 	  	int firstInt = rand.nextInt(input.length - 1);
-	  return null;
+		int secondInt = rand.nextInt(input.length - 1);
+		char charHolder = characters[firstInt];
+		characters[firstInt] = characters[secondInt];
+		characters[secondInt] = charHolder;
+	  }
+	  return String(characters);
 	}
 	/**
 	 * Return a string rep of this object
