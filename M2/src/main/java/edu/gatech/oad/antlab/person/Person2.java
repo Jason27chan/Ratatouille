@@ -6,8 +6,8 @@ import java.util.Random;
  *  returns their name and a
  *  modified string 
  *
- * @author Bob, Catherine
- * @version 1.2
+ * @author Bob
+ * @version 1.1
  */
 public class Person2 {
     /** Holds the persons real name */
@@ -32,18 +32,22 @@ public class Person2 {
 	 */
 	private String calc(String input) {
 	  //Person 2 put your implementation here
-	  Random rand = new Random();
-	  char characters[] = input.toCharArray();
-	  String newString;
-	  for (int i == 0; i < input.length; i++) {
-	  	int firstInt = rand.nextInt(input.length - 1);
-		int secondInt = rand.nextInt(input.length - 1);
-		char charHolder = characters[firstInt];
-		characters[firstInt] = characters[secondInt];
-		characters[secondInt] = charHolder;
-	  }
-	  return String(characters);
-	}
+      Random rand = new Random();
+      char[] characters = input.toCharArray();
+      String finalString = "";
+      String newString;
+      for (int i = 0; i < characters.length; i++) {
+            int firstInt = rand.nextInt(characters.length);
+            int secondInt = rand.nextInt(characters.length);
+            char charHolder = characters[firstInt];
+            characters[firstInt] = characters[secondInt];
+            characters[secondInt] = charHolder;
+      }
+      for (int i = 0; i < characters.length; i++) {
+            finalString += characters[i];
+      }
+      return finalString;
+    }
 	/**
 	 * Return a string rep of this object
 	 * that varies with an input string
