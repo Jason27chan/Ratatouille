@@ -1,5 +1,4 @@
 package edu.gatech.oad.antlab.person;
-import java.util.Scanner;
 import java.util.Random;
 
 /**
@@ -33,9 +32,11 @@ public class Person2 {
 	 */
 	private String calc(String input) {
 	  //Person 2 put your implementation here
-	  Scanner scan = new Scanner(System.in);
-	  System.out.println("Please enter a string: ");
-	  
+	  Random rand = new Random();
+	  char[] characters = input.toCharArray();
+	  String newString;
+	  for (int i == 0; i < input.length; i++) {
+	  	int firstInt = rand.nextInt(input.length - 1);
 	  return null;
 	}
 	/**
