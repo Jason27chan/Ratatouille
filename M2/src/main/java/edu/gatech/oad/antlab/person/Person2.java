@@ -30,24 +30,24 @@ public class Person2 {
 	 * @param input the string to be modified
 	 * @return the modified string
 	 */
-	private String calc(String input) {
+ 	private String calc(String input) {
 	  //Person 2 put your implementation here
-      Random rand = new Random();
-      char[] characters = input.toCharArray();
-      String finalString = "";
-      String newString;
-      for (int i = 0; i < characters.length; i++) {
+      	  Random rand = new Random();
+      	  char[] characters = input.toCharArray();
+      	  String finalString = "";
+      	  String newString;
+      	  for (int i = 0; i < characters.length; i++) {
             int firstInt = rand.nextInt(characters.length);
             int secondInt = rand.nextInt(characters.length);
             char charHolder = characters[firstInt];
             characters[firstInt] = characters[secondInt];
             characters[secondInt] = charHolder;
-      }
-      for (int i = 0; i < characters.length; i++) {
+      	  }
+      	  for (int i = 0; i < characters.length; i++) {
             finalString += characters[i];
-      }
-      return finalString;
-    }
+      	  }
+      	  return finalString;
+    	  }
 	/**
 	 * Return a string rep of this object
 	 * that varies with an input string
