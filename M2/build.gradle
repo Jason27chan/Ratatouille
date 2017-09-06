@@ -1,4 +1,4 @@
-defaultTasks
+defaultTasks	'jar'
 
 apply plugin: 'java'
 apply plugin: 'application'
@@ -13,7 +13,9 @@ dependencies {
 
 jar {
 	manifest {
-		attributes	'Main-Class' : mainClassName ,
+		attributes	'Implementation-Title' : 'M2' ,
+					'Implementation-Version' : version ,
+					'Main-Class' : mainClassName ,
 					'Class-Path' : '../../lib/resources.jar'
 	}
 }

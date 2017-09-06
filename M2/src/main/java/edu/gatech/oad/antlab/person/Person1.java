@@ -32,8 +32,8 @@ public class Person1 {
 	private String calc(String input) {
 	  String last = input.substring(0,2);
 	  String first = input.substring(2);
-	  String final =  first + last;
-	  return final;
+	  String finalString =  first + last;
+	  return finalString;
 	}
 	
 	/**
