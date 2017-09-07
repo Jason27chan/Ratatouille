@@ -6,7 +6,7 @@ import java.util.Random;
  *  returns their name and a
  *  modified string 
  *
- * @author Bob
+ * @author Catherine Liu
  * @version 1.1
  */
 public class Person2 {
