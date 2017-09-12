@@ -8,6 +8,11 @@ import android.support.v7.app.AppCompatActivity;
  */
 
 public class LoginActivity extends AppCompatActivity{
+
+
+    private String _user = "user";
+    private String _pass = "pass";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
