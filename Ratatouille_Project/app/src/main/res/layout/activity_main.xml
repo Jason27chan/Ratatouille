@@ -8,21 +8,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Finding Remy"
-        android:layout_above="@+id/ButtonToLogin"
+        android:layout_marginTop="175dp"
+        android:layout_marginLeft="150dp"
         />
 
     <Button
+        android:text="Login"
         android:id="@+id/ButtonToLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ButtonToRegister"
+        android:layout_below="@+id/OpeningText"
+        android:layout_marginLeft="150dp"
         />
 
     <Button
+        android:text="Register"
         android:id="@+id/ButtonToRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ButtonToLogin"
+        android:layout_below="@+id/ButtonToLogin"
+        android:layout_marginLeft="150dp"
         />
 
 
