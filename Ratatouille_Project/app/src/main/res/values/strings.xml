@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Ratatouille</string>
+<<<<<<< HEAD
     <string name="finding_remy">Finding Remy</string>
 
+=======
+    <string name="username">Username:</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+>>>>>>> origin/master
 </resources>
