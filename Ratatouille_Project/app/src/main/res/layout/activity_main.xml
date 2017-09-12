@@ -7,7 +7,7 @@
         android:id="@+id/OpeningText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Finding Remy"
+        android:text="@string/finding_remy"
         android:layout_marginTop="175dp"
         android:layout_marginLeft="150dp"
         />
