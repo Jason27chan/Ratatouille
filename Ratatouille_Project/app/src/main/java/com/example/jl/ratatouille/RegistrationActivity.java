@@ -36,6 +36,7 @@ public class RegistrationActivity extends AppCompatActivity {
         dataBaseAdapter = new DataBaseAdapter(this);
 
 
+
         usernameEntry = (EditText) findViewById(R.id.registration_edit_username);
         passwordEntry = (EditText) findViewById(R.id.registration_edit_password);
 
