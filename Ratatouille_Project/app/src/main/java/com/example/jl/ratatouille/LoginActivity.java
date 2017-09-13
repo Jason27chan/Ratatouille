@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity{
                 if (userInput.equals(_user) && passInput.equals(_pass)) {
                     // Go to App page
                     Intent myIntent = new Intent(v.getContext(), AppActivity.class);
-                    startActivityForResult(myIntent, 0);
+                    startActivity(myIntent);
 
 
                 } else {

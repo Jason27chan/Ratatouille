@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.jl.ratatouille.db.DataBaseAdapter;
+import com.example.jl.ratatouille.db.LoginDataBaseAdapter;
 
 /**
  * Created by jav on 9/12/2017.
@@ -25,7 +25,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private Button registrationButton;
 
-    private DataBaseAdapter dataBaseAdapter;
+    private LoginDataBaseAdapter dbAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +33,16 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         //get database adapter
-        dataBaseAdapter = new DataBaseAdapter(this);
+        dbAdapter = new LoginDataBaseAdapter(this).open();
 
-
-
+        //get edit text references
         usernameEntry = (EditText) findViewById(R.id.registration_edit_username);
         passwordEntry = (EditText) findViewById(R.id.registration_edit_password);
 
         //get registration button reference
         registrationButton = (Button) findViewById(R.id.registration_button_register);
 
+        //on click of registration button
         registrationButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -51,7 +51,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 newPassword = passwordEntry.getText().toString();
 
                 //save the data in database
-                dataBaseAdapter.insertEntry(newUsername, newPassword);
+                dbAdapter.insertEntry(newUsername, newPassword);
 
             }
         });

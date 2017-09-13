@@ -3,6 +3,7 @@
     <string name="finding_remy">Finding Remy</string>
 
     <string name="username">Username:</string>
-    <string name="password">Password</string>
+    <string name="password">Password:</string>
     <string name="login">Login</string>
+    <string name="register">Register</string>
 </resources>

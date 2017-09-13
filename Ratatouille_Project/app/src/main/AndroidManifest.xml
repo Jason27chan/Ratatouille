@@ -19,6 +19,12 @@
         <activity android:name=".LoginActivity"
             android:parentActivityName="com.example.jl.ratatouille.MainActivity" >
         </activity>
+        <activity android:name=".RegistrationActivity"
+            android:parentActivityName="com.example.jl.ratatouille.MainActivity" >
+        </activity>
+        <activity android:name=".AppActivity"
+            android:parentActivityName="com.example.jl.ratatouille.MainActivity" >
+        </activity>
     </application>
 
 </manifest>
