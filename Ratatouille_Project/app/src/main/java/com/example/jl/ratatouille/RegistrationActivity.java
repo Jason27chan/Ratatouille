@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.jl.ratatouille.db.LoginDataBaseAdapter;
 
@@ -35,7 +36,7 @@ public class RegistrationActivity extends AppCompatActivity {
         //get database adapter
         dbAdapter = new LoginDataBaseAdapter(this).open();
 
-        //get edit text references
+        //get EditText references
         usernameEntry = (EditText) findViewById(R.id.registration_edit_username);
         passwordEntry = (EditText) findViewById(R.id.registration_edit_password);
 
@@ -50,11 +51,22 @@ public class RegistrationActivity extends AppCompatActivity {
                 newUsername = usernameEntry.getText().toString();
                 newPassword = passwordEntry.getText().toString();
 
-                //save the data in database
-                dbAdapter.insertEntry(newUsername, newPassword);
+                if (newUsername.equals("") || newPassword.equals("")) {
+                    Toast.makeText(getApplicationContext(), "please enter a username and password", Toast.LENGTH_LONG).show();
+
+                } else {
+                    //save the data in database
+                    dbAdapter.insertEntry(newUsername, newPassword);
+                    Toast.makeText(getApplicationContext(), "account creation successful", Toast.LENGTH_LONG).show();
+                }
 
             }
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbAdapter.close();
+    }
 }

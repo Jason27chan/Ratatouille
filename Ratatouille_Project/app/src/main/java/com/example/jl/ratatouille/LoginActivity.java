@@ -6,6 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.jl.ratatouille.db.LoginDataBaseAdapter;
+
+import static com.example.jl.ratatouille.R.string.login;
 
 /**
  * Created by jav on 9/12/2017.
@@ -20,6 +25,8 @@ public class LoginActivity extends AppCompatActivity{
     private EditText _password;
     private Button _button;
 
+    private LoginDataBaseAdapter dbAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,21 +36,38 @@ public class LoginActivity extends AppCompatActivity{
         _password = (EditText) findViewById(R.id.editText);
         _button = (Button) findViewById(R.id.ButtonLogin);
 
+        dbAdapter = new LoginDataBaseAdapter(this).open();
+
         _button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                //get user input
                 String userInput = _username.getText().toString();
                 String passInput = _password.getText().toString();
-                if (userInput.equals(_user) && passInput.equals(_pass)) {
-                    // Go to App page
+
+                //get stored password
+                String password = dbAdapter.getEntry(userInput);
+
+                if (password.equals(getString(R.string.not_found))) {
+                    Toast.makeText(getApplicationContext(), "username not found", Toast.LENGTH_LONG).show();
+
+                } else if (userInput.equals("") || password.equals("")) {
+                    Toast.makeText(getApplicationContext(), "please enter a username and password", Toast.LENGTH_LONG).show();
+
+                } else if (password.equals(passInput)){
                     Intent myIntent = new Intent(v.getContext(), AppActivity.class);
                     startActivity(myIntent);
 
-
                 } else {
-                    // Error Message
-                    System.out.println("Error");
+                    Toast.makeText(getApplicationContext(), "wrong password", Toast.LENGTH_LONG).show();
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbAdapter.close();
     }
 }

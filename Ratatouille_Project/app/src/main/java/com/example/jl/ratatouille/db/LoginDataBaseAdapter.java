@@ -2,9 +2,12 @@ package com.example.jl.ratatouille.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.ContactsContract;
+
+import com.example.jl.ratatouille.R;
 
 /**
  * Created by jav on 9/12/2017.
@@ -51,5 +54,17 @@ public class LoginDataBaseAdapter {
         String where = "USERNAME=?";
         int numberDeleted = db.delete("LOGIN", where, new String[]{username});
         return numberDeleted;
+    }
+
+    public String getEntry(String username) {
+        Cursor cursor = db.query("LOGIN", null, " USERNAME=?", new String[]{username}, null, null, null);
+        if (cursor.getCount() < 1) {
+            cursor.close();
+            return context.getString(R.string.not_found);
+        }
+        cursor.moveToFirst();
+        String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
+        cursor.close();
+        return password;
     }
 }
