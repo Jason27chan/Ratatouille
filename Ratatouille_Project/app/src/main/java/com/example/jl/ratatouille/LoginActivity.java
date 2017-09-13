@@ -48,11 +48,11 @@ public class LoginActivity extends AppCompatActivity{
                 //get stored password
                 String password = dbAdapter.getEntry(userInput);
 
-                if (password.equals(getString(R.string.not_found))) {
-                    Toast.makeText(getApplicationContext(), "username not found", Toast.LENGTH_LONG).show();
-
-                } else if (userInput.equals("") || password.equals("")) {
+                if (userInput.equals("") || passInput.equals("")) {
                     Toast.makeText(getApplicationContext(), "please enter a username and password", Toast.LENGTH_LONG).show();
+
+                } else if (password.equals(getString(R.string.not_found))) {
+                    Toast.makeText(getApplicationContext(), "username not found", Toast.LENGTH_LONG).show();
 
                 } else if (password.equals(passInput)){
                     Intent myIntent = new Intent(v.getContext(), AppActivity.class);

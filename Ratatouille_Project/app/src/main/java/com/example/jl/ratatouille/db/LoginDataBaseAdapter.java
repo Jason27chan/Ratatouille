@@ -44,26 +44,25 @@ public class LoginDataBaseAdapter {
 
     public void insertEntry(String username, String password) {
         ContentValues newValues = new ContentValues();
-        newValues.put("USERNAME", username);
-        newValues.put("PASSWORD", password);
+        newValues.put(DataBaseContract.LoginEntry.COLUMN_USERNAME, username);
+        newValues.put(DataBaseContract.LoginEntry.COLUMN_PASSWORD, password);
 
-        db.insert("LOGIN", null, newValues);
+        db.insert(DataBaseContract.LoginEntry.TABLE_NAME, null, newValues);
     }
 
     public int deleteEntry(String username) {
-        String where = "USERNAME=?";
-        int numberDeleted = db.delete("LOGIN", where, new String[]{username});
+        String where = DataBaseContract.LoginEntry.COLUMN_USERNAME + "=?";
+        int numberDeleted = db.delete(DataBaseContract.LoginEntry.TABLE_NAME, where, new String[]{username});
         return numberDeleted;
     }
 
     public String getEntry(String username) {
-        Cursor cursor = db.query("LOGIN", null, " USERNAME=?", new String[]{username}, null, null, null);
-        if (cursor.getCount() < 1) {
-            cursor.close();
-            return context.getString(R.string.not_found);
+        Cursor cursor = db.query(DataBaseContract.LoginEntry.TABLE_NAME, null, " " + DataBaseContract.LoginEntry.COLUMN_USERNAME + "=?", new String[]{username}, null, null, null);
+        String password = context.getString(R.string.not_found);
+        if (cursor.getCount() >= 1) {
+            cursor.moveToFirst();
+            password = cursor.getString(cursor.getColumnIndex(DataBaseContract.LoginEntry.COLUMN_PASSWORD));
         }
-        cursor.moveToFirst();
-        String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
         cursor.close();
         return password;
     }

@@ -17,9 +17,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity"
+            android:label="Login"
             android:parentActivityName="com.example.jl.ratatouille.MainActivity" >
         </activity>
         <activity android:name=".RegistrationActivity"
+            android:label="Register"
             android:parentActivityName="com.example.jl.ratatouille.MainActivity" >
         </activity>
         <activity android:name=".AppActivity"
