@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:text="@string/finding_remy"
         android:layout_marginTop="175dp"
-        android:layout_marginLeft="150dp"
+        android:layout_marginLeft="115dp"
+        android:textSize="25sp"
         />
 
     <Button
