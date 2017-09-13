@@ -1,11 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.jl.ratatouille.RegistrationActivity">
+<?xml version = "1.0" encoding = "utf-8"?>
+<RelativeLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:tools = "http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height = "match_parent" tools:context = ".MainActivity">
 
+    <TextView
+        android:id = "@+id/registration_text_title"
+        android:text = "Registration"
+        android:layout_width="wrap_content"
+        android:layout_height = "wrap_content"
+        android:textSize = "35dp"
+        android:layout_alignParentTop = "true"
+        android:layout_centerHorizontal = "true" />
 
+    <EditText
+        android:id = "@+id/registration_edit_username"
+        android:hint = "Enter Username"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:layout_marginTop = "46dp"
+        android:layout_below = "@+id/registration_text_title"
+        android:layout_alignParentLeft = "true"
+        android:layout_alignParentStart = "true"
+        android:layout_alignParentRight = "true"
+        android:layout_alignParentEnd = "true" />
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:id="@+id/registration_edit_password"
+        android:hint="Enter Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_below="@+id/registration_edit_username"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/registration_edit_username"
+        android:layout_alignEnd="@+id/registration_edit_username"
+        android:textColorHint="#ffff299f"
+        />
+
+    <Button
+        android:id="@+id/registration_button_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="login"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/registration_text_title"
+        android:layout_toStartOf="@+id/registration_text_title" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:id="@+id/button2"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/registration_text_title"
+        android:layout_toEndOf="@+id/registration_text_title" />
+
+</RelativeLayout>
