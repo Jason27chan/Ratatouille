@@ -30,8 +30,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                 registerNewUser();
                 break;
 
-            case R.id.registration_button_cancel:
-                finish();
+//            case R.id.registration_button_cancel:
+//                finish();
         }
 
     }

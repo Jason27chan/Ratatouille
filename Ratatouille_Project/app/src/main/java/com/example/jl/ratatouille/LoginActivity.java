@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity{
                     Intent myIntent = new Intent(v.getContext(), AppActivity.class);
                     startActivityForResult(myIntent, 0);
 
-                    System.out.println("Success!");
+
                 } else {
                     // Error Message
                     System.out.println("Error");
