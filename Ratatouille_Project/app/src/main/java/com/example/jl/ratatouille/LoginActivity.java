@@ -1,5 +1,6 @@
 package com.example.jl.ratatouille;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -34,6 +35,9 @@ public class LoginActivity extends AppCompatActivity{
                 String passInput = _password.getText().toString();
                 if (userInput.equals(_user) && passInput.equals(_pass)) {
                     // Go to App page
+                    Intent myIntent = new Intent(v.getContext(), AppActivity.class);
+                    startActivityForResult(myIntent, 0);
+
                     System.out.println("Success!");
                 } else {
                     // Error Message
