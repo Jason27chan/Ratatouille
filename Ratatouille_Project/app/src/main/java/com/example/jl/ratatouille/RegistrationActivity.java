@@ -23,6 +23,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private EditText usernameEntry;
     private EditText passwordEntry;
+    private EditText confirmEntry;
 
     private Button registrationButton;
 
@@ -37,11 +38,12 @@ public class RegistrationActivity extends AppCompatActivity {
         dbAdapter = new LoginDataBaseAdapter(this).open();
 
         //get EditText references
-        usernameEntry = (EditText) findViewById(R.id.registration_edit_username);
-        passwordEntry = (EditText) findViewById(R.id.registration_edit_password);
+        usernameEntry = (EditText) findViewById(R.id.editTxt_regUsername);
+        passwordEntry = (EditText) findViewById(R.id.editTxt_regPassword);
+        confirmEntry = (EditText) findViewById(R.id.editTxt_regConfirm);
 
         //get registration button reference
-        registrationButton = (Button) findViewById(R.id.registration_button_register);
+        registrationButton = (Button) findViewById(R.id.btn_regRegister);
 
         //on click of registration button
         registrationButton.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +58,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 } else {
                     //save the data in database
-                    dbAdapter.insertEntry(newUsername, newPassword);
+                    dbAdapter.insertEntry(newUsername, newPassword, null);
                     Toast.makeText(getApplicationContext(), "account creation successful", Toast.LENGTH_LONG).show();
                 }
 

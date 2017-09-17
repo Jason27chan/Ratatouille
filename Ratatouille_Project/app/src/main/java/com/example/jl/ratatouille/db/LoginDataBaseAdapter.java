@@ -22,7 +22,8 @@ public class LoginDataBaseAdapter {
     public static final String DATABASE_CREATE = "CREATE TABLE " + DataBaseContract.LoginEntry.TABLE_NAME + " ("
             + DataBaseContract.LoginEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + DataBaseContract.LoginEntry.COLUMN_USERNAME + " TEXT,"
-            + DataBaseContract.LoginEntry.COLUMN_PASSWORD + " TEXT)";
+            + DataBaseContract.LoginEntry.COLUMN_PASSWORD + " TEXT,"
+            + DataBaseContract.LoginEntry.COLUMN_ACC_TYPE + " TEXT)";
 
     public LoginDataBaseAdapter(Context context) {
         this.context = context;
@@ -42,10 +43,11 @@ public class LoginDataBaseAdapter {
         return db;
     }
 
-    public void insertEntry(String username, String password) {
+    public void insertEntry(String username, String password, String acc_type) {
         ContentValues newValues = new ContentValues();
         newValues.put(DataBaseContract.LoginEntry.COLUMN_USERNAME, username);
         newValues.put(DataBaseContract.LoginEntry.COLUMN_PASSWORD, password);
+        newValues.put(DataBaseContract.LoginEntry.COLUMN_ACC_TYPE, acc_type);
 
         db.insert(DataBaseContract.LoginEntry.TABLE_NAME, null, newValues);
     }

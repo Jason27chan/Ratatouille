@@ -8,4 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="EditTextStyle" parent="@android:style/Widget.EditText">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColorHint">@color/colorAccent</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:background">@drawable/border</item>
+        <item name="android:layout_width">250dp</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+
 </resources>

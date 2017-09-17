@@ -16,5 +16,7 @@ public class DataBaseContract {
         public static final String TABLE_NAME = "login";
         public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_PASSWORD = "password";
+        public static final String COLUMN_ACC_TYPE = "acc_type";
+
     }
 }

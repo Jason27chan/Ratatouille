@@ -5,55 +5,66 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/registration_text_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="37dp"
-        android:text="@string/username"
-        android:textIsSelectable="false"
-        android:textSize="30sp" />
 
     <EditText
-        android:id="@+id/registration_edit_username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
+        android:id="@+id/editTxt_regUsername"
+        android:hint="@string/username"
         android:inputType="textPersonName"
-        android:layout_below="@+id/registration_text_username"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:id="@+id/registration_text_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/registration_edit_username"
-        android:layout_marginTop="121dp"
-        android:text="@string/password"
-        android:textSize="30sp" />
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="125dp"
+        style="@style/EditTextStyle"/>
 
     <EditText
-        android:id="@+id/registration_edit_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
+        android:id="@+id/editTxt_regPassword"
+        android:hint="@string/password"
         android:inputType="textPassword"
-        android:layout_below="@+id/registration_text_password"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/editTxt_regUsername"
+        android:layout_marginTop="10dp"
+        style="@style/EditTextStyle"/>
+
+    <EditText
+        android:id="@+id/editTxt_regConfirm"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword"
+        android:layout_below="@+id/editTxt_regPassword"
+        android:layout_marginTop="10dp"
+        style="@style/EditTextStyle"/>
+
+    <RadioGroup
+        android:id="@+id/radio_regType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/editTxt_regConfirm"
+        android:layout_marginTop="25dp">
+
+        <RadioButton
+            android:id="@+id/radioBtn_user"
+            android:text="@string/radio_user"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:typeface="monospace"/>
+
+        <RadioButton
+            android:id="@+id/radioBtn_admin"
+            android:text="@string/radio_admin"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:typeface="monospace"/>
+
+    </RadioGroup>
 
     <Button
-        android:id="@+id/registration_button_register"
+        android:id="@+id/btn_regRegister"
+        android:text="@string/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/register"
-        android:layout_below="@+id/registration_edit_password"
-        android:layout_toRightOf="@+id/registration_text_username"
-        android:layout_toEndOf="@+id/registration_text_username"
-        android:layout_marginTop="66dp" />
+        android:layout_below="@+id/radio_regType"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:typeface="monospace"/>
 
 </RelativeLayout>
