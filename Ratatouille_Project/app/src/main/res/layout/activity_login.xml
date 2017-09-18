@@ -5,55 +5,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/TextViewUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="37dp"
-        android:text="@string/username"
-        android:textIsSelectable="false"
-        android:textSize="30sp" />
 
     <EditText
-        android:id="@+id/editText2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
+        android:id="@+id/editTxt_logUsername"
+        android:hint="@string/username"
         android:inputType="textPersonName"
-        android:layout_below="@+id/TextViewUsername"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:id="@+id/TextViewPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
-        android:layout_marginTop="121dp"
-        android:text="@string/password"
-        android:textSize="30sp" />
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="160dp"
+        style="@style/EditTextStyle"/>
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
+        android:id="@+id/editTxt_logPassword"
+        android:hint="@string/password"
         android:inputType="textPassword"
-        android:layout_below="@+id/TextViewPassword"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/editTxt_logUsername"
+        android:layout_marginTop="10dp"
+        style="@style/EditTextStyle"/>
 
     <Button
-        android:id="@+id/ButtonLogin"
+        android:id="@+id/btn_logLogin"
+        android:text="@string/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:layout_below="@+id/editText"
-        android:layout_toRightOf="@+id/TextViewUsername"
-        android:layout_toEndOf="@+id/TextViewUsername"
-        android:layout_marginTop="66dp" />
+        android:layout_below="@+id/editTxt_logPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:typeface="monospace"/>
 
 </RelativeLayout>

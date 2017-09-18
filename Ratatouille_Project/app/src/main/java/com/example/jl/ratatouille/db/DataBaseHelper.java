@@ -20,7 +20,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase b, int oldVersion, int newVersion) {
-
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + DataBaseContract.LoginEntry.TABLE_NAME);
+        onCreate(db);
     }
 }

@@ -58,7 +58,7 @@ public class LoginDataBaseAdapter {
         return numberDeleted;
     }
 
-    public String getEntry(String username) {
+    public String getPassword(String username) {
         Cursor cursor = db.query(DataBaseContract.LoginEntry.TABLE_NAME, null, " " + DataBaseContract.LoginEntry.COLUMN_USERNAME + "=?", new String[]{username}, null, null, null);
         String password = context.getString(R.string.not_found);
         if (cursor.getCount() >= 1) {

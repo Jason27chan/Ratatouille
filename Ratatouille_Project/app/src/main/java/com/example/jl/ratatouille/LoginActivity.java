@@ -32,9 +32,9 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        _username = (EditText) findViewById(R.id.editText2);
-        _password = (EditText) findViewById(R.id.editText);
-        _button = (Button) findViewById(R.id.ButtonLogin);
+        _username = (EditText) findViewById(R.id.editTxt_logUsername);
+        _password = (EditText) findViewById(R.id.editTxt_logPassword);
+        _button = (Button) findViewById(R.id.btn_logLogin);
 
         dbAdapter = new LoginDataBaseAdapter(this).open();
 
@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity{
                 String passInput = _password.getText().toString();
 
                 //get stored password
-                String password = dbAdapter.getEntry(userInput);
+                String password = dbAdapter.getPassword(userInput);
 
                 if (userInput.equals("") || passInput.equals("")) {
                     Toast.makeText(getApplicationContext(), "please enter a username and password", Toast.LENGTH_LONG).show();
