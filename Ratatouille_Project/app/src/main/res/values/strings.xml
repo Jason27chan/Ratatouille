@@ -7,6 +7,7 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="logout">Logout</string>
 
     <string name="radio_admin">Admin</string>
     <string name="radio_user">User</string>
