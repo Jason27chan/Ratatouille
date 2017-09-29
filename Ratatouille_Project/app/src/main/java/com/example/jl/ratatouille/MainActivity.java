@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ *  Leads to login and registration
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override

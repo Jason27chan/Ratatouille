@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.example.jl.ratatouille.db.LoginDataBaseAdapter;
 
 /**
+ * Activity to register a user for the application
+ *
  * Created by jav on 9/12/2017.
  */
 

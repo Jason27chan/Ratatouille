@@ -13,6 +13,8 @@ import com.example.jl.ratatouille.db.LoginDataBaseAdapter;
 import static com.example.jl.ratatouille.R.string.login;
 
 /**
+ * Activity that allows the login to be created
+ *
  * Created by jav on 9/12/2017.
  */
 
