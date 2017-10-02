@@ -81,6 +81,9 @@ public class RegistrationActivity extends AppCompatActivity {
                     //save the data in database
                     dbAdapter.insertEntry(newUsername, newPassword, newAccType);
                     Toast.makeText(getApplicationContext(), "account creation successful", Toast.LENGTH_LONG).show();
+                    if (newAccType.equals("User")) {
+                        System.out.println("Help");
+                    }
                 }
 
             }
