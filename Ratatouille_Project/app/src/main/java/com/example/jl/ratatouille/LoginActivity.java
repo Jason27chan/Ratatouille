@@ -9,6 +9,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.jl.ratatouille.db.LoginDataBaseAdapter;
+import com.example.jl.ratatouille.users.Admin;
+import com.example.jl.ratatouille.users.User;
+
+import static com.example.jl.ratatouille.RegistrationActivity.user;
 
 import static com.example.jl.ratatouille.R.string.login;
 
@@ -56,7 +60,12 @@ public class LoginActivity extends AppCompatActivity{
                 } else if (password.equals(getString(R.string.not_found))) {
                     Toast.makeText(getApplicationContext(), "username not found", Toast.LENGTH_LONG).show();
 
-                } else if (password.equals(passInput)){
+                } else if (password.equals(passInput)) {
+                    if (dbAdapter.getAccType(userInput).equals("User")) {
+                        user = new User(userInput, passInput);
+                    } else {
+                        user = new Admin(userInput, passInput);
+                    }
                     Intent myIntent = new Intent(v.getContext(), AppActivity.class);
                     startActivity(myIntent);
 

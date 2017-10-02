@@ -105,4 +105,20 @@ public class LoginDataBaseAdapter {
         cursor.close();
         return password;
     }
+
+    /**
+     * gets account type
+     * @param username the username of the account we are looking for
+     * @return the account type associated with the username
+     */
+    public String getAccType(String username) {
+        Cursor cursor = db.query(DataBaseContract.LoginEntry.TABLE_NAME, null, " " + DataBaseContract.LoginEntry.COLUMN_USERNAME + "=?", new String[]{username}, null, null, null);
+        String accType = context.getString(R.string.not_found);
+        if (cursor.getCount() >= 1) {
+            cursor.moveToFirst();
+            accType = cursor.getString(cursor.getColumnIndex(DataBaseContract.LoginEntry.COLUMN_ACC_TYPE));
+        }
+        cursor.close();
+        return accType;
+    }
 }

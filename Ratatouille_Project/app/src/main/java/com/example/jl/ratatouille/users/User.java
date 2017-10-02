@@ -1,3 +1,5 @@
+package com.example.jl.ratatouille.users;
+
 /**
  * Created by Catherine on 10/2/2017.
  */
@@ -18,7 +20,18 @@ public class User {
         this.username = username;
     }
 
+    /**
+     * Constructor for user
+     */
     public User() {
         this("", "123456");
+    }
+
+    /**
+     * Checks if the user is an admin or not
+     * @return true if admin, false if not
+     */
+    public boolean isAdmin() {
+        return false;
     }
 }

@@ -8,9 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jl.ratatouille.db.LoginDataBaseAdapter;
+import com.example.jl.ratatouille.users.Admin;
+import com.example.jl.ratatouille.users.User;
 
 /**
  * Activity to register a user for the application
@@ -38,6 +42,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private LoginDataBaseAdapter dbAdapter;
 
+    static User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +62,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         //get registration Button reference
         registrationButton = (Button) findViewById(R.id.btn_regRegister);
+
 
         //on click of registration button
         registrationButton.setOnClickListener(new View.OnClickListener() {
@@ -80,15 +87,17 @@ public class RegistrationActivity extends AppCompatActivity {
                 } else {
                     //save the data in database
                     dbAdapter.insertEntry(newUsername, newPassword, newAccType);
-                    Toast.makeText(getApplicationContext(), "account creation successful", Toast.LENGTH_LONG).show();
-                    if (newAccType.equals("User")) {
-                        System.out.println("Help");
+                    if (newAccType.equals("User")){
+                        user = new User(newUsername, newPassword);
+                    } else {
+                        user = new Admin(newUsername, newPassword);
                     }
+                    Toast.makeText(getApplicationContext(), "account creation successful", Toast.LENGTH_LONG).show();
                 }
-
             }
         });
     }
+
 
     @Override
     protected void onDestroy() {

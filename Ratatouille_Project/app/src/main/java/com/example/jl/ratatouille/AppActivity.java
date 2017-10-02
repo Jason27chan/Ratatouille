@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
+import android.widget.TextView;
+
+import static com.example.jl.ratatouille.RegistrationActivity.user;
 
 /**
  * The App Activity for the entire class
@@ -15,6 +18,13 @@ public class AppActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
+
+        TextView accountMade = (TextView) findViewById(R.id.getemgood);
+        if (user.isAdmin()) {
+            accountMade.setText("you are an admin");
+        } else {
+            accountMade.setText("you are a user");
+        }
 
         final Button logoutBtn = (Button) findViewById(R.id.btn_logout);
         logoutBtn.setOnClickListener(new View.OnClickListener() {
