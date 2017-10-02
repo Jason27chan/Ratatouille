@@ -10,4 +10,13 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="App Successful!!!!!" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:text="@string/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/textView"/>
 </RelativeLayout>
