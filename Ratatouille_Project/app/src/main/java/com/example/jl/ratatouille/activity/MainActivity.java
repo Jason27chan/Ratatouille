@@ -44,16 +44,8 @@ public class MainActivity extends AppCompatActivity {
         //CSVFile csvFile = new CSVFile(inputStream);
         //List scoreList = csvFile.read();
 
-    /**
-        InputStream inputStream = getResources().openRawResource(R.raw.rat_sightings);
-        CSVFile csvFile = new CSVFile(inputStream);
-        List scoreList = csvFile.read();
 
-        ArrayAdapter<String> ratAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,scoreList);
 
-        ListView ratData = (ListView) findViewById(R.id.ratList);
-        ratData.setAdapter(ratAdapter);
-     **/
     }
 
 

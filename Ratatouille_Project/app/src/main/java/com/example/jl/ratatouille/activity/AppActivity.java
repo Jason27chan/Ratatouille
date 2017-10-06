@@ -1,13 +1,18 @@
 package com.example.jl.ratatouille.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.content.Intent;
-import android.widget.TextView;
+import android.widget.ListView;
 
 import com.example.jl.ratatouille.R;
+import com.example.jl.ratatouille.db.CSVFile;
+
+import java.io.InputStream;
+import java.util.List;
 
 /**
  * The App Activity for the entire class
@@ -33,5 +38,16 @@ public class AppActivity extends AppCompatActivity {
                 startActivityForResult(myIntent, 0);
             }
         });
+
+        InputStream inputStream = getResources().openRawResource(R.raw.rat_sightings);
+        CSVFile csvFile = new CSVFile(inputStream);
+        List scoreList = csvFile.read();
+
+
+
+        ArrayAdapter<String> ratAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, (String[]) (scoreList.get(0)));
+
+        ListView ratData = (ListView) findViewById(R.id.ratList);
+        ratData.setAdapter(ratAdapter);
     }
 }
