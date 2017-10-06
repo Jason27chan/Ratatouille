@@ -1,4 +1,4 @@
-package com.javapapers.android.csvfileread.app;
+package com.example.jl.ratatouille.db;
 
 import java.io.BufferedReader;
 import java.io.IOException;
