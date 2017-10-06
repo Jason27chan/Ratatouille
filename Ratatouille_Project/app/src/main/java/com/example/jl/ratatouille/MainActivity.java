@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        InputStream inputStream = getResources().openRawResource(R.raw.stats);
+        InputStream inputStream = getResources().openRawResource(R.raw.RatSightings);
         CSVFile csvFile = new CSVFile(inputStream);
         List scoreList = csvFile.read();
     }
