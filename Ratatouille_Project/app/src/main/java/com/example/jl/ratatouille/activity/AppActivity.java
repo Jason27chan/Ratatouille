@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TableLayout;
 
 import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.db.CSVFile;
@@ -47,7 +48,14 @@ public class AppActivity extends AppCompatActivity {
 
         ArrayAdapter<String> ratAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, (String[]) (scoreList.get(0)));
 
-        ListView ratData = (ListView) findViewById(R.id.ratList);
-        ratData.setAdapter(ratAdapter);
+
+        TableLayout table = (TableLayout) findViewById(R.id.ratTable);
+        int count = ratAdapter.getCount();
+        for (int i = 0; i < count; i++) {
+            table.addView(ratAdapter.getView(i, null, table));
+        }
+
+//        ListView ratData = (ListView) findViewById(R.id.ratList);
+//        ratData.setAdapter(ratAdapter);
     }
 }
