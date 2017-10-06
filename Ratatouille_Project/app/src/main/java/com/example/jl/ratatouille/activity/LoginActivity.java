@@ -61,7 +61,9 @@ public class LoginActivity extends AppCompatActivity{
                     Toast.makeText(getApplicationContext(), "please enter a username and password", Toast.LENGTH_LONG).show();
 
                 } else {
-                    checkLogin(userInput, passInput);
+                    Intent intent = new Intent(LoginActivity.this, AppActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });
