@@ -48,6 +48,11 @@ public class AppActivity extends AppCompatActivity {
 
         ArrayAdapter<String> ratAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, (String[]) (scoreList.get(0)));
 
+        int[] intArray = {0, 1, 7, 8, 9, 16, 23, 30, 29};
+        
+        for (i : intArray) {
+
+        }
 
         TableLayout table = (TableLayout) findViewById(R.id.ratTable);
         int count = ratAdapter.getCount();
