@@ -6,7 +6,7 @@ package com.example.jl.ratatouille.app;
 
 public class AppConfig {
 
-    public static String URL_LOGIN = "http://128.61.77.90/ratatouille_login/login.php";
-    public static String URL_REGISTER = "http://128.61.77.90/ratatouille_login/register.php";
+    public static String URL_LOGIN = "http://192.241.145.60/ratatouille_login/login.php";
+    public static String URL_REGISTER = "http://192.241.145.60/ratatouille_login/register.php";
 
 }
