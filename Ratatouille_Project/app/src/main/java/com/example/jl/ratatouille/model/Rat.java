@@ -1,4 +1,4 @@
-package com.example.jl.ratatouille;
+package com.example.jl.ratatouille.model;
 
 /**
  * Created by Emily Chang on 10/5/2017.

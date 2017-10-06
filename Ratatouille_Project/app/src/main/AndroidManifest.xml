@@ -9,23 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"
+        <activity android:name=".activity.LoginActivity"
             android:label="Login"
-            android:parentActivityName="com.example.jl.ratatouille.MainActivity" >
+            android:parentActivityName="com.example.jl.ratatouille.activity.MainActivity" >
         </activity>
-        <activity android:name=".RegistrationActivity"
+        <activity android:name=".activity.RegistrationActivity"
             android:label="Register"
-            android:parentActivityName="com.example.jl.ratatouille.MainActivity" >
+            android:parentActivityName="com.example.jl.ratatouille.activity.MainActivity" >
         </activity>
-        <activity android:name=".AppActivity"
-            android:parentActivityName="com.example.jl.ratatouille.MainActivity" >
+        <activity android:name=".activity.AppActivity"
+            android:parentActivityName="com.example.jl.ratatouille.activity.MainActivity" >
         </activity>
     </application>
 
