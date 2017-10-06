@@ -51,6 +51,11 @@ public class AppActivity extends AppCompatActivity {
         }
 
 
+        int[] intArray = {0, 1, 7, 8, 9, 16, 23, 30, 29};
+        
+        for (i : intArray) {
+
+        }
 
         TableLayout table = (TableLayout) findViewById(R.id.ratTable);
         int count = ratAdapter.getCount();
