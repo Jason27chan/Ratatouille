@@ -19,12 +19,12 @@ public class AppActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
 
-        TextView accountMade = (TextView) findViewById(R.id.getemgood);
+        /*TextView accountMade = (TextView) findViewById(R.id.getemgood);
         if (RegistrationActivity.user.isAdmin()) {
             accountMade.setText("you are an admin");
         } else {
             accountMade.setText("you are a user");
-        }
+        }*/
 
         final Button logoutBtn = (Button) findViewById(R.id.btn_logout);
         logoutBtn.setOnClickListener(new View.OnClickListener() {
