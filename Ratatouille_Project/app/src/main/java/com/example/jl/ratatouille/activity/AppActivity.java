@@ -45,7 +45,11 @@ public class AppActivity extends AppCompatActivity {
 
 
 
-        ArrayAdapter<String> ratAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, (String[]) (scoreList.get(0)));
+        ArrayAdapter<String> ratAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        for (int i = 0; i < 3; i++) {
+            ratAdapter.addAll((String[]) scoreList.get(i));
+        }
+
 
         ListView ratData = (ListView) findViewById(R.id.ratList);
         ratData.setAdapter(ratAdapter);
