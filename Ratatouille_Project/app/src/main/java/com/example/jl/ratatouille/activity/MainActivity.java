@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.db.CSVFile;
@@ -41,6 +43,17 @@ public class MainActivity extends AppCompatActivity {
         //InputStream inputStream = getResources().openRawResource(R.raw.RatSightings);
         //CSVFile csvFile = new CSVFile(inputStream);
         //List scoreList = csvFile.read();
+
+    /**
+        InputStream inputStream = getResources().openRawResource(R.raw.rat_sightings);
+        CSVFile csvFile = new CSVFile(inputStream);
+        List scoreList = csvFile.read();
+
+        ArrayAdapter<String> ratAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,scoreList);
+
+        ListView ratData = (ListView) findViewById(R.id.ratList);
+        ratData.setAdapter(ratAdapter);
+     **/
     }
 
 
