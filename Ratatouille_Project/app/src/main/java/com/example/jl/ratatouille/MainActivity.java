@@ -36,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(myIntent, 0);
             }
         });
+
+        InputStream inputStream = getResources().openRawResource(R.raw.stats);
+        CSVFile csvFile = new CSVFile(inputStream);
+        List scoreList = csvFile.read();
     }
 
 
