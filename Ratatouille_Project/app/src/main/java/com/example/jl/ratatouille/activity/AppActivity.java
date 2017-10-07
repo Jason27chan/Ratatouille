@@ -65,6 +65,9 @@ public class AppActivity extends AppCompatActivity {
             for (int j = 0; j < intArray.length; j++) {
                 TextView text = new TextView(table.getContext());
                 text.setText(((String[]) scoreList.get(i))[intArray[j]]);
+//                text.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+//                text.setHeight(ActionBar.LayoutParams.WRAP_CONTENT);
+//                text.setWidth(ActionBar.LayoutParams.WRAP_CONTENT);
                 row.addView(text);
             }
             table.addView(row);
