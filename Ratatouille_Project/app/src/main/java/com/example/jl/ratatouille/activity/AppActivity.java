@@ -43,18 +43,20 @@ public class AppActivity extends AppCompatActivity {
 
         InputStream inputStream = getResources().openRawResource(R.raw.rat_sightings);
         CSVFile csvFile = new CSVFile(inputStream);
-        List scoreList = csvFile.read();
+        final List scoreList = csvFile.read();
 
         int[] intArray = {0, 1, 7, 8, 9, 16, 23, 30, 29};
         final TableLayout table = (TableLayout) findViewById(R.id.ratTable);
 
         for (int i = 0; i < 50; i++) {
             final TableRow row = new TableRow(table.getContext());
+            final String[] dataArray = ((String[]) scoreList.get(i));
             for (int j = 0; j < intArray.length; j++) {
                 TextView text = new TextView(table.getContext());
-                text.setText(((String[]) scoreList.get(i))[intArray[j]]);
+                text.setText(dataArray[intArray[j]]);
                 row.addView(text);
             }
+
             row.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -62,7 +64,12 @@ public class AppActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(row.getContext());
 
                     // 2. Chain together various setter methods to set the dialog characteristics
-                    builder.setMessage("Hello Rat!")
+                    String message = "";
+                    for (int j = 0; j < dataArray.length; j++) {
+                        message += dataArray[j] + "\n";
+                    }
+
+                    builder.setMessage(message)
                             .setTitle("SuperRat!");
 
                     // 3. Get the AlertDialog from create()
