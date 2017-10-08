@@ -1,18 +1,12 @@
 package com.example.jl.ratatouille.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.db.CSVFile;
-
-import java.io.InputStream;
-import java.util.List;
 
 /**
  *  Leads to login and registration
@@ -39,14 +33,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(myIntent, 0);
             }
         });
-
-        //InputStream inputStream = getResources().openRawResource(R.raw.RatSightings);
-        //CSVFile csvFile = new CSVFile(inputStream);
-        //List scoreList = csvFile.read();
-
-
-
     }
-
-
 }
