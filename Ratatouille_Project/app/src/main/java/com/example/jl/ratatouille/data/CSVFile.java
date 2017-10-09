@@ -19,11 +19,9 @@ public class CSVFile {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         try {
             String csvLine = reader.readLine();
-            csvLine = reader.readLine();
-            for (int i = 0; i < 10; i++) {
+            while ((csvLine = reader.readLine()) != null) {
                 String[] row = csvLine.split(",");
                 resultList.add(row);
-                csvLine = reader.readLine();
             }
         }
         catch (IOException ex) {

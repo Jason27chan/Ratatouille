@@ -3,6 +3,7 @@ package com.example.jl.ratatouille.activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.widget.Adapter;
 import android.support.v7.widget.RecyclerView;
@@ -37,6 +38,10 @@ public class RatListActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        //add divider lines
+        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(), LinearLayoutManager.VERTICAL);
+        mRecyclerView.addItemDecoration(mDividerItemDecoration);
+
         ratList = new ArrayList<>();
         mAdapter = new RatAdapter(ratList);
         mRecyclerView.setAdapter(mAdapter);
@@ -46,15 +51,15 @@ public class RatListActivity extends AppCompatActivity {
     }
 
     private void loadRatData() {
-        InputStream inputStream = getResources().openRawResource(R.raw.rat_sightings);
+        InputStream inputStream = getResources().openRawResource(R.raw.rat_sightings_trimmed);
         CSVFile csvFile = new CSVFile(inputStream);
         List rowList = csvFile.read();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 50; i++) {
             Rat rat = new Rat();
             String[] row = (String[]) rowList.get(i);
             String date = row[1];
-            String streetAddress = row[9];
-            String city = row[16];
+            String streetAddress = row[4];
+            String city = row[5];
             rat.setDate(date);
             rat.setIncidentAddress(streetAddress);
             rat.setCity(city);
