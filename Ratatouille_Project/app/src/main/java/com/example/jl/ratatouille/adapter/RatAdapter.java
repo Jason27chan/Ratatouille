@@ -35,9 +35,9 @@ public class RatAdapter extends RecyclerView.Adapter<RatAdapter.ViewHolder> {
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RatAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View ratView = LayoutInflater.from(parent.getContext()).inflate(R.layout.rat_list_row, parent, false);
-        return new ViewHolder(ratView);
+        return new RatAdapter.ViewHolder(ratView);
     }
 
     @Override

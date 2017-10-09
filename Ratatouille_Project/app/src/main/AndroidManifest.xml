@@ -27,7 +27,7 @@
             android:label="Register"
             android:parentActivityName="com.example.jl.ratatouille.activity.MainActivity" >
         </activity>
-        <activity android:name=".activity.AppActivity"
+        <activity android:name=".activity.RatListActivity"
             android:parentActivityName="com.example.jl.ratatouille.activity.MainActivity" >
         </activity>
     </application>
