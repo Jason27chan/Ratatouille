@@ -3,7 +3,6 @@ package com.example.jl.ratatouille.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,9 +15,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.app.AppConfig;
-import com.example.jl.ratatouille.app.AppController;
-import com.example.jl.ratatouille.db.LoginDataBaseAdapter;
+import com.example.jl.ratatouille.sync.AppConfig;
+import com.example.jl.ratatouille.sync.AppController;
+import com.example.jl.ratatouille.adapter.UserDbAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,7 +41,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private Button registrationButton;
 
-    private LoginDataBaseAdapter dbAdapter;
+    private UserDbAdapter dbAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +49,7 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         //get database adapter
-        dbAdapter = new LoginDataBaseAdapter(this).open();
+        dbAdapter = new UserDbAdapter(this).open();
 
         //get EditText references
         usernameEntry = (EditText) findViewById(R.id.editTxt_regUsername);

@@ -47,7 +47,7 @@ public class Rat {
         return incidentAddress;
     }
 
-    public String city() {
+    public String getCity() {
         return city;
     }
 

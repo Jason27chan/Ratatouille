@@ -1,38 +1,39 @@
-package com.example.jl.ratatouille.db;
+package com.example.jl.ratatouille.adapter;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.ContactsContract;
 
 import com.example.jl.ratatouille.R;
+import com.example.jl.ratatouille.data.SQLiteContract;
+import com.example.jl.ratatouille.data.SQLiteHelper;
 
 /**
  * Created by jav on 9/12/2017.
  */
 
-public class LoginDataBaseAdapter {
+public class UserDbAdapter {
 
     private SQLiteDatabase db;
     private final Context context;
-    private DataBaseHelper dbHelper;
+    private SQLiteHelper dbHelper;
 
-    public static final String DATABASE_CREATE = "CREATE TABLE " + DataBaseContract.LoginEntry.TABLE_NAME + " ("
-            + DataBaseContract.LoginEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + DataBaseContract.LoginEntry.COLUMN_USERNAME + " TEXT,"
-            + DataBaseContract.LoginEntry.COLUMN_PASSWORD + " TEXT,"
-            + DataBaseContract.LoginEntry.COLUMN_ACC_TYPE + " TEXT)";
+    public static final String DATABASE_CREATE = "CREATE TABLE " + SQLiteContract.LoginEntry.TABLE_NAME + " ("
+            + SQLiteContract.LoginEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + SQLiteContract.LoginEntry.COLUMN_USERNAME + " TEXT,"
+            + SQLiteContract.LoginEntry.COLUMN_PASSWORD + " TEXT,"
+            + SQLiteContract.LoginEntry.COLUMN_ACC_TYPE + " TEXT)";
 
     /**
      * Constructor for the login database adapter
      *
      * @param context information about application environment
      */
-    public LoginDataBaseAdapter(Context context) {
+    public UserDbAdapter(Context context) {
         this.context = context;
-        dbHelper = new DataBaseHelper(context, DataBaseContract.DATABASE_NAME, null, DataBaseContract.DATABASE_VERSION);
+        dbHelper = new SQLiteHelper(context, SQLiteContract.DATABASE_NAME, null, SQLiteContract.DATABASE_VERSION);
     }
 
     /**
@@ -41,7 +42,7 @@ public class LoginDataBaseAdapter {
      * @return the login database adapter is returned
      * @throws SQLException if the database cannot be opened
      */
-    public LoginDataBaseAdapter open() throws SQLException {
+    public UserDbAdapter open() throws SQLException {
         db = dbHelper.getWritableDatabase();
         return this;
     }
@@ -71,11 +72,11 @@ public class LoginDataBaseAdapter {
      */
     public void insertEntry(String username, String password, String acc_type) {
         ContentValues newValues = new ContentValues();
-        newValues.put(DataBaseContract.LoginEntry.COLUMN_USERNAME, username);
-        newValues.put(DataBaseContract.LoginEntry.COLUMN_PASSWORD, password);
-        newValues.put(DataBaseContract.LoginEntry.COLUMN_ACC_TYPE, acc_type);
+        newValues.put(SQLiteContract.LoginEntry.COLUMN_USERNAME, username);
+        newValues.put(SQLiteContract.LoginEntry.COLUMN_PASSWORD, password);
+        newValues.put(SQLiteContract.LoginEntry.COLUMN_ACC_TYPE, acc_type);
 
-        db.insert(DataBaseContract.LoginEntry.TABLE_NAME, null, newValues);
+        db.insert(SQLiteContract.LoginEntry.TABLE_NAME, null, newValues);
     }
 
     /**
@@ -85,8 +86,8 @@ public class LoginDataBaseAdapter {
      * @return the number value of the table location where the value was deleted
      */
     public int deleteEntry(String username) {
-        String where = DataBaseContract.LoginEntry.COLUMN_USERNAME + "=?";
-        int numberDeleted = db.delete(DataBaseContract.LoginEntry.TABLE_NAME, where, new String[]{username});
+        String where = SQLiteContract.LoginEntry.COLUMN_USERNAME + "=?";
+        int numberDeleted = db.delete(SQLiteContract.LoginEntry.TABLE_NAME, where, new String[]{username});
         return numberDeleted;
     }
 
@@ -96,11 +97,11 @@ public class LoginDataBaseAdapter {
      * @return the password needed
      */
     public String getPassword(String username) {
-        Cursor cursor = db.query(DataBaseContract.LoginEntry.TABLE_NAME, null, " " + DataBaseContract.LoginEntry.COLUMN_USERNAME + "=?", new String[]{username}, null, null, null);
+        Cursor cursor = db.query(SQLiteContract.LoginEntry.TABLE_NAME, null, " " + SQLiteContract.LoginEntry.COLUMN_USERNAME + "=?", new String[]{username}, null, null, null);
         String password = context.getString(R.string.not_found);
         if (cursor.getCount() >= 1) {
             cursor.moveToFirst();
-            password = cursor.getString(cursor.getColumnIndex(DataBaseContract.LoginEntry.COLUMN_PASSWORD));
+            password = cursor.getString(cursor.getColumnIndex(SQLiteContract.LoginEntry.COLUMN_PASSWORD));
         }
         cursor.close();
         return password;
@@ -112,11 +113,11 @@ public class LoginDataBaseAdapter {
      * @return the account type associated with the username
      */
     public String getAccType(String username) {
-        Cursor cursor = db.query(DataBaseContract.LoginEntry.TABLE_NAME, null, " " + DataBaseContract.LoginEntry.COLUMN_USERNAME + "=?", new String[]{username}, null, null, null);
+        Cursor cursor = db.query(SQLiteContract.LoginEntry.TABLE_NAME, null, " " + SQLiteContract.LoginEntry.COLUMN_USERNAME + "=?", new String[]{username}, null, null, null);
         String accType = context.getString(R.string.not_found);
         if (cursor.getCount() >= 1) {
             cursor.moveToFirst();
-            accType = cursor.getString(cursor.getColumnIndex(DataBaseContract.LoginEntry.COLUMN_ACC_TYPE));
+            accType = cursor.getString(cursor.getColumnIndex(SQLiteContract.LoginEntry.COLUMN_ACC_TYPE));
         }
         cursor.close();
         return accType;

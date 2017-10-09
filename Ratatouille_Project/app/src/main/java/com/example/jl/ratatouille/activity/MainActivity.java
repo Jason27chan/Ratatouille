@@ -7,10 +7,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.db.CSVFile;
-
-import java.io.InputStream;
-import java.util.List;
 
 /**
  *  Leads to login and registration

@@ -1,4 +1,4 @@
-package com.example.jl.ratatouille.db;
+package com.example.jl.ratatouille.data;
 
 import android.provider.BaseColumns;
 
@@ -8,14 +8,14 @@ import android.provider.BaseColumns;
  * Created by jav on 9/12/2017.
  */
 
-public class DataBaseContract {
+public class SQLiteContract {
     public static final String DATABASE_NAME = "ratatouille_database";
     public static final int DATABASE_VERSION = 2;
 
     /**
      * The constructor for the database contract
      */
-    private DataBaseContract() {}
+    private SQLiteContract() {}
 
     /**
      * Table for user information

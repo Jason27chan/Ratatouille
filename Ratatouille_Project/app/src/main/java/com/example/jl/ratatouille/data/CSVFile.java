@@ -1,4 +1,4 @@
-package com.example.jl.ratatouille.db;
+package com.example.jl.ratatouille.data;
 
 import java.io.BufferedReader;
 import java.io.IOException;

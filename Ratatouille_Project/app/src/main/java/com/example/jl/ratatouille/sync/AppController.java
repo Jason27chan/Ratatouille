@@ -1,4 +1,4 @@
-package com.example.jl.ratatouille.app;
+package com.example.jl.ratatouille.sync;
 
 import android.app.Application;
 import android.text.TextUtils;
