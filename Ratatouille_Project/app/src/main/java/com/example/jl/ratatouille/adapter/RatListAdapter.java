@@ -16,6 +16,10 @@ import java.util.List;
 
 /**
  * Created by jav on 10/8/2017.
+ *
+ * Adapter for the rat list RecyclerView in RatListActivity
+ * Displays date, address, and city in each row
+ * Passes Rat object to RatViewActivity for detail view
  */
 
 public class RatListAdapter extends RecyclerView.Adapter<RatListAdapter.ViewHolder> {
@@ -38,6 +42,8 @@ public class RatListAdapter extends RecyclerView.Adapter<RatListAdapter.ViewHold
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(context, RatViewActivity.class);
+            //todo: add call to another method which retrieves all the rat info instead of just date, address, city
+            //currently all data is loaded in RatListActivity but this is inefficient because only 3 fields are displayed in the main view?
             intent.putExtra("rat", rat);
             context.startActivity(intent);
         }

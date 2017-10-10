@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 /**
  * Created by jav on 10/9/2017.
+ *
+ * Detailed view for a Rat
  */
 
 public class RatViewActivity extends AppCompatActivity{

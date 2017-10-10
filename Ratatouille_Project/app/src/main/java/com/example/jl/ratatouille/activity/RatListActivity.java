@@ -17,8 +17,9 @@ import java.util.List;
 
 
 /**
- * The App Activity for the entire class
+ * Displays the rat data in a RecyclerView
  */
+
 public class RatListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -46,8 +47,11 @@ public class RatListActivity extends AppCompatActivity {
 
         loadRatData();
         mAdapter.notifyDataSetChanged();
+
+        //todo: add button which leads to filter options activity
     }
 
+    //todo: add filtering options and endless scroll
     private void loadRatData() {
         InputStream inputStream = getResources().openRawResource(R.raw.rat_sightings_trimmed);
         CSVFile csvFile = new CSVFile(inputStream);
