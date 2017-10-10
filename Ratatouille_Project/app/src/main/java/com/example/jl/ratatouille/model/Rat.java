@@ -1,17 +1,20 @@
 package com.example.jl.ratatouille.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import static android.R.attr.id;
 
 /**
  * Created by Emily Chang on 10/5/2017.
  */
 
-public class Rat {
+public class Rat implements Parcelable {
     private String id;
     private String date;
     private String locType;
-    private String incidentZip;
-    private String incidentAddress;
+    private String zip;
+    private String address;
     private String city;
     private String borough;
     private String latitude;
@@ -21,12 +24,12 @@ public class Rat {
         this("unknown", "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", "unknown");
     }
 
-    public Rat(String id, String date, String locType, String incidentZip, String incidentAdress, String city, String borough, String latitude, String longitude) {
+    public Rat(String id, String date, String locType, String zip, String address, String city, String borough, String latitude, String longitude) {
         this.id = id;
         this.date = date;
         this.locType = locType;
-        this.incidentZip = incidentZip;
-        this.incidentAddress = incidentAdress;
+        this.zip = zip;
+        this.address = address;
         this.city = city;
         this.borough = borough;
         this.latitude = latitude;
@@ -60,23 +63,23 @@ public class Rat {
         this.locType = locType;
     }
 
-    public String getIncidentZip() {
-        return incidentZip;
+    public String getZip() {
+        return zip;
     }
 
-    public void setIncidentZip(String incidentZip) {
-        this.incidentZip = incidentZip;
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 
-    public String getIncidentAddress() {
-        return incidentAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setIncidentAddress(String incidentAddress) {
-        if (incidentAddress.equals("") || incidentAddress == null) {
+    public void setAddress(String address) {
+        if (address.equals("") || address == null) {
             return;
         }
-        this.incidentAddress = incidentAddress;
+        this.address = address;
     }
 
     public String getCity() {
@@ -112,5 +115,45 @@ public class Rat {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(date);
+        dest.writeString(locType);
+        dest.writeString(zip);
+        dest.writeString(address);
+        dest.writeString(city);
+        dest.writeString(borough);
+        dest.writeString(latitude);
+        dest.writeString(longitude);
+    }
+
+    public static final Parcelable.Creator<Rat> CREATOR = new Parcelable.Creator<Rat>() {
+        public Rat createFromParcel(Parcel in) {
+            return new Rat(in);
+        }
+
+        public Rat[] newArray(int size) {
+            return new Rat[size];
+        }
+    };
+
+    private Rat(Parcel in) {
+        id = in.readString();
+        date = in.readString();
+        locType = in.readString();
+        zip = in.readString();
+        address = in.readString();
+        city = in.readString();
+        borough = in.readString();
+        latitude = in.readString();
+        longitude = in.readString();
     }
 }

@@ -30,6 +30,9 @@
         <activity android:name=".activity.RatListActivity"
             android:parentActivityName="com.example.jl.ratatouille.activity.MainActivity" >
         </activity>
+        <activity android:name=".activity.RatViewActivity"
+            android:parentActivityName=".activity.RatListActivity">
+        </activity>
     </application>
 
 </manifest>

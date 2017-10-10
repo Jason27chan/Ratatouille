@@ -1,15 +1,13 @@
 package com.example.jl.ratatouille.activity;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
-import android.widget.Adapter;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.adapter.RatAdapter;
+import com.example.jl.ratatouille.adapter.RatListAdapter;
 import com.example.jl.ratatouille.data.CSVFile;
 import com.example.jl.ratatouille.model.Rat;
 
@@ -33,7 +31,7 @@ public class RatListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rat_list);
         mRecyclerView = (RecyclerView) findViewById(R.id.rat_recycler_view);
 
-        //mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -43,7 +41,7 @@ public class RatListActivity extends AppCompatActivity {
         mRecyclerView.addItemDecoration(mDividerItemDecoration);
 
         ratList = new ArrayList<>();
-        mAdapter = new RatAdapter(ratList);
+        mAdapter = new RatListAdapter(ratList, this);
         mRecyclerView.setAdapter(mAdapter);
 
         loadRatData();
@@ -57,12 +55,24 @@ public class RatListActivity extends AppCompatActivity {
         for (int i = 0; i < 50; i++) {
             Rat rat = new Rat();
             String[] row = (String[]) rowList.get(i);
+            String id = row[0];
             String date = row[1];
-            String streetAddress = row[4];
+            String locType = row[2];
+            String zip = row[3];
+            String address = row[4];
             String city = row[5];
+            String borough = row[6];
+            String latitude = row[7];
+            String longitude = row[8];
+            rat.setRatId(id);
             rat.setDate(date);
-            rat.setIncidentAddress(streetAddress);
+            rat.setLocType(locType);
+            rat.setZip(zip);
+            rat.setAddress(address);
             rat.setCity(city);
+            rat.setBorough(borough);
+            rat.setLatitude(latitude);
+            rat.setLongitude(longitude);
             ratList.add(rat);
         }
 
