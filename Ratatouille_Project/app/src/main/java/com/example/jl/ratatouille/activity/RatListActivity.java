@@ -10,10 +10,13 @@ import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.adapter.RatListAdapter;
 import com.example.jl.ratatouille.data.CSVFile;
 import com.example.jl.ratatouille.model.Rat;
+import com.example.jl.ratatouille.util.EndlessOnScrollListener;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.R.interpolator.linear;
 
 
 /**
@@ -34,6 +37,7 @@ public class RatListActivity extends AppCompatActivity {
 
         mRecyclerView.setHasFixedSize(true);
 
+        //set layout
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
@@ -41,12 +45,20 @@ public class RatListActivity extends AppCompatActivity {
         DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(), LinearLayoutManager.VERTICAL);
         mRecyclerView.addItemDecoration(mDividerItemDecoration);
 
+        //set adapter
         ratList = new ArrayList<>();
         mAdapter = new RatListAdapter(ratList, this);
         mRecyclerView.setAdapter(mAdapter);
 
         loadRatData();
-        mAdapter.notifyDataSetChanged();
+
+        //set endless scroll
+        mRecyclerView.addOnScrollListener(new EndlessOnScrollListener() {
+            @Override
+            public void onLoadMore() {
+                loadRatData();
+            }
+        });
 
         //todo: add button which leads to filter options activity
     }
@@ -79,6 +91,7 @@ public class RatListActivity extends AppCompatActivity {
             rat.setLongitude(longitude);
             ratList.add(rat);
         }
+        mAdapter.notifyDataSetChanged();
 
     }
 
