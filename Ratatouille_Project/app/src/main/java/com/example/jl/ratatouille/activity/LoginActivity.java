@@ -67,6 +67,11 @@ public class LoginActivity extends AppCompatActivity{
         });
     }
 
+    /**
+     * Checks to the login to make sure that the username and password are correct
+     * @param username the username for the user
+     * @param password the password for the user
+     */
     private void checkLogin(final String username, final String password) {
         //tag used to cancel request?
         String cancel_req_tag = "req_login";
