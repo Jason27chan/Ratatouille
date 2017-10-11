@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--
     <Button
         android:id="@+id/btn_logout"
         android:text="@string/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />-->
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rat_recycler_view"
