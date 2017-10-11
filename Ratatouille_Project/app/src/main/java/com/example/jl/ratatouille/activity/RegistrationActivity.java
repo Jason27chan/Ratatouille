@@ -82,6 +82,13 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     *  Registers the user into the database
+     * @param username the desired username
+     * @param password desired password
+     * @param confirm desired password entered again for confirmation
+     * @param account_type whether its a user or admin
+     */
     private void registerUser(final String username, final String password, final String confirm, final String account_type) {
         String cancel_req_tag = "req_register";
         StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_REGISTER, new Response.Listener<String>() {

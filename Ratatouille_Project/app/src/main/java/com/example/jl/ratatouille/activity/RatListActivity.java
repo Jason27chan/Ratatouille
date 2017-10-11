@@ -64,6 +64,10 @@ public class RatListActivity extends AppCompatActivity {
     }
 
     //todo: add filtering options and endless scroll
+
+    /**
+     * Fills the ratList with the data pulled from the CSV file
+     */
     private void loadRatData() {
         InputStream inputStream = getResources().openRawResource(R.raw.rat_sightings_trimmed);
         CSVFile csvFile = new CSVFile(inputStream);

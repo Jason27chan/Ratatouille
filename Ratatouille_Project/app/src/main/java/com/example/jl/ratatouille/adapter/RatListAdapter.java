@@ -49,11 +49,17 @@ public class RatListAdapter extends RecyclerView.Adapter<RatListAdapter.ViewHold
         }
     }
 
+    /**
+     * Initializes the ratList
+     * @param ratList a list of rats
+     * @param context the activity
+     */
     public RatListAdapter(List<Rat> ratList, Context context) {
         this.ratList = ratList;
         this.context = context;
     }
 
+    //inflates the views in the rat list
     @Override
     public RatListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View ratView = LayoutInflater.from(parent.getContext()).inflate(R.layout.rat_list_row, parent, false);
@@ -68,6 +74,8 @@ public class RatListAdapter extends RecyclerView.Adapter<RatListAdapter.ViewHold
         holder.city.setText(rat.getCity());
         holder.rat = rat;
     }
+
+
 
     @Override
     public int getItemCount() {
