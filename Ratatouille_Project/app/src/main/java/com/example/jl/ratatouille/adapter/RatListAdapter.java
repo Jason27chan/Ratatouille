@@ -81,4 +81,5 @@ public class RatListAdapter extends RecyclerView.Adapter<RatListAdapter.ViewHold
     public int getItemCount() {
         return ratList.size();
     }
+
 }

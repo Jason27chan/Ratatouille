@@ -1,10 +1,13 @@
 package com.example.jl.ratatouille.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.adapter.RatListAdapter;
@@ -15,8 +18,6 @@ import com.example.jl.ratatouille.util.EndlessOnScrollListener;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.R.interpolator.linear;
 
 
 /**
@@ -61,6 +62,15 @@ public class RatListActivity extends AppCompatActivity {
         });
 
         //todo: add button which leads to filter options activity
+
+        //logout button
+        final Button logoutBtn = (Button) findViewById(R.id.btn_logout);
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(v.getContext(), MainActivity.class);
+                startActivityForResult(myIntent, 0);
+            }
+        });
     }
 
     //todo: add filtering options and endless scroll
@@ -96,53 +106,5 @@ public class RatListActivity extends AppCompatActivity {
             ratList.add(rat);
         }
         mAdapter.notifyDataSetChanged();
-
     }
-
-        /*final Button logoutBtn = (Button) findViewById(R.id.btn_logout);
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent myIntent = new Intent(v.getContext(), MainActivity.class);
-                startActivityForResult(myIntent, 0);
-            }
-        });
-
-        InputStream inputStream = getResources().openRawResource(R.raw.rat_sightings);
-        CSVFile csvFile = new CSVFile(inputStream);
-        final List scoreList = csvFile.read();
-
-        int[] intArray = {0, 1, 7, 8, 9, 16, 23, 30, 29};
-        final TableLayout table = (TableLayout) findViewById(R.id.ratTable);
-
-        for (int i = 0; i < 50; i++) {
-            final TableRow row = new TableRow(table.getContext());
-            final String[] dataArray = ((String[]) scoreList.get(i));
-            for (int j = 0; j < intArray.length; j++) {
-                TextView text = new TextView(table.getContext());
-                text.setText(dataArray[intArray[j]]);
-                row.addView(text);
-            }
-
-            row.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // 1. Instantiate an AlertDialog.Builder with its constructor
-                    AlertDialog.Builder builder = new AlertDialog.Builder(row.getContext());
-
-                    // 2. Chain together various setter methods to set the dialog characteristics
-                    String message = "";
-                    for (int j = 0; j < dataArray.length; j++) {
-                        message += dataArray[j] + "\n";
-                    }
-
-                    builder.setMessage(message)
-                            .setTitle("SuperRat!");
-
-                    // 3. Get the AlertDialog from create()
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                }
-            });
-            table.addView(row);
-        }*/
 }
