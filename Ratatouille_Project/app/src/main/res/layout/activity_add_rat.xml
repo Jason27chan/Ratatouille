@@ -43,7 +43,6 @@
         android:layout_alignLeft="@+id/editTxt_city"
         android:layout_alignStart="@+id/editTxt_city" />
 
-
     <EditText
         android:id="@+id/editTxt_city"
         android:hint="@string/City"
@@ -83,5 +82,31 @@
         android:layout_alignLeft="@+id/editTxt_borough"
         android:layout_alignStart="@+id/editTxt_borough"
         android:layout_marginTop="12dp" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:hint="@string/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginTop="22dp"
+        android:typeface="monospace"
+        android:layout_below="@+id/editTxt_latitude"
+        android:layout_alignRight="@+id/editTxt_latitude"
+        android:layout_alignEnd="@+id/editTxt_latitude" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:hint="@string/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_cancel"
+        android:layout_alignBottom="@+id/btn_cancel"
+        android:layout_toLeftOf="@+id/btn_cancel"
+        android:layout_toStartOf="@+id/btn_cancel"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="16dp"
+        android:typeface="monospace"/>
 
 </RelativeLayout>
