@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.example.jl.ratatouille.app.AppController"
+        android:name=".app.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,17 +19,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity"
+        <activity
+            android:name=".activity.LoginActivity"
             android:label="Login"
-            android:parentActivityName="com.example.jl.ratatouille.activity.MainActivity" >
-        </activity>
-        <activity android:name=".activity.RegistrationActivity"
+            android:parentActivityName=".activity.MainActivity"></activity>
+        <activity
+            android:name=".activity.RegistrationActivity"
             android:label="Register"
-            android:parentActivityName="com.example.jl.ratatouille.activity.MainActivity" >
-        </activity>
-        <activity android:name=".activity.AppActivity"
-            android:parentActivityName="com.example.jl.ratatouille.activity.MainActivity" >
-        </activity>
+            android:parentActivityName=".activity.MainActivity"></activity>
+        <activity
+            android:name=".activity.AppActivity"
+            android:parentActivityName=".activity.MainActivity"></activity>
+        <activity
+            android:name=".activity.AddRatActivity"
+            android:label="@string/title_activity_add_rat"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

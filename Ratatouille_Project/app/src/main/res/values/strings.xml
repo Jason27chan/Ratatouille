@@ -13,4 +13,5 @@
     <string name="radio_user">User</string>
 
     <string name="not_found">.NOT FOUND.</string>
+    <string name="title_activity_add_rat">AddRatActivity</string>
 </resources>
