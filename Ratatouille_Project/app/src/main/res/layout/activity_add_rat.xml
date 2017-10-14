@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,3 +8,91 @@
     tools:context="com.example.jl.ratatouille.activity.AddRatActivity">
 
 </android.support.design.widget.CoordinatorLayout>
+=======
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/editTxt_created_date"
+        android:hint="@string/DateCreated"
+        android:inputType="date"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        style="@style/EditTextStyle" />
+
+    <EditText
+        android:id="@+id/editTxt_loc_type"
+        android:hint="@string/LocationType"
+        android:inputType="text"
+        android:layout_marginTop="12dp"
+        style="@style/EditTextStyle"
+        android:layout_below="@+id/editTxt_created_date"
+        android:layout_alignLeft="@+id/editTxt_created_date"
+        android:layout_alignStart="@+id/editTxt_created_date" />
+
+    <EditText
+        android:id="@+id/editTxt_incident_zip"
+        android:hint="@string/IncidentZip"
+        android:inputType="text"
+        android:layout_marginTop="12dp"
+        style="@style/EditTextStyle"
+        android:layout_below="@+id/editTxt_loc_type"
+        android:layout_alignLeft="@+id/editTxt_city"
+        android:layout_alignStart="@+id/editTxt_city" />
+
+    <EditText
+        android:id="@+id/editTxt_incident_address"
+        android:hint="@string/IncidentAddress"
+        android:inputType="text"
+        android:layout_marginTop="12dp"
+        style="@style/EditTextStyle"
+        android:layout_below="@+id/editTxt_incident_zip"
+        android:layout_alignLeft="@+id/editTxt_city"
+        android:layout_alignStart="@+id/editTxt_city" />
+
+
+    <EditText
+        android:id="@+id/editTxt_city"
+        android:hint="@string/City"
+        android:inputType="text"
+        style="@style/EditTextStyle"
+        android:layout_below="@+id/editTxt_incident_address"
+        android:layout_alignLeft="@+id/editTxt_borough"
+        android:layout_alignStart="@+id/editTxt_borough"
+        android:layout_marginTop="12dp" />
+
+    <EditText
+        android:id="@+id/editTxt_borough"
+        android:hint="@string/Borough"
+        android:inputType="text"
+        style="@style/EditTextStyle"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/editTxt_city"
+        android:layout_alignLeft="@+id/editTxt_loc_type"
+        android:layout_alignStart="@+id/editTxt_loc_type" />
+
+    <EditText
+        android:id="@+id/editTxt_latitude"
+        android:hint="@string/Latitude"
+        android:inputType="text"
+        style="@style/EditTextStyle"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/editTxt_longitude"
+        android:layout_alignLeft="@+id/editTxt_longitude"
+        android:layout_alignStart="@+id/editTxt_longitude" />
+
+    <EditText
+        android:id="@+id/editTxt_longitude"
+        android:hint="@string/Longitude"
+        android:inputType="text"
+        style="@style/EditTextStyle"
+        android:layout_below="@+id/editTxt_borough"
+        android:layout_alignLeft="@+id/editTxt_borough"
+        android:layout_alignStart="@+id/editTxt_borough"
+        android:layout_marginTop="12dp" />
+
+</RelativeLayout>
+>>>>>>> 97301f44f39331b40d235ab20af3e3dfe2fdd6ba

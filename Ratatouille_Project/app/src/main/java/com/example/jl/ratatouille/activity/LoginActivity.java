@@ -14,9 +14,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.app.AppConfig;
-import com.example.jl.ratatouille.app.AppController;
-import com.example.jl.ratatouille.db.LoginDataBaseAdapter;
+import com.example.jl.ratatouille.sync.AppConfig;
+import com.example.jl.ratatouille.sync.AppController;
+import com.example.jl.ratatouille.adapter.UserDbAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity{
 
     private static final String TAG = RegistrationActivity.class.getSimpleName();
 
-    private LoginDataBaseAdapter dbAdapter;
+    private UserDbAdapter dbAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity{
         _password = (EditText) findViewById(R.id.editTxt_logPassword);
         _button = (Button) findViewById(R.id.btn_logLogin);
 
-        dbAdapter = new LoginDataBaseAdapter(this).open();
+        dbAdapter = new UserDbAdapter(this).open();
 
         _button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -61,14 +61,17 @@ public class LoginActivity extends AppCompatActivity{
                     Toast.makeText(getApplicationContext(), "please enter a username and password", Toast.LENGTH_LONG).show();
 
                 } else {
-                    Intent intent = new Intent(LoginActivity.this, AppActivity.class);
-                    startActivity(intent);
-                    finish();
+                    checkLogin(userInput, passInput);
                 }
             }
         });
     }
 
+    /**
+     * Checks to the login to make sure that the username and password are correct
+     * @param username the username for the user
+     * @param password the password for the user
+     */
     private void checkLogin(final String username, final String password) {
         //tag used to cancel request?
         String cancel_req_tag = "req_login";
@@ -87,7 +90,7 @@ public class LoginActivity extends AppCompatActivity{
                         //JSONObject user = jObj.getJSONObject("user");
                         //String username = user.getString("username");
 
-                        Intent intent = new Intent(LoginActivity.this, AppActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, RatListActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
