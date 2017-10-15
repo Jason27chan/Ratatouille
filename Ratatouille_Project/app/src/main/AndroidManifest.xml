@@ -8,6 +8,7 @@
 
         android:name="com.example.jl.ratatouille.sync.AppController"
 
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -35,7 +36,7 @@
             android:parentActivityName=".activity.MainActivity"></activity>
         <activity
             android:name=".activity.AddRatActivity"
-            android:label="@string/title_activity_add_rat"
+            android:label="hello"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
             android:parentActivityName="com.example.jl.ratatouille.activity.MainActivity" >
@@ -46,6 +47,7 @@
         <activity android:name=".activity.RatViewActivity"
             android:parentActivityName=".activity.RatListActivity">
         </activity>
-    </application>
 
+
+    </application>
 </manifest>
