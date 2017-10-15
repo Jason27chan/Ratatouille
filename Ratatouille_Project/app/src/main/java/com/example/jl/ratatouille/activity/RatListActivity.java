@@ -85,7 +85,7 @@ public class RatListActivity extends AppCompatActivity {
         for (int i = 0; i < 50; i++) {
             Rat rat = new Rat();
             String[] row = (String[]) rowList.get(i);
-            String id = row[0];
+            int id = Integer.parseInt(row[0]); //parsing the id
             String date = row[1];
             String locType = row[2];
             String zip = row[3];

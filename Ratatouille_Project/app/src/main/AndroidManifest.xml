@@ -5,7 +5,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+
         android:name="com.example.jl.ratatouille.sync.AppController"
+
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,20 +22,32 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity"
+        <activity
+            android:name=".activity.LoginActivity"
             android:label="Login"
-            android:parentActivityName="com.example.jl.ratatouille.activity.MainActivity" >
-        </activity>
-        <activity android:name=".activity.RegistrationActivity"
+            android:parentActivityName=".activity.MainActivity"></activity>
+        <activity
+            android:name=".activity.RegistrationActivity"
             android:label="Register"
+
+            android:parentActivityName=".activity.MainActivity"></activity>
+        <activity
+            android:name=".activity.AppActivity"
+            android:parentActivityName=".activity.MainActivity"></activity>
+        <activity
+            android:name=".activity.AddRatActivity"
+            android:label="hello"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
             android:parentActivityName="com.example.jl.ratatouille.activity.MainActivity" >
-        </activity>
+
         <activity android:name=".activity.RatListActivity"
             android:parentActivityName="com.example.jl.ratatouille.activity.MainActivity" >
         </activity>
         <activity android:name=".activity.RatViewActivity"
             android:parentActivityName=".activity.RatListActivity">
         </activity>
-    </application>
 
+
+    </application>
 </manifest>
