@@ -7,6 +7,8 @@ import android.widget.EditText;
 import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.model.Rat;
 
+import java.io.FileWriter;
+
 public class AddRatActivity extends AppCompatActivity {
 
     @Override
@@ -33,6 +35,18 @@ public class AddRatActivity extends AppCompatActivity {
         String longitude = editLongitude.getText().toString();
 
         Rat rat = new Rat(date, locType, zip, address, city, borough, latitude, longitude);
+        try {
+            FileWriter fileWriter = new FileWriter(String.valueOf(R.raw.rat_sightings));
+            fileWriter.append(Integer.toString(rat.getRatId())).append(",");
+            fileWriter.append(locType).append(",");
+            fileWriter.append(zip).append(",");
+
+            //Write the CSV file header
+            //Write a new student object list to the CSV file
+
+        } catch (Exception e) {
+
+        }
 
     }
 

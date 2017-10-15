@@ -13,9 +13,7 @@
     <string name="radio_user">User</string>
 
     <string name="not_found">.NOT FOUND.</string>
-<<<<<<< HEAD
     <string name="title_activity_add_rat">AddRatActivity</string>
-=======
     <string name="unique_key">unique_key</string>
     <string name="city">City</string>
     <string name="borough">Borough</string>
@@ -29,5 +27,5 @@
     <string name="Latitude">Latitude</string>
     <string name="Borough">Borough</string>
     <string name="City">City</string>
->>>>>>> 97301f44f39331b40d235ab20af3e3dfe2fdd6ba
+
 </resources>

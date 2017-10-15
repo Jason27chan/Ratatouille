@@ -1,14 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.jl.ratatouille.activity.AddRatActivity">
-
-</android.support.design.widget.CoordinatorLayout>
-=======
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -95,4 +85,4 @@
         android:layout_marginTop="12dp" />
 
 </RelativeLayout>
->>>>>>> 97301f44f39331b40d235ab20af3e3dfe2fdd6ba
+
