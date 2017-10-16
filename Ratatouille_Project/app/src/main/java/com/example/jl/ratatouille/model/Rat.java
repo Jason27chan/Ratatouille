@@ -3,14 +3,13 @@ package com.example.jl.ratatouille.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import static android.R.attr.id;
-
 /**
  * Created by Emily Chang on 10/5/2017.
  */
 
 public class Rat implements Parcelable {
-    private String id;
+    private static int numRats = 684643545;
+    private int id;
     private String date;
     private String locType;
     private String zip;
@@ -24,14 +23,13 @@ public class Rat implements Parcelable {
      * Default constructor for Rat with no data passed in
      */
     public Rat() {
-        this("unknown", "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", "unknown");
+        this("unknown", "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", "unknown");
     }
 
     /**
      * a constructor for the rat
      * with all parameters passed in
      *
-     * @param id the id for the rat
      * @param date the date that the rat was located
      * @param locType the location type of the rat
      * @param zip the zip code that the rat is located at
@@ -41,8 +39,8 @@ public class Rat implements Parcelable {
      * @param latitude the latitude at which the rat was found
      * @param longitude the longitude at which the rat was found
      */
-    public Rat(String id, String date, String locType, String zip, String address, String city, String borough, String latitude, String longitude) {
-        this.id = id;
+    public Rat(String date, String locType, String zip, String address, String city, String borough, String latitude, String longitude) {
+        id = numRats++;
         this.date = date;
         this.locType = locType;
         this.zip = zip;
@@ -57,7 +55,7 @@ public class Rat implements Parcelable {
      * getter for the rat id
      * @return the id of the rat
      */
-    public String getRatId() {
+    public int getRatId() {
         return id;
     }
 
@@ -65,7 +63,7 @@ public class Rat implements Parcelable {
      * setter for the rat id
      * @param id the new id for the rat
      */
-    public void setRatId(String id) {
+    public void setRatId(int id) {
         this.id = id;
     }
 
@@ -213,7 +211,7 @@ public class Rat implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
+        dest.writeInt(id);
         dest.writeString(date);
         dest.writeString(locType);
         dest.writeString(zip);
@@ -249,7 +247,7 @@ public class Rat implements Parcelable {
      * @param in the parcel in which the data is to be stored
      */
     private Rat(Parcel in) {
-        id = in.readString();
+        id = in.readInt();
         date = in.readString();
         locType = in.readString();
         zip = in.readString();

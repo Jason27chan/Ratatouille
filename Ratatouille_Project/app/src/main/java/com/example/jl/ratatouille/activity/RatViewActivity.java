@@ -28,7 +28,7 @@ public class RatViewActivity extends AppCompatActivity{
 
         rat = getIntent().getExtras().getParcelable("rat");
         ratData = new ArrayList<>();
-        ratData.add(rat.getRatId());
+        ratData.add(Integer.toString(rat.getRatId()));
         ratData.add(rat.getDate());
         ratData.add(rat.getLocType());
         ratData.add(rat.getZip());
