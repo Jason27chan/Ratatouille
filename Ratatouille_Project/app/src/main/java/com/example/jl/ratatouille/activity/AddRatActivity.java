@@ -7,5 +7,4 @@ package com.example.jl.ratatouille.activity;
 public class AddRatActivity {
 
 
-    
 }
