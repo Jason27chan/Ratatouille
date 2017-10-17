@@ -63,6 +63,17 @@ public class RatListActivity extends AppCompatActivity {
 
         //todo: add button which leads to filter options activity
 
+
+        //add rat button
+        final Button addRatBtn = (Button) findViewById(R.id.btn_addRat);
+        addRatBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(v.getContext(), AddRatActivity.class);
+                startActivityForResult(myIntent, 0);
+            }
+        });
+
+
         //logout button
         final Button logoutBtn = (Button) findViewById(R.id.btn_logout);
         logoutBtn.setOnClickListener(new View.OnClickListener() {
