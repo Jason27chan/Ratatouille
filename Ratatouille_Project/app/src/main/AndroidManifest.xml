@@ -33,6 +33,9 @@
         <activity android:name=".activity.RatViewActivity"
             android:parentActivityName=".activity.RatListActivity">
         </activity>
+        <activity android:name=".activity.AddRatActivity"
+            android:parentActivityName=".activity.RatListActivity">
+        </activity>
     </application>
 
 </manifest>
