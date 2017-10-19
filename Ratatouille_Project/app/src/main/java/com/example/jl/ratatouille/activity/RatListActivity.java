@@ -1,9 +1,9 @@
 package com.example.jl.ratatouille.activity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,9 +22,6 @@ import com.example.jl.ratatouille.util.EndlessOnScrollListener;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.R.attr.start;
-
 
 /**
  * Displays the rat data in a RecyclerView
@@ -46,21 +43,10 @@ public class RatListActivity extends AppCompatActivity {
         loadRatData(startIndex, startIndex + 25);
         setupEndlessScroll();
 
-        //add rat button
-        final Button addRatBtn = findViewById(R.id.btn_addRat);
+        final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat);
         addRatBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent = new Intent(v.getContext(), AddRatActivity.class);
-                startActivityForResult(myIntent, 0);
-            }
-        });
-
-
-        //logout button
-        final Button logoutBtn = findViewById(R.id.btn_logout);
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent myIntent = new Intent(v.getContext(), MainActivity.class);
                 startActivityForResult(myIntent, 0);
             }
         });
