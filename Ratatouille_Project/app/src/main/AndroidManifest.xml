@@ -31,21 +31,22 @@
             android:label="Register"
 
             android:parentActivityName=".activity.MainActivity"></activity>
-        <activity
-            android:name=".activity.AppActivity"
-            android:parentActivityName=".activity.MainActivity"></activity>
-        <activity
-            android:name=".activity.AddRatActivity"
-            android:label="hello"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
 
-            android:parentActivityName="com.example.jl.ratatouille.activity.MainActivity" >
 
-        <activity android:name=".activity.RatListActivity"
+        <activity android:name=".activity.ListActivity"
             android:parentActivityName="com.example.jl.ratatouille.activity.MainActivity" >
         </activity>
         <activity android:name=".activity.RatViewActivity"
-            android:parentActivityName=".activity.RatListActivity">
+            android:parentActivityName=".activity.ListActivity">
+        </activity>
+        <activity android:name=".activity.AddRatActivity"
+            android:parentActivityName=".activity.ListActivity">
+        </activity>
+        <activity android:name=".activity.SettingsActivity"
+            android:parentActivityName=".activity.ListActivity">
+        </activity>
+        <activity android:name=".activity.MapsActivity"
+            android:parentActivityName=".activity.ListActivity">
         </activity>
 
 

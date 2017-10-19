@@ -43,9 +43,9 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        _username = (EditText) findViewById(R.id.editTxt_logUsername);
-        _password = (EditText) findViewById(R.id.editTxt_logPassword);
-        _button = (Button) findViewById(R.id.btn_logLogin);
+        _username = findViewById(R.id.editTxt_logUsername);
+        _password = findViewById(R.id.editTxt_logPassword);
+        _button = findViewById(R.id.btn_logLogin);
 
         dbAdapter = new UserDbAdapter(this).open();
 
@@ -90,7 +90,8 @@ public class LoginActivity extends AppCompatActivity{
                         //JSONObject user = jObj.getJSONObject("user");
                         //String username = user.getString("username");
 
-                        Intent intent = new Intent(LoginActivity.this, RatListActivity.class);
+                        //login successful
+                        Intent intent = new Intent(LoginActivity.this, MapsActivity.class);
                         startActivity(intent);
                         finish();
                     } else {

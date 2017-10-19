@@ -32,6 +32,7 @@ public class CSVFile {
         try {
             String csvLine = reader.readLine();
             while ((csvLine = reader.readLine()) != null) {
+
                 String[] row = csvLine.split(",");
                 resultList.add(row);
             }

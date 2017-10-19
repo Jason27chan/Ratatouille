@@ -29,4 +29,7 @@
     <string name="Latitude">Latitude</string>
     <string name="Borough">Borough</string>
     <string name="City">City</string>
+    <string name="cancel">cancel</string>
+    <string name="submit">submit</string>
+    <string name="Add_Rat">add_rat</string>
 </resources>
