@@ -40,8 +40,8 @@ public class AddRatActivity extends AppCompatActivity {
         final Button submitButton;
         final Button cancelButton;
 
-        submitButton = (Button) findViewById(R.id.btn_submit);
-        cancelButton = (Button) findViewById(R.id.btn_cancel);
+        submitButton = findViewById(R.id.btn_submit);
+        cancelButton = findViewById(R.id.btn_cancel);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -57,14 +57,14 @@ public class AddRatActivity extends AppCompatActivity {
             }
         });
 
-        EditText editDate = (EditText) findViewById(R.id.editTxt_created_date);
-        EditText editLocType = (EditText) findViewById(R.id.editTxt_loc_type);
-        EditText editZip = (EditText) findViewById(R.id.editTxt_incident_zip);
-        EditText editAddress = (EditText) findViewById(R.id.editTxt_incident_address);
-        EditText editCity = (EditText) findViewById(R.id.editTxt_city);
-        EditText editBorough = (EditText) findViewById(R.id.editTxt_borough);
-        EditText editLatitude = (EditText) findViewById(R.id.editTxt_latitude);
-        EditText editLongitude = (EditText) findViewById(R.id.editTxt_longitude);
+        EditText editDate = findViewById(R.id.editTxt_created_date);
+        EditText editLocType = findViewById(R.id.editTxt_loc_type);
+        EditText editZip = findViewById(R.id.editTxt_incident_zip);
+        EditText editAddress = findViewById(R.id.editTxt_incident_address);
+        EditText editCity = findViewById(R.id.editTxt_city);
+        EditText editBorough = findViewById(R.id.editTxt_borough);
+        EditText editLatitude = findViewById(R.id.editTxt_latitude);
+        EditText editLongitude = findViewById(R.id.editTxt_longitude);
 
         String date = editDate.getText().toString();
         String locType = editLocType.getText().toString();

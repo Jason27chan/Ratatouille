@@ -38,9 +38,9 @@ public class RatViewActivity extends AppCompatActivity{
         ratData.add(rat.getLatitude());
         ratData.add(rat.getLongitude());
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ratData);
+        ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ratData);
 
-        listView = (ListView) findViewById(R.id.rat_list_view);
+        listView = findViewById(R.id.rat_list_view);
         listView.setAdapter(adapter);
 
     }
