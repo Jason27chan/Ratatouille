@@ -3,12 +3,15 @@ package com.example.jl.ratatouille.activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -27,7 +30,7 @@ import java.util.List;
  * Displays the rat data in a RecyclerView
  */
 
-public class RatListActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -50,6 +53,29 @@ public class RatListActivity extends AppCompatActivity {
                 startActivityForResult(myIntent, 0);
             }
         });
+
+        BottomNavigationView nav = findViewById(R.id.bottom_navigation_list);
+        nav.setSelectedItemId(R.id.action_list);
+        nav.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.action_map:
+                                startActivity(new Intent(ListActivity.this, MapsActivity.class));
+                                break;
+                            case R.id.action_list:
+                                break;
+                            case R.id.action_graph:
+
+                                break;
+                            case R.id.action_settings:
+                                startActivity(new Intent(ListActivity.this, SettingsActivity.class));
+                                break;
+                        }
+                        return true;
+                    }
+                });
     }
 
     private void setupEndlessScroll() {

@@ -90,7 +90,8 @@ public class LoginActivity extends AppCompatActivity{
                         //JSONObject user = jObj.getJSONObject("user");
                         //String username = user.getString("username");
 
-                        Intent intent = new Intent(LoginActivity.this, RatListActivity.class);
+                        //login successful
+                        Intent intent = new Intent(LoginActivity.this, MapsActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
