@@ -105,7 +105,7 @@ public class ListActivity extends AppCompatActivity {
             InputStream inStream = getResources().openRawResource(fileName[0]);
             CSVFile csvFile = new CSVFile(inStream);
             List rowList = csvFile.read();
-            for (int i = fileName[1]; i < fileName[2]; i++) {
+            for (int i = rowList.size() - 1; i > rowList.size() - 25; i--) {
                 Rat rat = new Rat();
                 String[] row = (String[]) rowList.get(i);
                 int id = Integer.valueOf(row[0]);
