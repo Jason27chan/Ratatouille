@@ -46,13 +46,14 @@ public class AddRatActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //add to database
+                startActivityForResult(myIntent, 0)
             }
         });
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //do not add to database
-                Intent myIntent = new Intent(v.getContext(), MainActivity.class);
+                Intent myIntent = new Intent(v.getContext(), MapsActivity.class);
                 startActivityForResult(myIntent, 0);
             }
         });
@@ -81,6 +82,11 @@ public class AddRatActivity extends AppCompatActivity {
             fileWriter.append(Integer.toString(rat.getRatId())).append(",");
             fileWriter.append(locType).append(",");
             fileWriter.append(zip).append(",");
+            fileWriter.append(address).append(",");
+            fileWriter.append(city).append(",");
+            fileWriter.append(borough).append(",");
+            fileWriter.append(latitude).append(",");
+            fileWriter.append(longitude).append(",");
 
             //Write the CSV file header
             //Write a new student object list to the CSV file
