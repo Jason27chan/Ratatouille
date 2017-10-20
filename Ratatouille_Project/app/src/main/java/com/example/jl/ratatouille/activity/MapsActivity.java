@@ -86,7 +86,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        loadRatData(startIndex, startIndex + 25);
+        loadRatData(startIndex, startIndex + 50);
         mMap = googleMap;
         //rat_icon = BitmapDescriptorFactory.fromResource(R.drawable.ic_rat);
         //LatLngBounds nyBounds = new LatLngBounds(new LatLng(33.771403, -84.407349), new LatLng(33.781547, -84.390801));
