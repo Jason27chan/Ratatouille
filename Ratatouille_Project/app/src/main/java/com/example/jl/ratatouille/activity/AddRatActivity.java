@@ -46,7 +46,8 @@ public class AddRatActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //add to database
-                startActivityForResult(myIntent, 0)
+                Intent myIntent = new Intent(v.getContext(), MapsActivity.class);
+                startActivityForResult(myIntent, 0);
             }
         });
 
