@@ -25,7 +25,7 @@ public class Rat implements Parcelable {
      * Default constructor for Rat with no data passed in
      */
     public Rat() {
-
+        this(new Date(0000-00-00), "unknown", -1, "unknown", "unknown", "unknown", -1, -1);
     }
 
     /**

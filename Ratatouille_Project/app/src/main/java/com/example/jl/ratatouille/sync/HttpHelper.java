@@ -1,5 +1,7 @@
 package com.example.jl.ratatouille.sync;
 
+import android.util.Log;
+
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -40,14 +42,12 @@ public class HttpHelper {
             conn.setRequestMethod(requestPackage.getMethod());
             conn.setDoInput(true);
 
-            if (requestPackage.getMethod().equals("POST")
-                    && encodedParams.length() > 0) {
+            if (requestPackage.getMethod().equals("POST") && encodedParams.length() > 0) {
                 conn.setDoOutput(true);
                 OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
                 writer.write(requestPackage.getEncodedParams());
                 writer.flush();
                 writer.close();
-
             }
 
             conn.connect();

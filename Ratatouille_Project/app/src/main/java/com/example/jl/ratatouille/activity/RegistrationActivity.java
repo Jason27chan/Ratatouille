@@ -52,15 +52,15 @@ public class RegistrationActivity extends AppCompatActivity {
         dbAdapter = new SQLiteAdapter(this).open();
 
         //get EditText references
-        usernameEntry = (EditText) findViewById(R.id.editTxt_regUsername);
-        passwordEntry = (EditText) findViewById(R.id.editTxt_regPassword);
-        confirmEntry = (EditText) findViewById(R.id.editTxt_regConfirm);
+        usernameEntry = findViewById(R.id.editTxt_regUsername);
+        passwordEntry = findViewById(R.id.editTxt_regPassword);
+        confirmEntry = findViewById(R.id.editTxt_regConfirm);
 
         //get account types RadioGroup reference
-        accountTypes = (RadioGroup) findViewById(R.id.radio_regType);
+        accountTypes = findViewById(R.id.radio_regType);
 
         //get registration Button reference
-        registrationButton = (Button) findViewById(R.id.btn_regRegister);
+        registrationButton = findViewById(R.id.btn_regRegister);
 
         //on click of registration button
         registrationButton.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +68,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 //get account type RadioButton reference
                 int selectedId = accountTypes.getCheckedRadioButtonId();
-                accountType = (RadioButton) findViewById(selectedId);
+                accountType = findViewById(selectedId);
 
                 //get entered username, passwords, and account type
                 newUsername = usernameEntry.getText().toString();

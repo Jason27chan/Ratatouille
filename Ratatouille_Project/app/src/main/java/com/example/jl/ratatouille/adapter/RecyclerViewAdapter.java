@@ -33,9 +33,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public ViewHolder(View view) {
             super(view);
-            date = (TextView) view.findViewById(R.id.date);
-            streetAddress = (TextView) view.findViewById(R.id.street_address);
-            city = (TextView) view.findViewById(R.id.city);
+            date = view.findViewById(R.id.date);
+            streetAddress = view.findViewById(R.id.street_address);
+            city = view.findViewById(R.id.city);
             view.setOnClickListener(this);
         }
 

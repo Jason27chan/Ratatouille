@@ -42,14 +42,15 @@ public class DataService extends IntentService {
             return;
         }
 
-        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-        Rat[] rats = gson.fromJson(response, Rat[].class);
+        if (response != null) {
+            Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+            Rat[] rats = gson.fromJson(response, Rat[].class);
 
-        Intent messageIntent = new Intent(DATA_SERVICE_MSG);
-        messageIntent.putExtra((DATA_SERVICE_PAYLOAD), rats);
-        LocalBroadcastManager manager = LocalBroadcastManager
-                .getInstance(getApplicationContext());
-        manager.sendBroadcast(messageIntent);
+            Intent messageIntent = new Intent(DATA_SERVICE_MSG);
+            messageIntent.putExtra((DATA_SERVICE_PAYLOAD), rats);
+            LocalBroadcastManager manager = LocalBroadcastManager.getInstance(getApplicationContext());
+            manager.sendBroadcast(messageIntent);
+        }
 
     }
 

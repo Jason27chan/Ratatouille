@@ -121,32 +121,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         @Override
         protected String doInBackground(Integer... fileName) {
-            InputStream inStream = getResources().openRawResource(fileName[0]);
-            CSVFile csvFile = new CSVFile(inStream);
-            List rowList = csvFile.read();
-            /*for (int i = fileName[1]; i < fileName[2]; i++) {
-                Rat rat = new Rat();
-                String[] row = (String[]) rowList.get(i);
-                int id = Integer.valueOf(row[0]);
-                String date = row[1];
-                String locType = row[2];
-                String zip = row[3];
-                String address = row[4];
-                String city = row[5];
-                String borough = row[6];
-                String latitude = row[7];
-                String longitude = row[8];
-                rat.setRatId(id);
-                rat.setDate(date);
-                rat.setLocType(locType);
-                rat.setZip(zip);
-                rat.setAddress(address);
-                rat.setCity(city);
-                rat.setBorough(borough);
-                rat.setLatitude(latitude);
-                rat.setLongitude(longitude);
-                ratList.add(rat);
-            }*/
             return null;
         }
         @Override

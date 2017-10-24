@@ -78,7 +78,6 @@ public class ListActivity extends AppCompatActivity {
             requestPackage.setEndPoint(URL_LOAD_RATS);
             requestPackage.setParam("date_start", "2017-08-24");
             requestPackage.setParam("date_end", "2017-08-24");
-            requestPackage.setMethod("POST");
             Intent intent = new Intent(this, DataService.class);
             intent.putExtra(DataService.REQUEST_PACKAGE, requestPackage);
             startService(intent);
@@ -90,6 +89,7 @@ public class ListActivity extends AppCompatActivity {
         loadRatData(startIndex, startIndex + 25);
         setupEndlessScroll();
 
+        //add rat
         final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat);
         addRatBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -120,6 +120,18 @@ public class ListActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == 0) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                mAdapter.notifyDataSetChanged();
+            }
+        }
     }
 
     private void setupEndlessScroll() {
