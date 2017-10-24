@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -41,6 +42,11 @@ public class HttpHelper {
 
             if (requestPackage.getMethod().equals("POST")
                     && encodedParams.length() > 0) {
+                conn.setDoOutput(true);
+                OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
+                writer.write(requestPackage.getEncodedParams());
+                writer.flush();
+                writer.close();
 
             }
 

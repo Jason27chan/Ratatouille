@@ -78,6 +78,7 @@ public class ListActivity extends AppCompatActivity {
             requestPackage.setEndPoint(URL_LOAD_RATS);
             requestPackage.setParam("date_start", "2017-08-24");
             requestPackage.setParam("date_end", "2017-08-24");
+            requestPackage.setMethod("POST");
             Intent intent = new Intent(this, DataService.class);
             intent.putExtra(DataService.REQUEST_PACKAGE, requestPackage);
             startService(intent);
