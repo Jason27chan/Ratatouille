@@ -15,9 +15,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.sync.AppConfig;
+import com.example.jl.ratatouille.sync.URLConfig;
 import com.example.jl.ratatouille.sync.AppController;
-import com.example.jl.ratatouille.adapter.UserDbAdapter;
+import com.example.jl.ratatouille.adapter.SQLiteAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,7 +41,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private Button registrationButton;
 
-    private UserDbAdapter dbAdapter;
+    private SQLiteAdapter dbAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         //get database adapter
-        dbAdapter = new UserDbAdapter(this).open();
+        dbAdapter = new SQLiteAdapter(this).open();
 
         //get EditText references
         usernameEntry = (EditText) findViewById(R.id.editTxt_regUsername);
@@ -91,7 +91,7 @@ public class RegistrationActivity extends AppCompatActivity {
      */
     private void registerUser(final String username, final String password, final String confirm, final String account_type) {
         String cancel_req_tag = "req_register";
-        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_REGISTER, new Response.Listener<String>() {
+        StringRequest strReq = new StringRequest(Request.Method.POST, URLConfig.URL_REGISTER, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {

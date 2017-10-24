@@ -1,30 +1,40 @@
 package com.example.jl.ratatouille.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.adapter.RatListAdapter;
+import com.example.jl.ratatouille.adapter.RecyclerViewAdapter;
 import com.example.jl.ratatouille.data.CSVFile;
 import com.example.jl.ratatouille.model.Rat;
+import com.example.jl.ratatouille.service.DataService;
+import com.example.jl.ratatouille.sync.NetworkHelper;
+import com.example.jl.ratatouille.sync.RequestPackage;
 import com.example.jl.ratatouille.util.EndlessOnScrollListener;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.jl.ratatouille.sync.URLConfig.URL_LOAD_RATS;
 
 /**
  * Displays the rat data in a RecyclerView
@@ -37,10 +47,43 @@ public class ListActivity extends AppCompatActivity {
     private List<Rat> ratList;
     private int startIndex;
 
+    private boolean networkOk;
+
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Rat[] rats = (Rat[]) intent.getParcelableArrayExtra(DataService.DATA_SERVICE_PAYLOAD);
+            for (Rat r : rats) {
+                ratList.add(r);
+            }
+            mAdapter.notifyDataSetChanged();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_list);
+
+        //check if network ok
+        networkOk = NetworkHelper.hasNetworkAccess(this);
+
+        //broadcast receiver for rat data service
+        LocalBroadcastManager.getInstance(getApplicationContext())
+                .registerReceiver(mBroadcastReceiver, new IntentFilter(DataService.DATA_SERVICE_MSG));
+
+        //load rats from url with service
+        if (networkOk) {
+            RequestPackage requestPackage = new RequestPackage();
+            requestPackage.setEndPoint(URL_LOAD_RATS);
+            requestPackage.setParam("date_start", "2017-08-24");
+            requestPackage.setParam("date_end", "2017-08-24");
+            Intent intent = new Intent(this, DataService.class);
+            intent.putExtra(DataService.REQUEST_PACKAGE, requestPackage);
+            startService(intent);
+        } else {
+            Toast.makeText(this, "network error", Toast.LENGTH_LONG).show();
+        }
 
         setupRecyclerView();
         loadRatData(startIndex, startIndex + 25);
@@ -102,32 +145,6 @@ public class ListActivity extends AppCompatActivity {
         }
         @Override
         protected String doInBackground(Integer... fileName) {
-            InputStream inStream = getResources().openRawResource(fileName[0]);
-            CSVFile csvFile = new CSVFile(inStream);
-            List rowList = csvFile.read();
-            for (int i = rowList.size() - 1; i > rowList.size() - 25; i--) {
-                Rat rat = new Rat();
-                String[] row = (String[]) rowList.get(i);
-                int id = Integer.valueOf(row[0]);
-                String date = row[1];
-                String locType = row[2];
-                String zip = row[3];
-                String address = row[4];
-                String city = row[5];
-                String borough = row[6];
-                String latitude = row[7];
-                String longitude = row[8];
-                rat.setRatId(id);
-                rat.setDate(date);
-                rat.setLocType(locType);
-                rat.setZip(zip);
-                rat.setAddress(address);
-                rat.setCity(city);
-                rat.setBorough(borough);
-                rat.setLatitude(latitude);
-                rat.setLongitude(longitude);
-                ratList.add(rat);
-            }
             return null;
         }
         @Override
@@ -150,7 +167,14 @@ public class ListActivity extends AppCompatActivity {
         mRecyclerView.addItemDecoration(mDividerItemDecoration);
         //set adapter
         ratList = new ArrayList<>();
-        mAdapter = new RatListAdapter(ratList, this);
+        mAdapter = new RecyclerViewAdapter(ratList, this);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(getApplicationContext())
+                .unregisterReceiver(mBroadcastReceiver);
     }
 }

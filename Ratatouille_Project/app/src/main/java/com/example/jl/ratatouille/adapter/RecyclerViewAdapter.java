@@ -22,7 +22,7 @@ import java.util.List;
  * Passes Rat object to RatViewActivity for detail view
  */
 
-public class RatListAdapter extends RecyclerView.Adapter<RatListAdapter.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private List<Rat> ratList;
     private Context context;
 
@@ -54,22 +54,22 @@ public class RatListAdapter extends RecyclerView.Adapter<RatListAdapter.ViewHold
      * @param ratList a list of rats
      * @param context the activity
      */
-    public RatListAdapter(List<Rat> ratList, Context context) {
+    public RecyclerViewAdapter(List<Rat> ratList, Context context) {
         this.ratList = ratList;
         this.context = context;
     }
 
     //inflates the views in the rat list
     @Override
-    public RatListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View ratView = LayoutInflater.from(parent.getContext()).inflate(R.layout.rat_list_row, parent, false);
-        return new RatListAdapter.ViewHolder(ratView);
+        return new RecyclerViewAdapter.ViewHolder(ratView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Rat rat = ratList.get(position);
-        holder.date.setText(rat.getDate());
+        holder.date.setText(rat.getDate().toString());
         holder.streetAddress.setText(rat.getAddress());
         holder.city.setText(rat.getCity());
         holder.rat = rat;

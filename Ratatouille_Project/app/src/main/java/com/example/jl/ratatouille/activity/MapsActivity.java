@@ -124,7 +124,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             InputStream inStream = getResources().openRawResource(fileName[0]);
             CSVFile csvFile = new CSVFile(inStream);
             List rowList = csvFile.read();
-            for (int i = fileName[1]; i < fileName[2]; i++) {
+            /*for (int i = fileName[1]; i < fileName[2]; i++) {
                 Rat rat = new Rat();
                 String[] row = (String[]) rowList.get(i);
                 int id = Integer.valueOf(row[0]);
@@ -146,14 +146,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 rat.setLatitude(latitude);
                 rat.setLongitude(longitude);
                 ratList.add(rat);
-            }
+            }*/
             return null;
         }
         @Override
         protected void onPostExecute(String result) {
             for (Rat r : ratList) {
-                LatLng latlng = new LatLng(
-                        Double.parseDouble(r.getLatitude()), Double.parseDouble(r.getLongitude()));
+                LatLng latlng = new LatLng(r.getLatitude(), r.getLongitude());
                 Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
                 marker.setTag(r);
             }

@@ -3,28 +3,14 @@ package com.example.jl.ratatouille.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.adapter.UserDbAdapter;
 import com.example.jl.ratatouille.model.Rat;
-import com.example.jl.ratatouille.sync.AppConfig;
-import com.example.jl.ratatouille.sync.AppController;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.FileWriter;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Shannon on 10/14/2017.
@@ -75,6 +61,7 @@ public class AddRatActivity extends AppCompatActivity {
         String latitude = editLatitude.getText().toString();
         String longitude = editLongitude.getText().toString();
 
+        /*
         Rat rat = new Rat(date, locType, zip, address, city, borough, latitude, longitude);
         try {
             FileWriter fileWriter = new FileWriter(String.valueOf(R.raw.rat_sightings));
@@ -87,7 +74,8 @@ public class AddRatActivity extends AppCompatActivity {
 
         } catch (Exception e) {
 
-        }
+
+        }*/
     }
 }
 

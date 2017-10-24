@@ -14,9 +14,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.sync.AppConfig;
+import com.example.jl.ratatouille.sync.URLConfig;
 import com.example.jl.ratatouille.sync.AppController;
-import com.example.jl.ratatouille.adapter.UserDbAdapter;
+import com.example.jl.ratatouille.adapter.SQLiteAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity{
 
     private static final String TAG = RegistrationActivity.class.getSimpleName();
 
-    private UserDbAdapter dbAdapter;
+    private SQLiteAdapter dbAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity{
         _password = findViewById(R.id.editTxt_logPassword);
         _button = findViewById(R.id.btn_logLogin);
 
-        dbAdapter = new UserDbAdapter(this).open();
+        dbAdapter = new SQLiteAdapter(this).open();
 
         _button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity{
         //tag used to cancel request?
         String cancel_req_tag = "req_login";
 
-        StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_LOGIN, new Response.Listener<String>() {
+        StringRequest strReq = new StringRequest(Request.Method.POST, URLConfig.URL_LOGIN, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
