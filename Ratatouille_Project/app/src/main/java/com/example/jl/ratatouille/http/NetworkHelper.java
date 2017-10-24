@@ -9,6 +9,11 @@ import android.net.NetworkInfo;
  */
 
 public class NetworkHelper {
+    /**
+     * returns whether the there is network access
+     * @param context the context of which we find the network access
+     * @return boolean true if it has network access, false otherwise
+     */
     public static boolean hasNetworkAccess(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);

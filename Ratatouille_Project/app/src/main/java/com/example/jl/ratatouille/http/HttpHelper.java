@@ -14,10 +14,9 @@ import java.net.URL;
 
 public class HttpHelper {
     /**
-     *
-     *
-     * @param requestPackage
-     * @return
+     * gets the data from the website database
+     * @param requestPackage from which we retrieve the address
+     * @return a string of the data
      * @throws IOException
      */
     public static String downloadFromFeed(RequestPackage requestPackage) throws IOException {
