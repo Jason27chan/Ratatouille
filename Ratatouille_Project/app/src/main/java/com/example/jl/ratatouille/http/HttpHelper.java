@@ -13,12 +13,13 @@ import java.net.URL;
  */
 
 public class HttpHelper {
-    /**
+
+    /** Does all the stuff that interacts with the internet for adding a rat
      *
      *
-     * @param requestPackage
-     * @return
-     * @throws IOException
+     * @param requestPackage Holds the http request
+     * @return inputstream from connection
+     * @throws IOException Bad request
      */
     public static String downloadFromFeed(RequestPackage requestPackage) throws IOException {
 
@@ -70,9 +71,9 @@ public class HttpHelper {
     /**
      * Reads an InputStream and converts it to a String.
      *
-     * @param stream
-     * @return
-     * @throws IOException
+     * @param stream Input stream to be converted to a String
+     * @return String form of input stream
+     * @throws IOException if bad input stream
      */
     private static String readStream(InputStream stream) throws IOException {
 
