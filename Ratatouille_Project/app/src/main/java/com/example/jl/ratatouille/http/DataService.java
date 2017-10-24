@@ -25,6 +25,11 @@ public class DataService extends IntentService {
         super("DataService");
     }
 
+    /** Adds a rat entry to database asynchronously
+     *
+     * @param intent Intent to add rat
+     *
+     */
     @Override
     protected void onHandleIntent(Intent intent) {
 
