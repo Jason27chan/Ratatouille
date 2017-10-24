@@ -14,12 +14,11 @@ import java.net.URL;
 
 public class HttpHelper {
 
-    /** Does all the stuff that interacts with the internet for adding a rat
-     *
-     *
-     * @param requestPackage Holds the http request
-     * @return inputstream from connection
-     * @throws IOException Bad request
+    /**
+     * gets the data from the website database
+     * @param requestPackage from which we retrieve the address
+     * @return a string of the data
+     * @throws IOException bad request
      */
     public static String downloadFromFeed(RequestPackage requestPackage) throws IOException {
 
