@@ -1,4 +1,4 @@
-package com.example.jl.ratatouille.sync;
+package com.example.jl.ratatouille.internet;
 
 /**
  * Created by jav on 9/24/2017.

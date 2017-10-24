@@ -1,4 +1,4 @@
-package com.example.jl.ratatouille.data;
+package com.example.jl.ratatouille.sqlite;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

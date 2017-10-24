@@ -1,14 +1,10 @@
-package com.example.jl.ratatouille.service;
+package com.example.jl.ratatouille.http;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 
 import com.example.jl.ratatouille.model.Rat;
-import com.example.jl.ratatouille.sync.HttpHelper;
-import com.example.jl.ratatouille.sync.RequestPackage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

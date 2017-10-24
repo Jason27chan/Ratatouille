@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,23 +17,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.adapter.RecyclerViewAdapter;
-import com.example.jl.ratatouille.data.CSVFile;
 import com.example.jl.ratatouille.model.Rat;
-import com.example.jl.ratatouille.service.DataService;
-import com.example.jl.ratatouille.sync.NetworkHelper;
-import com.example.jl.ratatouille.sync.RequestPackage;
+import com.example.jl.ratatouille.http.DataService;
+import com.example.jl.ratatouille.http.NetworkHelper;
+import com.example.jl.ratatouille.http.RequestPackage;
 import com.example.jl.ratatouille.util.EndlessOnScrollListener;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.jl.ratatouille.sync.URLConfig.URL_LOAD_RATS;
+import static com.example.jl.ratatouille.internet.URLConfig.URL_LOAD_RATS;
 
 /**
  * Displays the rat data in a RecyclerView

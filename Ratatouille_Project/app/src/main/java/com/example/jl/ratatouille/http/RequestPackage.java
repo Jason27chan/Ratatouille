@@ -1,4 +1,4 @@
-package com.example.jl.ratatouille.sync;
+package com.example.jl.ratatouille.http;
 
 import android.os.Parcel;
 import android.os.Parcelable;

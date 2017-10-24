@@ -8,7 +8,7 @@
 
     <application
 
-        android:name="com.example.jl.ratatouille.sync.AppController"
+        android:name="com.example.jl.ratatouille.volley.AppController"
 
 
         android:allowBackup="true"
@@ -55,7 +55,7 @@
             android:value="AIzaSyAAFf9nwOeAsYt7HJz6Kte_pvsO2-T253s"/>
 
         <service
-            android:name=".service.DataService"
+            android:name=".http.DataService"
             android:exported="false"/>
 
 

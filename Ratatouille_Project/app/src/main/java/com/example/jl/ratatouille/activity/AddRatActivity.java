@@ -13,20 +13,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.model.Rat;
-import com.example.jl.ratatouille.service.DataService;
-import com.example.jl.ratatouille.sync.AppController;
-import com.example.jl.ratatouille.sync.RequestPackage;
-import com.example.jl.ratatouille.sync.URLConfig;
+import com.example.jl.ratatouille.volley.AppController;
+import com.example.jl.ratatouille.internet.URLConfig;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.example.jl.ratatouille.sync.URLConfig.URL_ADD_RAT;
 
 /**
  * Created by Shannon on 10/14/2017.

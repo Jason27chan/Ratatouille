@@ -14,8 +14,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.sync.URLConfig;
-import com.example.jl.ratatouille.sync.AppController;
+import com.example.jl.ratatouille.internet.URLConfig;
+import com.example.jl.ratatouille.volley.AppController;
 import com.example.jl.ratatouille.adapter.SQLiteAdapter;
 
 import org.json.JSONException;

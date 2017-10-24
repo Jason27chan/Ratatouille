@@ -7,8 +7,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.data.SQLiteContract;
-import com.example.jl.ratatouille.data.SQLiteHelper;
+import com.example.jl.ratatouille.sqlite.SQLiteContract;
+import com.example.jl.ratatouille.sqlite.SQLiteHelper;
 
 /**
  * Created by jav on 9/12/2017.

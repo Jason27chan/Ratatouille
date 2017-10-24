@@ -1,6 +1,4 @@
-package com.example.jl.ratatouille.sync;
-
-import android.util.Log;
+package com.example.jl.ratatouille.http;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;

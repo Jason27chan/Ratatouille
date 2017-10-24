@@ -1,4 +1,4 @@
-package com.example.jl.ratatouille.sync;
+package com.example.jl.ratatouille.http;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
