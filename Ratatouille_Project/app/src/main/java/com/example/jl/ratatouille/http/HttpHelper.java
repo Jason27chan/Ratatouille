@@ -13,12 +13,12 @@ import java.net.URL;
  */
 
 public class HttpHelper {
+
     /**
-     *
-     *
-     * @param requestPackage
-     * @return
-     * @throws IOException
+     * gets the data from the website database
+     * @param requestPackage from which we retrieve the address
+     * @return a string of the data
+     * @throws IOException bad request
      */
     public static String downloadFromFeed(RequestPackage requestPackage) throws IOException {
 
@@ -70,9 +70,9 @@ public class HttpHelper {
     /**
      * Reads an InputStream and converts it to a String.
      *
-     * @param stream
-     * @return
-     * @throws IOException
+     * @param stream Input stream to be converted to a String
+     * @return String form of input stream
+     * @throws IOException if bad input stream
      */
     private static String readStream(InputStream stream) throws IOException {
 
