@@ -44,7 +44,6 @@ public class ListActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             Rat[] rats = (Rat[]) intent.getParcelableArrayExtra(DataService.DATA_SERVICE_PAYLOAD);
-            ratList = new ArrayList<>();
             ratList = Arrays.asList(rats);
             displayData();
             progressBar.setVisibility(View.GONE);
@@ -58,15 +57,43 @@ public class ListActivity extends AppCompatActivity {
         progressBar = new ProgressBar(this);
         progressBar.setVisibility(View.VISIBLE);
 
-        //broadcast receiver for rat data service
         LocalBroadcastManager.getInstance(getApplicationContext())
                 .registerReceiver(mBroadcastReceiver, new IntentFilter(DataService.DATA_SERVICE_MSG));
-
         setupRecyclerView();
-        requestData();
+        setupButton();
+        setupNavigation();
         setupEndlessScroll();
+        requestData();
+    }
 
-        //add rat
+    private void requestData() {
+        Intent intent = new Intent(this, DataService.class);
+        Map<String, String> options = new HashMap<>();
+        options.put("date_start", "2017-08-24");
+        options.put("date_end", "2017-08-24");
+        intent.putExtra("options", (HashMap) options);
+        startService(intent);
+    }
+
+    private void displayData() {
+        if (ratList != null) {
+            mAdapter = new RecyclerViewAdapter(ratList, this);
+            mRecyclerView.setAdapter(mAdapter);
+        }
+    }
+
+    private void setupRecyclerView() {
+        mRecyclerView = findViewById(R.id.rat_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        DividerItemDecoration mDividerItemDecoration
+                = new DividerItemDecoration(mRecyclerView.getContext(),
+                LinearLayoutManager.VERTICAL);
+        mRecyclerView.addItemDecoration(mDividerItemDecoration);
+    }
+
+    private void setupButton() {
         final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat);
         addRatBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -74,7 +101,18 @@ public class ListActivity extends AppCompatActivity {
                 startActivityForResult(myIntent, 0);
             }
         });
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                mAdapter.notifyDataSetChanged();
+            }
+        }
+    }
+
+    private void setupNavigation() {
         BottomNavigationView nav = findViewById(R.id.bottom_navigation_list);
         nav.setSelectedItemId(R.id.action_list);
         nav.setOnNavigationItemSelectedListener(
@@ -99,17 +137,6 @@ public class ListActivity extends AppCompatActivity {
                 });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Check which request we're responding to
-        if (requestCode == 0) {
-            // Make sure the request was successful
-            if (resultCode == RESULT_OK) {
-                mAdapter.notifyDataSetChanged();
-            }
-        }
-    }
-
     private void setupEndlessScroll() {
         mRecyclerView.addOnScrollListener(new EndlessOnScrollListener() {
             @Override
@@ -119,35 +146,9 @@ public class ListActivity extends AppCompatActivity {
         });
     }
 
-    private void requestData() {
-        Intent intent = new Intent(this, DataService.class);
-        Map<String, String> options = new HashMap<>();
-        options.put("date_start", "2017-08-24");
-        options.put("date_end", "2017-08-24");
-        intent.putExtra("options", (HashMap) options);
-        startService(intent);
-    }
-
-    private void displayData() {
-        if (ratList != null) {
-            mAdapter = new RecyclerViewAdapter(ratList, this);
-            mRecyclerView.setAdapter(mAdapter);
-        }
-    }
 
     private void updateData() {
         mAdapter.notifyDataSetChanged();
-    }
-
-    private void setupRecyclerView() {
-        mRecyclerView = findViewById(R.id.rat_recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        DividerItemDecoration mDividerItemDecoration
-                = new DividerItemDecoration(mRecyclerView.getContext(),
-                LinearLayoutManager.VERTICAL);
-        mRecyclerView.addItemDecoration(mDividerItemDecoration);
     }
 
     @Override

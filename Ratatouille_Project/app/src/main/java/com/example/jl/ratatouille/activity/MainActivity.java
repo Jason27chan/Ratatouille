@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.jl.ratatouille.R;
+import com.example.jl.ratatouille.activity.authentication.LoginActivity;
+import com.example.jl.ratatouille.activity.authentication.RegistrationActivity;
 
 /**
  *  Leads to login and registration

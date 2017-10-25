@@ -25,11 +25,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activity.authentication.LoginActivity"
             android:label="Login"
             android:parentActivityName=".activity.MainActivity"></activity>
         <activity
-            android:name=".activity.RegistrationActivity"
+            android:name=".activity.authentication.RegistrationActivity"
             android:label="Register"
 
             android:parentActivityName=".activity.MainActivity"></activity>
@@ -38,10 +38,10 @@
         <activity android:name=".activity.ListActivity"
             android:parentActivityName="com.example.jl.ratatouille.activity.MainActivity" >
         </activity>
-        <activity android:name=".activity.RatViewActivity"
+        <activity android:name=".activity.ViewActivity"
             android:parentActivityName=".activity.ListActivity">
         </activity>
-        <activity android:name=".activity.AddRatActivity"
+        <activity android:name=".activity.AddActivity"
             android:parentActivityName=".activity.ListActivity">
         </activity>
         <activity android:name=".activity.SettingsActivity"
@@ -55,7 +55,7 @@
             android:value="AIzaSyAAFf9nwOeAsYt7HJz6Kte_pvsO2-T253s"/>
 
         <service
-            android:name=".http.DataService"
+            android:name=".service.DataService"
             android:exported="false"/>
 
 

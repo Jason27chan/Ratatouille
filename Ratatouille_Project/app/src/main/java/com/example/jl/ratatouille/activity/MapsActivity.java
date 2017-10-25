@@ -70,7 +70,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat_maps);
         addRatBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent myIntent = new Intent(v.getContext(), AddRatActivity.class);
+                Intent myIntent = new Intent(v.getContext(), AddActivity.class);
                 startActivityForResult(myIntent, 0);
             }
         });
@@ -92,7 +92,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public boolean onMarkerClick(Marker marker) {
                 Rat rat = (Rat) marker.getTag(); //retrieve Rat object from the marker
-                Intent intent = new Intent(MapsActivity.this, RatViewActivity.class);
+                Intent intent = new Intent(MapsActivity.this, ViewActivity.class);
                 intent.putExtra("user", getIntent().getStringExtra("user"));
                 intent.putExtra("rat", rat); //send rat to detail view
                 startActivity(intent);

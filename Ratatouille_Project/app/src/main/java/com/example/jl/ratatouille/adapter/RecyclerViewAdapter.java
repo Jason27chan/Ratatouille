@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.activity.RatViewActivity;
+import com.example.jl.ratatouille.activity.ViewActivity;
 import com.example.jl.ratatouille.model.Rat;
 
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.List;
  *
  * Adapter for the rat list RecyclerView in ListActivity
  * Displays date, address, and city in each row
- * Passes Rat object to RatViewActivity for detail view
+ * Passes Rat object to ViewActivity for detail view
  */
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
@@ -41,7 +41,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(context, RatViewActivity.class);
+            Intent intent = new Intent(context, ViewActivity.class);
             //todo: add call to another method which retrieves all the rat info instead of just date, address, city
             //currently all data is loaded in ListActivity but this is inefficient because only 3 fields are displayed in the main view?
             intent.putExtra("rat", rat);
