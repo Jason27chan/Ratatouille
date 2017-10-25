@@ -1,4 +1,4 @@
-package com.example.jl.ratatouille.http;
+package com.example.jl.ratatouille.service;
 
 import android.app.IntentService;
 import android.content.Intent;

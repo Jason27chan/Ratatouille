@@ -1,4 +1,4 @@
-package com.example.jl.ratatouille.activity;
+package com.example.jl.ratatouille.activity.authentication;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.internet.URLConfig;
+import com.example.jl.ratatouille.activity.MapsActivity;
+import com.example.jl.ratatouille.volley.URLConfig;
 import com.example.jl.ratatouille.volley.AppController;
 import com.example.jl.ratatouille.adapter.SQLiteAdapter;
 

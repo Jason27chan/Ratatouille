@@ -1,31 +1,15 @@
 package com.example.jl.ratatouille.activity;
 
 import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.http.APIService;
-import com.example.jl.ratatouille.http.DataService;
-import com.example.jl.ratatouille.volley.AppController;
-import com.example.jl.ratatouille.internet.URLConfig;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.jl.ratatouille.service.APIService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +22,7 @@ import retrofit2.Callback;
  * Created by Shannon on 10/14/2017.
  */
 
-public class AddRatActivity extends AppCompatActivity {
+public class AddActivity extends AppCompatActivity {
 
     private EditText editDate, editLocType, editZip, editAddress, editCity, editBorough, editLatitude, editLongitude;
     private Button submitButton, cancelButton;
@@ -48,11 +32,6 @@ public class AddRatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_rat);
-
-        callingActivity = this.getCallingActivity();
-
-        final Button submitButton;
-        final Button cancelButton;
 
         submitButton = findViewById(R.id.btn_submit);
         cancelButton = findViewById(R.id.btn_cancel);
@@ -69,6 +48,7 @@ public class AddRatActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                //todo:implement date view
                 String date = editDate.getText().toString();
                 String locType = editLocType.getText().toString();
                 String zip = editZip.getText().toString();

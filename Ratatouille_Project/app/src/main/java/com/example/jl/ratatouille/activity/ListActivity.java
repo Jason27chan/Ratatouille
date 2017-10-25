@@ -13,15 +13,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ProgressBar;
 
 import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.adapter.RecyclerViewAdapter;
+import com.example.jl.ratatouille.service.DataService;
 import com.example.jl.ratatouille.model.Rat;
-import com.example.jl.ratatouille.http.DataService;
 import com.example.jl.ratatouille.util.EndlessOnScrollListener;
 
 import java.util.ArrayList;
@@ -39,6 +38,7 @@ public class ListActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private List<Rat> ratList;
+    ProgressBar progressBar;
 
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -47,6 +47,7 @@ public class ListActivity extends AppCompatActivity {
             ratList = new ArrayList<>();
             ratList = Arrays.asList(rats);
             displayData();
+            progressBar.setVisibility(View.GONE);
         }
     };
 
@@ -54,6 +55,8 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_list);
+        progressBar = new ProgressBar(this);
+        progressBar.setVisibility(View.VISIBLE);
 
         //broadcast receiver for rat data service
         LocalBroadcastManager.getInstance(getApplicationContext())
@@ -67,7 +70,7 @@ public class ListActivity extends AppCompatActivity {
         final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat);
         addRatBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent myIntent = new Intent(v.getContext(), AddRatActivity.class);
+                Intent myIntent = new Intent(v.getContext(), AddActivity.class);
                 startActivityForResult(myIntent, 0);
             }
         });

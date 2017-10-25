@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Detailed view for a Rat
  */
 
-public class RatViewActivity extends AppCompatActivity{
+public class ViewActivity extends AppCompatActivity{
     private Rat rat;
     private ArrayList<String> ratData;
     private ListView listView;
