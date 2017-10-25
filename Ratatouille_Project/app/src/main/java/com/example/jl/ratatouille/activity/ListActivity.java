@@ -96,7 +96,6 @@ public class ListActivity extends AppCompatActivity {
                 });
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
@@ -131,6 +130,10 @@ public class ListActivity extends AppCompatActivity {
             mAdapter = new RecyclerViewAdapter(ratList, this);
             mRecyclerView.setAdapter(mAdapter);
         }
+    }
+
+    private void updateData() {
+        mAdapter.notifyDataSetChanged();
     }
 
     private void setupRecyclerView() {
