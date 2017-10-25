@@ -1,5 +1,7 @@
 package com.example.jl.ratatouille.activity;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,14 +15,22 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.jl.ratatouille.R;
+import com.example.jl.ratatouille.http.APIService;
+import com.example.jl.ratatouille.http.DataService;
 import com.example.jl.ratatouille.volley.AppController;
 import com.example.jl.ratatouille.internet.URLConfig;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 /**
  * Created by Shannon on 10/14/2017.
@@ -29,10 +39,15 @@ import java.util.Map;
 public class AddRatActivity extends AppCompatActivity {
 
     private EditText editDate, editLocType, editZip, editAddress, editCity, editBorough, editLatitude, editLongitude;
+    private Button submitButton, cancelButton;
+    private ComponentName callingActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_rat);
+
+        callingActivity = this.getCallingActivity();
 
         final Button submitButton;
         final Button cancelButton;
@@ -67,9 +82,7 @@ public class AddRatActivity extends AppCompatActivity {
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //do not add to database
-                Intent myIntent = new Intent(v.getContext(), MainActivity.class);
-                startActivityForResult(myIntent, 0);
+                finish();
             }
         });
 
@@ -77,6 +90,45 @@ public class AddRatActivity extends AppCompatActivity {
 
     private void addRat(final String date, final String locType, final String zip, final String address,
                         final String city, final String borough, final String latitude, final String longitude){
+        APIService apiService = APIService.retrofit.create(APIService.class);
+        Map<String, String> options = new HashMap<>();
+        options.put("date", date);
+        options.put("loc_type", locType);
+        options.put("zip", zip);
+        options.put("address", address);
+        options.put("city", city);
+        options.put("borough", borough);
+        options.put("lat", latitude);
+        options.put("lng", longitude);
+        Call<String> request = apiService.addRat(options);
+        request.enqueue(new Callback<String>() {
+
+            @Override
+            public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+                try {
+                    //JSONObject jObj = response;
+                    //boolean error = jObj.getBoolean("error");
+                    JsonElement je = new JsonParser().parse(response.body());
+                    boolean error = je.getAsJsonObject().get("error").getAsBoolean();
+                    if (!error) {
+                        Toast.makeText(getApplicationContext(), "add successful", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        String errorMsg = je.getAsJsonObject().get("msg").getAsString();
+                        Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        /*
         String cancel_req_tag = "req_register";
         StringRequest strReq = new StringRequest(Request.Method.POST, URLConfig.URL_ADD_RAT, new Response.Listener<String>() {
 
@@ -130,6 +182,7 @@ public class AddRatActivity extends AppCompatActivity {
         };
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(strReq, cancel_req_tag);
+        */
 
     }
 }

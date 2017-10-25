@@ -6,8 +6,6 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.example.jl.ratatouille.model.Rat;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.util.Map;
@@ -29,16 +27,16 @@ public class DataService extends IntentService {
         super("DataService");
     }
 
-    /** Adds a rat entry to database asynchronously
+    /** Gets rats
      *
-     * @param intent Intent to add rat
+     * @param intent
      *
      */
     @Override
     protected void onHandleIntent(Intent intent) {
-        WebService webService = WebService.retrofit.create(WebService.class);
+        APIService apiService = APIService.retrofit.create(APIService.class);
         Map<String, String> options = (Map) intent.getSerializableExtra("options");
-        Call<Rat[]> call = webService.rats(options);
+        Call<Rat[]> call = apiService.rats(options);
         Rat[] rats;
         try {
             rats = call.execute().body();
