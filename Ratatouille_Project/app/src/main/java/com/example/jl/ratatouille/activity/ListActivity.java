@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -28,8 +29,12 @@ import com.example.jl.ratatouille.http.RequestPackage;
 import com.example.jl.ratatouille.util.EndlessOnScrollListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 import static com.example.jl.ratatouille.internet.URLConfig.URL_LOAD_RATS;
 
 /**
@@ -49,10 +54,12 @@ public class ListActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             Rat[] rats = (Rat[]) intent.getParcelableArrayExtra(DataService.DATA_SERVICE_PAYLOAD);
-            for (Rat r : rats) {
-                ratList.add(r);
-            }
-            mAdapter.notifyDataSetChanged();
+            Log.v(rats[0].getAddress(), "sdlkfjslkdjs");
+            ratList = new ArrayList<>();
+            ratList = Arrays.asList(rats);
+            displayData();
+            //mAdapter.notifyDataSetChanged();
+            Log.v("RECIEVEBROADCAST", "sldkfjsdlkfjlskdjfslkdj");
         }
     };
 
@@ -70,19 +77,20 @@ public class ListActivity extends AppCompatActivity {
 
         //load rats from url with service
         if (networkOk) {
-            RequestPackage requestPackage = new RequestPackage();
+            /*RequestPackage requestPackage = new RequestPackage();
             requestPackage.setEndPoint(URL_LOAD_RATS);
             requestPackage.setParam("date_start", "2017-08-24");
             requestPackage.setParam("date_end", "2017-08-24");
             Intent intent = new Intent(this, DataService.class);
             intent.putExtra(DataService.REQUEST_PACKAGE, requestPackage);
-            startService(intent);
+            startService(intent);*/
         } else {
             Toast.makeText(this, "network error", Toast.LENGTH_LONG).show();
         }
 
         setupRecyclerView();
-        loadRatData(startIndex, startIndex + 25);
+        requestData();
+        //loadRatData(startIndex, startIndex + 25);
         setupEndlessScroll();
 
         //add rat
@@ -134,50 +142,36 @@ public class ListActivity extends AppCompatActivity {
         mRecyclerView.addOnScrollListener(new EndlessOnScrollListener() {
             @Override
             public void onLoadMore() {
-                startIndex += 25;
-                loadRatData(startIndex, startIndex + 25);
+
             }
         });
     }
 
-    private void loadRatData(int start, int end) {
-        new LoadDataTask().execute(R.raw.rat_sightings_trimmed, start, end);
+    private void requestData() {
+        Intent intent = new Intent(this, DataService.class);
+        Map<String, String> options = new HashMap<>();
+        options.put("date_start", "2017-08-24");
+        options.put("date_end", "2017-08-24");
+        intent.putExtra("options", (HashMap) options);
+        startService(intent);
     }
 
-    private class LoadDataTask extends AsyncTask<Integer, Void, String> {
-        private ProgressBar spinner;
-
-        @Override
-        protected void onPreExecute() {
-            spinner = findViewById(R.id.progressBar_ratList);
-            spinner.setVisibility(View.VISIBLE);
-        }
-        @Override
-        protected String doInBackground(Integer... fileName) {
-            return null;
-        }
-        @Override
-        protected void onPostExecute(String result) {
-            mAdapter.notifyDataSetChanged();
-            spinner.setVisibility(View.GONE);
+    private void displayData() {
+        if (ratList != null) {
+            mAdapter = new RecyclerViewAdapter(ratList, this);
+            mRecyclerView.setAdapter(mAdapter);
         }
     }
 
     private void setupRecyclerView() {
         mRecyclerView = findViewById(R.id.rat_recycler_view);
         mRecyclerView.setHasFixedSize(true);
-        //set layout
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        //add divider lines
         DividerItemDecoration mDividerItemDecoration
                 = new DividerItemDecoration(mRecyclerView.getContext(),
                 LinearLayoutManager.VERTICAL);
         mRecyclerView.addItemDecoration(mDividerItemDecoration);
-        //set adapter
-        ratList = new ArrayList<>();
-        mAdapter = new RecyclerViewAdapter(ratList, this);
-        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
