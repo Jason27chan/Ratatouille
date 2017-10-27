@@ -1,5 +1,6 @@
 package com.example.jl.ratatouille.activity;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -66,7 +67,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 marker.setTag(r);
             }
         }
+    };
+
+    /*
+    private void requestData() {
+        Intent intent = new Intent(this, DataService.class);
+        Map<String, String> options = new HashMap<>();
+        options.put("date_start", "2017-08-24");
+        options.put("date_end", "2017-08-24");
+        intent.putExtra("options", (HashMap) options);
+        startService(intent);
     }
+    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

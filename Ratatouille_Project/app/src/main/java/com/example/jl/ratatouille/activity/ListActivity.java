@@ -15,6 +15,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.example.jl.ratatouille.R;
@@ -63,14 +65,29 @@ public class ListActivity extends AppCompatActivity {
         setupButton();
         setupNavigation();
         setupEndlessScroll();
-        requestData();
+        Intent intent = new Intent(this, DataService.class);
+        Map<String, String> options = new HashMap<>();
+        options.put("date_start", "2017-08-24");
+        options.put("date_end", "2017-08-24");
+        intent.putExtra("options", (HashMap) options);
+        startService(intent);
+        final Button submitBtn = findViewById(R.id.btn_submitDate);
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                requestData();
+            }
+        });
     }
 
     private void requestData() {
         Intent intent = new Intent(this, DataService.class);
         Map<String, String> options = new HashMap<>();
-        options.put("date_start", "2017-08-24");
-        options.put("date_end", "2017-08-24");
+        EditText endDate = findViewById(R.id.editTxt_endDate);
+        EditText startDate = findViewById(R.id.editTxt_startDate);
+        String endDateString = endDate.getText().toString();
+        String startDateString = startDate.getText().toString();
+        options.put("date_start", startDateString);
+        options.put("date_end", endDateString);
         intent.putExtra("options", (HashMap) options);
         startService(intent);
     }
