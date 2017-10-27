@@ -65,14 +65,16 @@ public class ListActivity extends AppCompatActivity {
         setupButton();
         setupNavigation();
         setupEndlessScroll();
-        //requestData();
-
+        Intent intent = new Intent(this, DataService.class);
+        Map<String, String> options = new HashMap<>();
+        options.put("date_start", "2017-08-24");
+        options.put("date_end", "2017-08-24");
+        intent.putExtra("options", (HashMap) options);
+        startService(intent);
         final Button submitBtn = findViewById(R.id.btn_submitDate);
         submitBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 requestData();
-                //Intent myIntent = new Intent(v.getContext(), ListActivity.class);
-                //startActivityForResult(myIntent, 0);
             }
         });
     }
