@@ -15,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.example.jl.ratatouille.R;
@@ -63,7 +64,16 @@ public class ListActivity extends AppCompatActivity {
         setupButton();
         setupNavigation();
         setupEndlessScroll();
-        requestData();
+        //requestData();
+
+        final Button submitBtn = findViewById(R.id.btn_submitDate);
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                requestData();
+                //Intent myIntent = new Intent(v.getContext(), ListActivity.class);
+                //startActivityForResult(myIntent, 0);
+            }
+        });
     }
 
     private void requestData() {
