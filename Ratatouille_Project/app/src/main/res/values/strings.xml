@@ -32,4 +32,7 @@
     <string name="cancel">cancel</string>
     <string name="submit">submit</string>
     <string name="Add_Rat">add_rat</string>
+    <string name="Submit">Submit</string>
+    <string name="EndDate">EndDate</string>
+    <string name="StartDate">StartDate</string>
 </resources>

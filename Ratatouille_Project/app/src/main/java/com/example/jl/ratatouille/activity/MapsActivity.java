@@ -1,5 +1,6 @@
 package com.example.jl.ratatouille.activity;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -62,7 +63,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void displayData() {
         if (ratList != null) {
-            mAdapter = new RecyclerViewAdapter(ratList, this);
+            RecyclerViewAdapter mAdapter = new RecyclerViewAdapter(ratList, this);
+            AlertDialog.Builder mRecyclerView;
             mRecyclerView.setAdapter(mAdapter);
         }
     }
