@@ -60,10 +60,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void addMarkers() {
         for (Rat r : ratList) {
-            Log.v("SLDFKJSDLKFJ", String.valueOf(r.getLatitude()));
-            LatLng latlng = new LatLng(Double.parseDouble(r.getLatitude()), r.getLongitude());
-            Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
-            marker.setTag(r);
+            if (r.getLatitude() != null && r.getLongitude() != null) {
+                LatLng latlng = new LatLng(Double.parseDouble(r.getLatitude()), r.getLongitude());
+                Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
+                marker.setTag(r);
+            }
         }
     }
 
@@ -123,8 +124,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void requestData() {
         Intent intent = new Intent(this, DataService.class);
         Map<String, String> options = new HashMap<>();
-        options.put("date_start", "2017-08-24");
-        options.put("date_end", "2017-08-24");
+        options.put("date_start", "2017-08-23");
+        options.put("date_end", "2017-08-23");
         intent.putExtra("options", (HashMap) options);
         startService(intent);
     }

@@ -22,14 +22,12 @@ public class Rat implements Parcelable {
     private String city;
     private String borough;
     private String lat;
-    private double lng;
+    private Double lng;
 
     /**
      * Default constructor for Rat with no data passed in
      */
-    public Rat() {
-        this(new Date(0000-00-00), "unknown", -1, "unknown", "unknown", "unknown", "-1", -1);
-    }
+    public Rat() {}
 
     /**
      * a constructor for the rat
@@ -44,7 +42,7 @@ public class Rat implements Parcelable {
      * @param lat the latitude at which the rat was found
      * @param lng the longitude at which the rat was found
      */
-    public Rat(Date date, String loc_type, int zip, String address, String city, String borough, String lat, double lng) {
+    public Rat(Date date, String loc_type, int zip, String address, String city, String borough, String lat, Double lng) {
         id = numRats++;
         this.date = date;
         this.loc_type = loc_type;
@@ -197,7 +195,7 @@ public class Rat implements Parcelable {
      * gets the longitude at which the rat is at
      * @return the longitude at which the rat is at
      */
-    public double getLongitude() {
+    public Double getLongitude() {
         return lng;
     }
 
@@ -205,7 +203,7 @@ public class Rat implements Parcelable {
      * sets the new longitude at which the rat is at
      * @param longitude the new longitude at which the rat is at
      */
-    public void setLongitude(double longitude) {
+    public void setLongitude(Double longitude) {
         this.lng = longitude;
     }
 
