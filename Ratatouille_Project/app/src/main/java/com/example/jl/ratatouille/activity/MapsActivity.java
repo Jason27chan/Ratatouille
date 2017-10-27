@@ -105,7 +105,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //rat_icon = BitmapDescriptorFactory.fromResource(R.drawable.ic_rat);
         //LatLngBounds nyBounds = new LatLngBounds(new LatLng(33.771403, -84.407349), new LatLng(33.781547, -84.390801));
         LatLng ny = new LatLng(40.7128, -74.0060);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ny, 12));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ny, 11));
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
