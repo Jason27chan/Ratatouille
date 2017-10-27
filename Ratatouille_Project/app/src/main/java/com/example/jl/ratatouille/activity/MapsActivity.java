@@ -1,5 +1,7 @@
 package com.example.jl.ratatouille.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,7 +15,9 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.jl.ratatouille.R;
+import com.example.jl.ratatouille.adapter.RecyclerViewAdapter;
 import com.example.jl.ratatouille.model.Rat;
+import com.example.jl.ratatouille.service.DataService;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -24,7 +28,10 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by jav on 10/18/2017.
@@ -34,7 +41,31 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private BitmapDescriptor rat_icon;
     private List<Rat> ratList = new ArrayList<>();
-    private int startIndex;
+
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Rat[] rats = (Rat[]) intent.getParcelableArrayExtra(DataService.DATA_SERVICE_PAYLOAD);
+            ratList = Arrays.asList(rats);
+            displayData();
+        }
+    };
+
+    private void requestData() {
+        Intent intent = new Intent(this, DataService.class);
+        Map<String, String> options = new HashMap<>();
+        options.put("date_start", "2017-08-24");
+        options.put("date_end", "2017-08-24");
+        intent.putExtra("options", (HashMap) options);
+        startService(intent);
+    }
+
+    private void displayData() {
+        if (ratList != null) {
+            mAdapter = new RecyclerViewAdapter(ratList, this);
+            mRecyclerView.setAdapter(mAdapter);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +88,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 startActivity(new Intent(MapsActivity.this, ListActivity.class));
                                 break;
                             case R.id.action_graph:
-
                                 break;
                             case R.id.action_settings:
                                 startActivity(new Intent(MapsActivity.this, SettingsActivity.class));
@@ -81,7 +111,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        loadRatData(startIndex, startIndex + 50);
+
         mMap = googleMap;
         //rat_icon = BitmapDescriptorFactory.fromResource(R.drawable.ic_rat);
         //LatLngBounds nyBounds = new LatLngBounds(new LatLng(33.771403, -84.407349), new LatLng(33.781547, -84.390801));
@@ -102,6 +132,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
+    /**
     private void loadRatData(int start, int end) {
         new LoadDataTask().execute(R.raw.rat_sightings_trimmed, start, end);
     }
@@ -127,5 +158,5 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
             spinner.setVisibility(View.GONE);
         }
-    }
+    }**/
 }
