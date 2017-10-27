@@ -15,7 +15,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.adapter.RecyclerViewAdapter;
@@ -39,12 +42,16 @@ public class ListActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private List<Rat> ratList;
     ProgressBar progressBar;
+    private EditText editTextStartDate, editTextEndDate;
+    private Map<String, String> options;
+    private Intent intent;
 
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             Rat[] rats = (Rat[]) intent.getParcelableArrayExtra(DataService.DATA_SERVICE_PAYLOAD);
             ratList = Arrays.asList(rats);
+            mAdapter.notifyDataSetChanged();
             displayData();
             progressBar.setVisibility(View.GONE);
         }
@@ -67,12 +74,27 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void requestData() {
-        Intent intent = new Intent(this, DataService.class);
-        Map<String, String> options = new HashMap<>();
-        options.put("date_start", "2017-08-24");
-        options.put("date_end", "2017-08-24");
-        intent.putExtra("options", (HashMap) options);
-        startService(intent);
+        intent = new Intent(this, DataService.class);
+        options = new HashMap<>();
+        editTextStartDate = findViewById(R.id.editTxt_startDate);
+        editTextEndDate = findViewById(R.id.editTxt_endDate);
+        Button button = findViewById(R.id.btn_submitDate);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String startDate = editTextStartDate.getText().toString();
+                String endDate = editTextEndDate.getText().toString();
+                if (startDate.equals("") || endDate.equals("")) {
+                    Toast.makeText(getApplicationContext(), "please enter a start date and end date", Toast.LENGTH_LONG).show();
+                } else {
+                    options.put("date_start", startDate);
+                    options.put("date_end", endDate);
+                    intent.putExtra("options", (HashMap) options);
+                    startService(intent);
+                }
+            }
+        });
+
     }
 
     private void displayData() {
