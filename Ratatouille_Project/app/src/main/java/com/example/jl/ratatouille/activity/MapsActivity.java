@@ -48,7 +48,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         public void onReceive(Context context, Intent intent) {
             Rat[] rats = (Rat[]) intent.getParcelableArrayExtra(DataService.DATA_SERVICE_PAYLOAD);
             ratList = Arrays.asList(rats);
-            displayData();
         }
     };
 
@@ -61,13 +60,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         startService(intent);
     }
 
-    private void displayData() {
-        if (ratList != null) {
-            RecyclerViewAdapter mAdapter = new RecyclerViewAdapter(ratList, this);
-            AlertDialog.Builder mRecyclerView;
-            mRecyclerView.setAdapter(mAdapter);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
