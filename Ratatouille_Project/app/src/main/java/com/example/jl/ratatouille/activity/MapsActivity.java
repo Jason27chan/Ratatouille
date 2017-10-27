@@ -3,13 +3,16 @@ package com.example.jl.ratatouille.activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -18,6 +21,8 @@ import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.adapter.RecyclerViewAdapter;
 import com.example.jl.ratatouille.model.Rat;
 import com.example.jl.ratatouille.service.DataService;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -41,29 +46,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private BitmapDescriptor rat_icon;
     private List<Rat> ratList = new ArrayList<>();
+    boolean onReceived;
 
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             Rat[] rats = (Rat[]) intent.getParcelableArrayExtra(DataService.DATA_SERVICE_PAYLOAD);
             ratList = Arrays.asList(rats);
-            displayData();
+            mMap.clear();
+            addMarkers();
         }
     };
 
-    private void requestData() {
-        Intent intent = new Intent(this, DataService.class);
-        Map<String, String> options = new HashMap<>();
-        options.put("date_start", "2017-08-24");
-        options.put("date_end", "2017-08-24");
-        intent.putExtra("options", (HashMap) options);
-        startService(intent);
-    }
-
-    private void displayData() {
-        if (ratList != null) {
-            mAdapter = new RecyclerViewAdapter(ratList, this);
-            mRecyclerView.setAdapter(mAdapter);
+    private void addMarkers() {
+        for (Rat r : ratList) {
+            Log.v("SLDFKJSDLKFJ", String.valueOf(r.getLatitude()));
+            LatLng latlng = new LatLng(Double.parseDouble(r.getLatitude()), r.getLongitude());
+            Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
+            marker.setTag(r);
         }
     }
 
@@ -72,30 +72,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        if(CheckGooglePlayServices()) {
+            LocalBroadcastManager.getInstance(getApplicationContext())
+                    .registerReceiver(mBroadcastReceiver, new IntentFilter(DataService.DATA_SERVICE_MSG));
+        }
+
+        requestData();
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        BottomNavigationView nav = findViewById(R.id.bottom_navigation_maps);
-        nav.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.action_map:
-                                break;
-                            case R.id.action_list:
-                                startActivity(new Intent(MapsActivity.this, ListActivity.class));
-                                break;
-                            case R.id.action_graph:
-                                break;
-                            case R.id.action_settings:
-                                startActivity(new Intent(MapsActivity.this, SettingsActivity.class));
-                                break;
-                        }
-                        return true;
-                    }
-                });
+        setupNavigation();
 
         final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat_maps);
         addRatBtn.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +118,51 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
+    }
+
+    private void requestData() {
+        Intent intent = new Intent(this, DataService.class);
+        Map<String, String> options = new HashMap<>();
+        options.put("date_start", "2017-08-24");
+        options.put("date_end", "2017-08-24");
+        intent.putExtra("options", (HashMap) options);
+        startService(intent);
+    }
+
+    private void setupNavigation() {
+        BottomNavigationView nav = findViewById(R.id.bottom_navigation_maps);
+        nav.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.action_map:
+                                break;
+                            case R.id.action_list:
+                                startActivity(new Intent(MapsActivity.this, ListActivity.class));
+                                break;
+                            case R.id.action_graph:
+                                break;
+                            case R.id.action_settings:
+                                startActivity(new Intent(MapsActivity.this, SettingsActivity.class));
+                                break;
+                        }
+                        return true;
+                    }
+                });
+    }
+
+    private boolean CheckGooglePlayServices() {
+        GoogleApiAvailability googleAPI = GoogleApiAvailability.getInstance();
+        int result = googleAPI.isGooglePlayServicesAvailable(this);
+        if(result != ConnectionResult.SUCCESS) {
+            if(googleAPI.isUserResolvableError(result)) {
+                googleAPI.getErrorDialog(this, result,
+                        0).show();
+            }
+            return false;
+        }
+        return true;
     }
 
     /**
