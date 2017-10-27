@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Detailed view for a Rat
  */
 
-public class RatViewActivity extends AppCompatActivity{
+public class ViewActivity extends AppCompatActivity{
     private Rat rat;
     private ArrayList<String> ratData;
     private ListView listView;
@@ -29,14 +29,14 @@ public class RatViewActivity extends AppCompatActivity{
         rat = getIntent().getExtras().getParcelable("rat");
         ratData = new ArrayList<>();
         ratData.add(Integer.toString(rat.getRatId()));
-        ratData.add(rat.getDate());
+        ratData.add(rat.getDate().toString());
         ratData.add(rat.getLocType());
-        ratData.add(rat.getZip());
+        ratData.add(String.valueOf(rat.getZip()));
         ratData.add(rat.getAddress());
         ratData.add(rat.getCity());
         ratData.add(rat.getBorough());
-        ratData.add(rat.getLatitude());
-        ratData.add(rat.getLongitude());
+        ratData.add(String.valueOf(rat.getLatitude()));
+        ratData.add(String.valueOf(rat.getLongitude()));
 
         ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ratData);
 

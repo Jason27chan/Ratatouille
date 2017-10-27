@@ -3,6 +3,11 @@ package com.example.jl.ratatouille.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.sql.Date;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
+import static com.example.jl.ratatouille.R.string.longitude;
+
 /**
  * Created by Emily Chang on 10/5/2017.
  */
@@ -10,45 +15,43 @@ import android.os.Parcelable;
 public class Rat implements Parcelable {
     private static int numRats = 684643545;
     private int id;
-    private String date;
-    private String locType;
-    private String zip;
+    private Date date;
+    private String loc_type;
+    private int zip;
     private String address;
     private String city;
     private String borough;
-    private String latitude;
-    private String longitude;
+    private String lat;
+    private Double lng;
 
     /**
      * Default constructor for Rat with no data passed in
      */
-    public Rat() {
-        this("unknown", "unknown", "unknown", "unknown", "unknown", "unknown", "unknown", "unknown");
-    }
+    public Rat() {}
 
     /**
      * a constructor for the rat
      * with all parameters passed in
      *
      * @param date the date that the rat was located
-     * @param locType the location type of the rat
+     * @param loc_type the location type of the rat
      * @param zip the zip code that the rat is located at
      * @param address the address of the rat
      * @param city the city of the rat
      * @param borough the borough of the rat
-     * @param latitude the latitude at which the rat was found
-     * @param longitude the longitude at which the rat was found
+     * @param lat the latitude at which the rat was found
+     * @param lng the longitude at which the rat was found
      */
-    public Rat(String date, String locType, String zip, String address, String city, String borough, String latitude, String longitude) {
+    public Rat(Date date, String loc_type, int zip, String address, String city, String borough, String lat, Double lng) {
         id = numRats++;
         this.date = date;
-        this.locType = locType;
+        this.loc_type = loc_type;
         this.zip = zip;
         this.address = address;
         this.city = city;
         this.borough = borough;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.lat = lat;
+        this.lng = lng;
     }
 
     /**
@@ -71,7 +74,7 @@ public class Rat implements Parcelable {
      * gets the date that the rat was found
      * @return the date that the rat was found
      */
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -79,7 +82,7 @@ public class Rat implements Parcelable {
      * sets the date at which the rat was found
      * @param date the date at which the rat was spotted
      */
-    public void setDate(String date) {
+    public void setDate(Date date) {
         if (date.equals("") || date == null) {
             return;
         }
@@ -91,7 +94,7 @@ public class Rat implements Parcelable {
      * @return the location type of the rat
      */
     public String getLocType() {
-        return locType;
+        return loc_type;
     }
 
     /**
@@ -99,14 +102,14 @@ public class Rat implements Parcelable {
      * @param locType the new location type for the rat
      */
     public void setLocType(String locType) {
-        this.locType = locType;
+        this.loc_type = locType;
     }
 
     /**
      * gets the zip code of the rat
      * @return the zip code of the rat
      */
-    public String getZip() {
+    public int getZip() {
         return zip;
     }
 
@@ -114,7 +117,7 @@ public class Rat implements Parcelable {
      * sets the new zip code for the rat
      * @param zip the new zip code for the rat
      */
-    public void setZip(String zip) {
+    public void setZip(int zip) {
         this.zip = zip;
     }
 
@@ -177,7 +180,7 @@ public class Rat implements Parcelable {
      * @return the latitude at which the rat is at
      */
     public String getLatitude() {
-        return latitude;
+        return lat;
     }
 
     /**
@@ -185,23 +188,23 @@ public class Rat implements Parcelable {
      * @param latitude the new latitude of the rat
      */
     public void setLatitude(String latitude) {
-        this.latitude = latitude;
+        this.lat = latitude;
     }
 
     /**
      * gets the longitude at which the rat is at
      * @return the longitude at which the rat is at
      */
-    public String getLongitude() {
-        return longitude;
+    public Double getLongitude() {
+        return lng;
     }
 
     /**
      * sets the new longitude at which the rat is at
      * @param longitude the new longitude at which the rat is at
      */
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
+    public void setLongitude(Double longitude) {
+        this.lng = longitude;
     }
 
     @Override
@@ -212,14 +215,14 @@ public class Rat implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
-        dest.writeString(date);
-        dest.writeString(locType);
-        dest.writeString(zip);
+        dest.writeLong(date.getTime());
+        dest.writeString(loc_type);
+        dest.writeInt(zip);
         dest.writeString(address);
         dest.writeString(city);
         dest.writeString(borough);
-        dest.writeString(latitude);
-        dest.writeString(longitude);
+        dest.writeString(lat);
+        dest.writeDouble(lng);
     }
 
     public static final Parcelable.Creator<Rat> CREATOR = new Parcelable.Creator<Rat>() {
@@ -248,13 +251,13 @@ public class Rat implements Parcelable {
      */
     private Rat(Parcel in) {
         id = in.readInt();
-        date = in.readString();
-        locType = in.readString();
-        zip = in.readString();
+        date = new Date(in.readLong());
+        loc_type = in.readString();
+        zip = in.readInt();
         address = in.readString();
         city = in.readString();
         borough = in.readString();
-        latitude = in.readString();
-        longitude = in.readString();
+        lat = in.readString();
+        lng = in.readDouble();
     }
 }

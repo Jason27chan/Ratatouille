@@ -1,10 +1,10 @@
-package com.example.jl.ratatouille.data;
+package com.example.jl.ratatouille.sqlite;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.jl.ratatouille.adapter.UserDbAdapter;
+import com.example.jl.ratatouille.adapter.SQLiteAdapter;
 
 /**
  * Creates and upgrades the database to update version
@@ -28,7 +28,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(UserDbAdapter.DATABASE_CREATE);
+        db.execSQL(SQLiteAdapter.DATABASE_CREATE);
     }
 
     @Override
