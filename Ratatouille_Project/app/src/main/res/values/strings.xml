@@ -35,4 +35,6 @@
     <string name="Submit">Submit</string>
     <string name="EndDate">EndDate</string>
     <string name="StartDate">StartDate</string>
+    <string name="YYYYMMDD">YYYYMMDD</string>
+    <string name="YYYY_MM_DD">YYYY_MM_DD</string>
 </resources>
