@@ -54,17 +54,23 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         public void onReceive(Context context, Intent intent) {
             Rat[] rats = (Rat[]) intent.getParcelableArrayExtra(DataService.DATA_SERVICE_PAYLOAD);
             ratList = Arrays.asList(rats);
-            mMap.clear();
-            addMarkers();
+            if (ratList.isEmpty()) {
+                //error log
+            } else {
+                addMarkers();
+            }
         }
     };
 
     private void addMarkers() {
+        mMap.clear();
         for (Rat r : ratList) {
             if (r.getLatitude() != null && r.getLongitude() != null) {
                 LatLng latlng = new LatLng(Double.parseDouble(r.getLatitude()), r.getLongitude());
                 Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
                 marker.setTag(r);
+            } else {
+                //add to error log
             }
         }
     };
