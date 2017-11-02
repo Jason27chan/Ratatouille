@@ -56,6 +56,9 @@ public class ListActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * displays the dat to the user in a recycler view
+     */
     private void displayData() {
         if (ratList != null) {
             mAdapter = new RecyclerViewAdapter(ratList, this);
@@ -89,6 +92,9 @@ public class ListActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * sets up the recycler view in a particlar format
+     */
     private void setupRecyclerView() {
         mRecyclerView = findViewById(R.id.rat_recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -100,6 +106,9 @@ public class ListActivity extends AppCompatActivity {
         mRecyclerView.addItemDecoration(mDividerItemDecoration);
     }
 
+    /**
+     * sets up the buttons for filtering the activity and adding a new rat
+     */
     private void setupButtons() {
         final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat);
         addRatBtn.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +129,9 @@ public class ListActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * sets up the bottom drawer for navigation
+     */
     private void setupNavigation() {
         BottomNavigationView nav = findViewById(R.id.bottom_navigation_list);
         nav.setSelectedItemId(R.id.action_list);
@@ -145,6 +157,9 @@ public class ListActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * sets up endless scroll for the list
+     */
     private void setupEndlessScroll() {
         mRecyclerView.addOnScrollListener(new EndlessOnScrollListener() {
             @Override
