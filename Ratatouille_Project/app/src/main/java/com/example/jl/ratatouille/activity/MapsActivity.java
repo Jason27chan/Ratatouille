@@ -17,11 +17,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
+
 
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.adapter.RecyclerViewAdapter;
 import com.example.jl.ratatouille.model.Rat;
 import com.example.jl.ratatouille.service.DataService;
 import com.google.android.gms.common.ConnectionResult;
@@ -51,6 +49,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private List<Rat> ratList = new ArrayList<>();
     boolean onReceived;
 
+    static final int ADD_ACTIVITY_REQUEST = 0;
+    static final int FILTER_ACTIVITY_REQUEST = 1;
+
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -77,17 +78,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     };
 
-    /*
-    private void requestData() {
-        Intent intent = new Intent(this, DataService.class);
-        Map<String, String> options = new HashMap<>();
-        options.put("date_start", "2017-08-24");
-        options.put("date_end", "2017-08-24");
-        intent.putExtra("options", (HashMap) options);
-        startService(intent);
-    }
-    */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,27 +96,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         setupNavigation();
 
-        final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat_maps);
-        addRatBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent myIntent = new Intent(v.getContext(), AddActivity.class);
-                startActivityForResult(myIntent, 0);
-            }
-        });
-
-        Intent intent = new Intent(this, DataService.class);
-        Map<String, String> options = new HashMap<>();
-        options.put("date_start", "2017-08-23");
-        options.put("date_end", "2017-08-23");
-        intent.putExtra("options", (HashMap) options);
-        startService(intent);
-
-        final Button submitBtn = findViewById(R.id.btn_submitDateMap);
-        submitBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                requestData();
-            }
-        });
+        setupButtons();
     }
 
     /**.
@@ -155,6 +125,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
+    /*
     private void requestData() {
         Intent intent = new Intent(this, DataService.class);
         Map<String, String> options = new HashMap<>();
@@ -166,15 +137,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         options.put("date_end", endDateString);
         intent.putExtra("options", (HashMap) options);
         startService(intent);
-        /*
-        Intent intent = new Intent(this, DataService.class);
-        Map<String, String> options = new HashMap<>();
-        options.put("date_start", "2017-08-23");
-        options.put("date_end", "2017-08-23");
-        intent.putExtra("options", (HashMap) options);
-        startService(intent);
-        */
-    }
+    }*/
 
     private void setupNavigation() {
         BottomNavigationView nav = findViewById(R.id.bottom_navigation_maps);
@@ -211,6 +174,26 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         return true;
     }
+
+    private void setupButtons() {
+        final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat_maps);
+        addRatBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(v.getContext(), AddActivity.class);
+                startActivityForResult(myIntent, ADD_ACTIVITY_REQUEST);
+            }
+        });
+
+        final Button filterBtn = findViewById(R.id.map_filter);
+        filterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), FilterActivity.class);
+                startActivityForResult(intent, FILTER_ACTIVITY_REQUEST);
+            }
+        });
+    }
+
 
     /**
     private void loadRatData(int start, int end) {

@@ -1,6 +1,5 @@
 package com.example.jl.ratatouille.activity;
 
-import android.content.ComponentName;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,12 +9,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.jl.ratatouille.R;
+import com.example.jl.ratatouille.model.MSG;
 import com.example.jl.ratatouille.service.APIService;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -25,7 +24,8 @@ import retrofit2.Callback;
 
 public class AddActivity extends AppCompatActivity {
 
-    private EditText editDate, editLocType, editZip, editAddress, editCity, editBorough, editLatitude, editLongitude;
+    private EditText editDate, editLocType, editZip, editAddress,
+            editCity, editBorough, editLatitude, editLongitude;
     private DatePicker datePicker;
     private Button submitButton, cancelButton;
 
@@ -47,6 +47,7 @@ public class AddActivity extends AppCompatActivity {
         editLongitude = findViewById(R.id.editTxt_longitude);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
 
                 //todo:implement date view
@@ -71,8 +72,10 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
-    private void addRat(final String date, final String locType, final String zip, final String address,
-                        final String city, final String borough, final String latitude, final String longitude){
+    private void addRat(final String date, final String locType,
+                        final String zip, final String address,
+                        final String city, final String borough,
+                        final String latitude, final String longitude){
         APIService apiService = APIService.retrofit.create(APIService.class);
         Map<String, String> options = new HashMap<>();
         options.put("date", date);
@@ -83,32 +86,28 @@ public class AddActivity extends AppCompatActivity {
         options.put("borough", borough);
         options.put("lat", latitude);
         options.put("lng", longitude);
-        Call<ResponseBody> request = apiService.addRat(options);
-        request.enqueue(new Callback<ResponseBody>() {
+        Call<MSG> request = apiService.addRat(options);
+        request.enqueue(new Callback<MSG>() {
 
             @Override
-            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
-                Toast.makeText(getApplicationContext(), "add successful", Toast.LENGTH_SHORT).show();
-                finish();
-                //todo:http error codes
-                /*try {
-                    JSONObject jObj = new JSONObject(response.errorBody().string());
-                    boolean error = jObj.getBoolean("error");
-                    if (!error) {
-                        Toast.makeText(getApplicationContext(), "add successful", Toast.LENGTH_SHORT).show();
-                        finish();
-                    } else {
-                        String errorMsg = jObj.getString("msg");
-                        Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }*/
+            public void onResponse(Call<MSG> call, retrofit2.Response<MSG> response) {
+                if (!response.body().getError()) {
+                    String msg = response.body().getMsg();
+                    Toast.makeText(getApplicationContext(),
+                            msg, Toast.LENGTH_SHORT).show();
+                    setResult(RESULT_OK);
+                    finish();
+                } else {
+                    String msg = response.body().getMsg();
+                    Toast.makeText(getApplicationContext(),
+                            msg, Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+            public void onFailure(Call<MSG> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(),
+                        Toast.LENGTH_LONG).show();
             }
         });
     }

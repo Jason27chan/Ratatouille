@@ -30,6 +30,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Filter;
 
 /**
  * Displays the rat data in a RecyclerView
@@ -42,6 +43,9 @@ public class ListActivity extends AppCompatActivity {
     private List<Rat> ratList;
     ProgressBar progressBar;
 
+    static final int ADD_ACTIVITY_REQUEST = 0;
+    static final int FILTER_ACTIVITY_REQUEST = 1;
+
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -52,6 +56,13 @@ public class ListActivity extends AppCompatActivity {
         }
     };
 
+    private void displayData() {
+        if (ratList != null) {
+            mAdapter = new RecyclerViewAdapter(ratList, this);
+            mRecyclerView.setAdapter(mAdapter);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,41 +72,20 @@ public class ListActivity extends AppCompatActivity {
 
         LocalBroadcastManager.getInstance(getApplicationContext())
                 .registerReceiver(mBroadcastReceiver, new IntentFilter(DataService.DATA_SERVICE_MSG));
+
         setupRecyclerView();
-        setupButton();
+        setupButtons();
         setupNavigation();
         setupEndlessScroll();
-        Intent intent = new Intent(this, DataService.class);
-        Map<String, String> options = new HashMap<>();
-        options.put("date_start", "2017-08-24");
-        options.put("date_end", "2017-08-24");
-        intent.putExtra("options", (HashMap) options);
-        startService(intent);
-        final Button submitBtn = findViewById(R.id.btn_submitDate);
-        submitBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                requestData();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == ADD_ACTIVITY_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                mAdapter.notifyDataSetChanged();
+                displayData();
             }
-        });
-    }
-
-    private void requestData() {
-        Intent intent = new Intent(this, DataService.class);
-        Map<String, String> options = new HashMap<>();
-        EditText endDate = findViewById(R.id.editTxt_endDate);
-        EditText startDate = findViewById(R.id.editTxt_startDate);
-        String endDateString = endDate.getText().toString();
-        String startDateString = startDate.getText().toString();
-        options.put("date_start", startDateString);
-        options.put("date_end", endDateString);
-        intent.putExtra("options", (HashMap) options);
-        startService(intent);
-    }
-
-    private void displayData() {
-        if (ratList != null) {
-            mAdapter = new RecyclerViewAdapter(ratList, this);
-            mRecyclerView.setAdapter(mAdapter);
         }
     }
 
@@ -110,23 +100,24 @@ public class ListActivity extends AppCompatActivity {
         mRecyclerView.addItemDecoration(mDividerItemDecoration);
     }
 
-    private void setupButton() {
+    private void setupButtons() {
         final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat);
         addRatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(v.getContext(), AddActivity.class);
-                startActivityForResult(myIntent, 0);
+                Intent intent = new Intent(v.getContext(), AddActivity.class);
+                startActivityForResult(intent, ADD_ACTIVITY_REQUEST);
             }
         });
-    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 0) {
-            if (resultCode == RESULT_OK) {
-                mAdapter.notifyDataSetChanged();
+        final Button filterBtn = findViewById(R.id.btn_filter);
+        filterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), FilterActivity.class);
+                startActivityForResult(intent, FILTER_ACTIVITY_REQUEST);
             }
-        }
+        });
     }
 
     private void setupNavigation() {
@@ -161,11 +152,6 @@ public class ListActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-
-    private void updateData() {
-        mAdapter.notifyDataSetChanged();
     }
 
     @Override

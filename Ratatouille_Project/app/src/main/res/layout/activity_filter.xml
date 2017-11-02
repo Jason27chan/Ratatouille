@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/date_range"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/text_from"
+            android:text="FROM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/filter_startDate"
+            android:hint="@string/YYYY_MM_DD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:layout_toRightOf="@+id/text_from"
+            android:layout_centerInParent="false"
+            android:layout_marginLeft="8dp"
+            style="@style/EditTextStyle"/>
+
+        <TextView
+            android:id="@+id/text_to"
+            android:text="TO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/filter_startDate"/>
+
+        <EditText
+            android:id="@+id/filter_endDate"
+            android:hint="@string/YYYY_MM_DD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:layout_toRightOf="@+id/text_to"
+            android:layout_centerInParent="false"
+            android:layout_marginLeft="8dp"
+            style="@style/EditTextStyle"/>
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/filter_sort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/date_range"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/text_sort"
+            android:text="SORT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"/>
+
+        <RadioGroup
+            android:id="@+id/radio_sort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/text_sort">
+
+            <RadioButton
+                android:id="@+id/radioBtn_desc"
+                android:text="DESC"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:typeface="monospace"
+                android:checked="true"/>
+
+            <RadioButton
+                android:id="@+id/radioBtn_asc"
+                android:text="ASC"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:typeface="monospace"/>
+
+        </RadioGroup>
+
+        </LinearLayout>
+
+    <Button
+        android:id="@+id/filter_submit"
+        android:text="@string/Submit"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/filter_sort"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:typeface="monospace"/>
+
+
+
+</RelativeLayout>
+

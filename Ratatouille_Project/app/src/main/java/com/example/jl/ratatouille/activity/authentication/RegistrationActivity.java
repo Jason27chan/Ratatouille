@@ -10,20 +10,17 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.volley.URLConfig;
-import com.example.jl.ratatouille.volley.AppController;
+import com.example.jl.ratatouille.model.MSG;
+import com.example.jl.ratatouille.service.APIService;
 import com.example.jl.ratatouille.adapter.SQLiteAdapter;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 /**
  * Created by jav on 9/12/2017.
@@ -89,57 +86,38 @@ public class RegistrationActivity extends AppCompatActivity {
      * @param confirm desired password entered again for confirmation
      * @param account_type whether its a user or admin
      */
-    private void registerUser(final String username, final String password, final String confirm, final String account_type) {
-        String cancel_req_tag = "req_register";
-        StringRequest strReq = new StringRequest(Request.Method.POST, URLConfig.URL_REGISTER, new Response.Listener<String>() {
+    private void registerUser(final String username, final String password,
+                              final String confirm, final String account_type) {
 
+        APIService apiService = APIService.retrofit.create(APIService.class);
+        Map<String, String> options = new HashMap<>();
+        options.put("username", username);
+        options.put("password", password);
+        options.put("confirm", confirm);
+        options.put("account_type", account_type);
+        Call<MSG> request = apiService.register(options);
+        request.enqueue(new Callback<MSG>() {
             @Override
-            public void onResponse(String response) {
-
-                try {
-                    JSONObject jObj = new JSONObject(response);
-                    boolean error = jObj.getBoolean("error");
-
-                    if (!error) {
-
-                        Toast.makeText(getApplicationContext(), "registration successful", Toast.LENGTH_SHORT).show();
-
-                        // Launch login activity
-                        Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-
-                        String errorMsg = jObj.getString("msg");
-                        Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+            public void onResponse(Call<MSG> call, retrofit2.Response<MSG> response) {
+                if (!response.body().getError()) {
+                    String msg = response.body().getMsg();
+                    Toast.makeText(getApplicationContext(),
+                            msg, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                } else {
+                    String msg = response.body().getMsg();
+                    Toast.makeText(getApplicationContext(),
+                            msg, Toast.LENGTH_LONG).show();
                 }
-
             }
-        }, new Response.ErrorListener() {
 
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+            public void onFailure(Call<MSG> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(),
+                        Toast.LENGTH_LONG).show();
             }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                // Posting params to register url
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("username", username);
-                params.put("password", password);
-                params.put("confirm", confirm);
-                params.put("account_type", account_type);
-                return params;
-            }
-        };
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(strReq, cancel_req_tag);
-
+        });
     }
 
     @Override
