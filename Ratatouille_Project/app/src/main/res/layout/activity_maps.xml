@@ -27,7 +27,6 @@
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-
         </FrameLayout>
 
 
@@ -65,5 +64,40 @@
         app:itemBackground="@color/gray"
         app:itemTextColor="@color/black"
         app:itemIconTint="@color/black"/>
+
+
+    <EditText
+        android:id="@+id/editTxt_startDateMap"
+        style="@style/EditTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_toLeftOf="@id/editTxt_endDateMap"
+        android:layout_alignParentRight="@+id/editTxt_endDateMap"
+        android:hint="@string/YYYY_MM_DD"
+        android:inputType="date"
+        android:layout_above="@id/bottom_navigation_maps" />
+
+    <EditText
+        android:id="@+id/editTxt_endDateMap"
+        android:hint="@string/YYYY_MM_DD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_navigation_maps"
+        android:layout_gravity="bottom"
+        android:layout_centerHorizontal="true"
+        android:inputType="date"
+        style="@style/EditTextStyle"/>
+
+    <Button
+        android:id="@+id/btn_submitDateMap"
+        android:text="@string/Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:layout_anchorGravity="bottom"
+        android:layout_toRightOf="@id/editTxt_endDateMap"
+        android:layout_above="@id/bottom_navigation_maps"
+        android:typeface="monospace"/>
 
 </RelativeLayout>

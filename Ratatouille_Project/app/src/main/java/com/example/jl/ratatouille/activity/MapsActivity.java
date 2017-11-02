@@ -16,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.example.jl.ratatouille.R;
@@ -96,7 +98,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     .registerReceiver(mBroadcastReceiver, new IntentFilter(DataService.DATA_SERVICE_MSG));
         }
 
-        requestData();
+        //requestData();
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -109,6 +111,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onClick(View v) {
                 Intent myIntent = new Intent(v.getContext(), AddActivity.class);
                 startActivityForResult(myIntent, 0);
+            }
+        });
+
+        Intent intent = new Intent(this, DataService.class);
+        Map<String, String> options = new HashMap<>();
+        options.put("date_start", "2017-08-23");
+        options.put("date_end", "2017-08-23");
+        intent.putExtra("options", (HashMap) options);
+        startService(intent);
+
+        final Button submitBtn = findViewById(R.id.btn_submitDateMap);
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                requestData();
             }
         });
     }
@@ -142,10 +158,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void requestData() {
         Intent intent = new Intent(this, DataService.class);
         Map<String, String> options = new HashMap<>();
+        EditText endDate = findViewById(R.id.editTxt_endDateMap);
+        EditText startDate = findViewById(R.id.editTxt_startDateMap);
+        String endDateString = endDate.getText().toString();
+        String startDateString = startDate.getText().toString();
+        options.put("date_start", startDateString);
+        options.put("date_end", endDateString);
+        intent.putExtra("options", (HashMap) options);
+        startService(intent);
+        /*
+        Intent intent = new Intent(this, DataService.class);
+        Map<String, String> options = new HashMap<>();
         options.put("date_start", "2017-08-23");
         options.put("date_end", "2017-08-23");
         intent.putExtra("options", (HashMap) options);
         startService(intent);
+        */
     }
 
     private void setupNavigation() {
