@@ -37,4 +37,6 @@
     <string name="StartDate">StartDate</string>
     <string name="YYYYMMDD">YYYYMMDD</string>
     <string name="YYYY_MM_DD">YYYY_MM_DD</string>
+    <string name="START">start</string>
+    <string name="END">end</string>
 </resources>
