@@ -30,6 +30,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Filter;
 
 /**
  * Displays the rat data in a RecyclerView
@@ -61,10 +62,12 @@ public class ListActivity extends AppCompatActivity {
 
         LocalBroadcastManager.getInstance(getApplicationContext())
                 .registerReceiver(mBroadcastReceiver, new IntentFilter(DataService.DATA_SERVICE_MSG));
+
         setupRecyclerView();
-        setupButton();
+        setupButtons();
         setupNavigation();
         setupEndlessScroll();
+
         Intent intent = new Intent(this, DataService.class);
         Map<String, String> options = new HashMap<>();
         options.put("date_start", "2017-08-24");
@@ -110,12 +113,22 @@ public class ListActivity extends AppCompatActivity {
         mRecyclerView.addItemDecoration(mDividerItemDecoration);
     }
 
-    private void setupButton() {
+    private void setupButtons() {
         final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat);
         addRatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(v.getContext(), AddActivity.class);
-                startActivityForResult(myIntent, 0);
+                Intent intent = new Intent(v.getContext(), AddActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+        final Button filterBtn = findViewById(R.id.btn_filter);
+        filterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), FilterActivity.class);
+                startActivityForResult(intent, 0);
             }
         });
     }

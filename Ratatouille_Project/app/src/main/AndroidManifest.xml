@@ -7,10 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-
-        android:name="com.example.jl.ratatouille.volley.AppController"
-
-
+        android:name=".volley.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -27,37 +24,36 @@
         <activity
             android:name=".activity.authentication.LoginActivity"
             android:label="Login"
-            android:parentActivityName=".activity.MainActivity"></activity>
+            android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.authentication.RegistrationActivity"
             android:label="Register"
-
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.ListActivity"
             android:parentActivityName=".activity.MainActivity"></activity>
+        <activity
+            android:name=".activity.ViewActivity"
+            android:parentActivityName=".activity.ListActivity"></activity>
+        <activity
+            android:name=".activity.AddActivity"
+            android:parentActivityName=".activity.ListActivity"></activity>
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:parentActivityName=".activity.ListActivity"></activity>
+        <activity
+            android:name=".activity.MapsActivity"
+            android:parentActivityName=".activity.ListActivity"></activity>
 
-
-        <activity android:name=".activity.ListActivity"
-            android:parentActivityName="com.example.jl.ratatouille.activity.MainActivity" >
-        </activity>
-        <activity android:name=".activity.ViewActivity"
-            android:parentActivityName=".activity.ListActivity">
-        </activity>
-        <activity android:name=".activity.AddActivity"
-            android:parentActivityName=".activity.ListActivity">
-        </activity>
-        <activity android:name=".activity.SettingsActivity"
-            android:parentActivityName=".activity.ListActivity">
-        </activity>
-        <activity android:name=".activity.MapsActivity"
-            android:parentActivityName=".activity.ListActivity">
-        </activity>
-
-        <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAAFf9nwOeAsYt7HJz6Kte_pvsO2-T253s"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAAFf9nwOeAsYt7HJz6Kte_pvsO2-T253s" />
 
         <service
             android:name=".service.DataService"
-            android:exported="false"/>
+            android:exported="false" />
 
-
+        <activity android:name=".activity.FilterActivity"></activity>
     </application>
+
 </manifest>

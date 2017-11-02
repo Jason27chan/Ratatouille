@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/filter_startDate"
+        android:hint="@string/YYYY_MM_DD"
+        android:layout_alignParentTop="true"
+        android:layout_width="125dp"
+        android:inputType="date"
+        android:layout_marginTop="32dp"
+        style="@style/EditTextStyle"/>
+
+    <EditText
+        android:id="@+id/filter_endDate"
+        android:hint="@string/YYYY_MM_DD"
+        android:layout_width="125dp"
+        android:inputType="date"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/filter_startDate"
+        style="@style/EditTextStyle"/>
+
+    <Button
+        android:id="@+id/filter_submit"
+        android:text="@string/Submit"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/filter_endDate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:typeface="monospace"/>
+
+</RelativeLayout>
+

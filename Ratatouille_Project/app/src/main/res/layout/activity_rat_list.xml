@@ -77,6 +77,19 @@
             android:layout_marginLeft="240dp"
             android:typeface="monospace"/>
 
+        <Button
+            android:id="@+id/btn_filter"
+            android:text="@string/filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:layout_anchor="@+id/rat_recycler_view"
+            app:layout_anchorGravity="bottom"
+            android:layout_below="@+id/editTxt_logPassword"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="240dp"
+            android:typeface="monospace"/>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rat_recycler_view"
             android:layout_width="match_parent"
