@@ -53,6 +53,13 @@ public class ListActivity extends AppCompatActivity {
         }
     };
 
+    private void displayData() {
+        if (ratList != null) {
+            mAdapter = new RecyclerViewAdapter(ratList, this);
+            mRecyclerView.setAdapter(mAdapter);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,10 +84,12 @@ public class ListActivity extends AppCompatActivity {
 
     }
 
-    private void displayData() {
-        if (ratList != null) {
-            mAdapter = new RecyclerViewAdapter(ratList, this);
-            mRecyclerView.setAdapter(mAdapter);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                mAdapter.notifyDataSetChanged();
+            }
         }
     }
 
@@ -115,15 +124,6 @@ public class ListActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 0) {
-            if (resultCode == RESULT_OK) {
-                mAdapter.notifyDataSetChanged();
-            }
-        }
-    }
-
     private void setupNavigation() {
         BottomNavigationView nav = findViewById(R.id.bottom_navigation_list);
         nav.setSelectedItemId(R.id.action_list);
@@ -156,11 +156,6 @@ public class ListActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-
-    private void updateData() {
-        mAdapter.notifyDataSetChanged();
     }
 
     @Override

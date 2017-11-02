@@ -58,5 +58,6 @@ public class FilterActivity extends AppCompatActivity {
         intent.putExtra("options", (HashMap) options);
 
         startService(intent);
+        finish();
     }
 }
