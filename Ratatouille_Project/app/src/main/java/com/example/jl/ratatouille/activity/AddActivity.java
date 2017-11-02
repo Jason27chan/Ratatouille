@@ -95,6 +95,7 @@ public class AddActivity extends AppCompatActivity {
                     String msg = response.body().getMsg();
                     Toast.makeText(getApplicationContext(),
                             msg, Toast.LENGTH_SHORT).show();
+                    setResult(RESULT_OK);
                     finish();
                 } else {
                     String msg = response.body().getMsg();

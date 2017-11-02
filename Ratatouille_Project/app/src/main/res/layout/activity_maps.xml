@@ -16,7 +16,6 @@
 
         <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:map="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -37,6 +36,16 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_gravity="top|right"/>
+
+        <Button
+            android:id="@+id/map_filter"
+            android:text="@string/filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_anchor="@+id/btn_addRat_maps"
+            app:layout_anchorGravity="bottom"
+            android:layout_margin="16dp"
+            android:typeface="monospace"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btn_addRat_maps"

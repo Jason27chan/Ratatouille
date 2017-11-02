@@ -43,6 +43,9 @@ public class ListActivity extends AppCompatActivity {
     private List<Rat> ratList;
     ProgressBar progressBar;
 
+    static final int ADD_ACTIVITY_REQUEST = 0;
+    static final int FILTER_ACTIVITY_REQUEST = 1;
+
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -74,21 +77,14 @@ public class ListActivity extends AppCompatActivity {
         setupButtons();
         setupNavigation();
         setupEndlessScroll();
-
-        Intent intent = new Intent(this, DataService.class);
-        Map<String, String> options = new HashMap<>();
-        options.put("date_start", "2017-08-24");
-        options.put("date_end", "2017-08-24");
-        intent.putExtra("options", (HashMap) options);
-        startService(intent);
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 0) {
+        if (requestCode == ADD_ACTIVITY_REQUEST) {
             if (resultCode == RESULT_OK) {
                 mAdapter.notifyDataSetChanged();
+                displayData();
             }
         }
     }
@@ -110,19 +106,18 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), AddActivity.class);
-                startActivityForResult(intent, 0);
+                startActivityForResult(intent, ADD_ACTIVITY_REQUEST);
             }
         });
 
-        /*
         final Button filterBtn = findViewById(R.id.btn_filter);
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), FilterActivity.class);
-                startActivityForResult(intent, 0);
+                startActivityForResult(intent, FILTER_ACTIVITY_REQUEST);
             }
-        });*/
+        });
     }
 
     private void setupNavigation() {

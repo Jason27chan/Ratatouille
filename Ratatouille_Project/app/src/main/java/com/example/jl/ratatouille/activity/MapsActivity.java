@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.example.jl.ratatouille.R;
@@ -48,6 +49,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private BitmapDescriptor rat_icon;
     private List<Rat> ratList = new ArrayList<>();
     boolean onReceived;
+
+    static final int ADD_ACTIVITY_REQUEST = 0;
+    static final int FILTER_ACTIVITY_REQUEST = 1;
 
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -92,14 +96,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
 
         setupNavigation();
-
-        final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat_maps);
-        addRatBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent myIntent = new Intent(v.getContext(), AddActivity.class);
-                startActivityForResult(myIntent, 0);
-            }
-        });
+        setupButtons();
     }
 
     /**.
@@ -172,6 +169,26 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         return true;
     }
+
+    private void setupButtons() {
+        final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat_maps);
+        addRatBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(v.getContext(), AddActivity.class);
+                startActivityForResult(myIntent, ADD_ACTIVITY_REQUEST);
+            }
+        });
+
+        final Button filterBtn = findViewById(R.id.map_filter);
+        filterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), FilterActivity.class);
+                startActivityForResult(intent, FILTER_ACTIVITY_REQUEST);
+            }
+        });
+    }
+
 
     /**
     private void loadRatData(int start, int end) {

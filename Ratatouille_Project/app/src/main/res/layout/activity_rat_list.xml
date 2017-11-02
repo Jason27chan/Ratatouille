@@ -42,9 +42,7 @@
             android:layout_gravity="bottom"
             app:layout_anchor="@+id/rat_recycler_view"
             app:layout_anchorGravity="bottom"
-            android:layout_below="@+id/editTxt_logPassword"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="240dp"
+            android:layout_margin="16dp"
             android:typeface="monospace"/>
 
         <android.support.v7.widget.RecyclerView
