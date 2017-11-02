@@ -34,49 +34,6 @@
             app:borderWidth="0dp"
             app:elevation="2dp"/>
 
-        <EditText
-            android:id="@+id/editTxt_startDate"
-            android:hint="@string/YYYY_MM_DD"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_gravity="bottom|end"
-            app:layout_anchor="@+id/rat_recycler_view"
-            app:layout_anchorGravity="bottom|left|end"
-            android:inputType="date"
-            android:layout_below="@+id/editTxt_startDate"
-            android:layout_marginTop="160dp"
-            style="@style/EditTextStyle"/>
-
-        <EditText
-            android:id="@+id/editTxt_endDate"
-            android:hint="@string/YYYY_MM_DD"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_gravity="bottom"
-            app:layout_anchor="@+id/rat_recycler_view"
-            app:layout_anchorGravity="bottom"
-            android:inputType="date"
-            android:layout_below="@+id/editTxt_endDate"
-            android:layout_marginTop="160dp"
-            android:layout_marginLeft="130dp"
-            style="@style/EditTextStyle"/>
-
-        <Button
-            android:id="@+id/btn_submitDate"
-            android:text="@string/Submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_gravity="bottom"
-            app:layout_anchor="@+id/rat_recycler_view"
-            app:layout_anchorGravity="bottom"
-            android:layout_below="@+id/editTxt_logPassword"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="240dp"
-            android:typeface="monospace"/>
-
         <Button
             android:id="@+id/btn_filter"
             android:text="@string/filter"
