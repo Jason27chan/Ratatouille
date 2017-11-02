@@ -30,19 +30,19 @@
             android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.ListActivity"
-            android:parentActivityName=".activity.MainActivity"></activity>
+            android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.ViewActivity"
-            android:parentActivityName=".activity.ListActivity"></activity>
+            android:parentActivityName=".activity.ListActivity" />
         <activity
             android:name=".activity.AddActivity"
-            android:parentActivityName=".activity.ListActivity"></activity>
+            android:parentActivityName=".activity.ListActivity" />
         <activity
             android:name=".activity.SettingsActivity"
-            android:parentActivityName=".activity.ListActivity"></activity>
+            android:parentActivityName=".activity.ListActivity" />
         <activity
             android:name=".activity.MapsActivity"
-            android:parentActivityName=".activity.ListActivity"></activity>
+            android:parentActivityName=".activity.ListActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -52,7 +52,8 @@
             android:name=".service.DataService"
             android:exported="false" />
 
-        <activity android:name=".activity.FilterActivity"></activity>
+        <activity android:name=".activity.FilterActivity" />
+        <activity android:name=".activity.GraphActivity"></activity>
     </application>
 
 </manifest>

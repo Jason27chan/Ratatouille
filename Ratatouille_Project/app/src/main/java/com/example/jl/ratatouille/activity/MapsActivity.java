@@ -168,6 +168,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 startActivity(new Intent(MapsActivity.this, ListActivity.class));
                                 break;
                             case R.id.action_graph:
+                                startActivity(new Intent(MapsActivity.this, GraphActivity.class));
                                 break;
                             case R.id.action_settings:
                                 startActivity(new Intent(MapsActivity.this, SettingsActivity.class));
