@@ -6,8 +6,8 @@ package com.example.jl.ratatouille.volley;
 
 public class URLConfig {
 
-    public static String URL_LOGIN = "http://192.241.145.60/ratatouille/user/login.php";
-    public static String URL_REGISTER = "http://192.241.145.60/ratatouille/user/register.php";
+    public static String URL_LOGIN = "http://192.241.145.60/ratatouille/authenticate/login.php";
+    public static String URL_REGISTER = "http://192.241.145.60/ratatouille/authenticate/register.php";
     public static String URL_LOAD_RATS = "http://192.241.145.60/ratatouille/rat/jsonfeed.php";
     public static String URL_ADD_RAT = "http://192.241.145.60/ratatouille/rat/addrat.php";
 
