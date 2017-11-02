@@ -24,7 +24,8 @@ import retrofit2.Callback;
 
 public class AddActivity extends AppCompatActivity {
 
-    private EditText editDate, editLocType, editZip, editAddress, editCity, editBorough, editLatitude, editLongitude;
+    private EditText editDate, editLocType, editZip, editAddress,
+            editCity, editBorough, editLatitude, editLongitude;
     private DatePicker datePicker;
     private Button submitButton, cancelButton;
 
@@ -71,8 +72,10 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
-    private void addRat(final String date, final String locType, final String zip, final String address,
-                        final String city, final String borough, final String latitude, final String longitude){
+    private void addRat(final String date, final String locType,
+                        final String zip, final String address,
+                        final String city, final String borough,
+                        final String latitude, final String longitude){
         APIService apiService = APIService.retrofit.create(APIService.class);
         Map<String, String> options = new HashMap<>();
         options.put("date", date);
@@ -90,17 +93,20 @@ public class AddActivity extends AppCompatActivity {
             public void onResponse(Call<MSG> call, retrofit2.Response<MSG> response) {
                 if (!response.body().getError()) {
                     String msg = response.body().getMsg();
-                    Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),
+                            msg, Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
                     String msg = response.body().getMsg();
-                    Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),
+                            msg, Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<MSG> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), t.getMessage(),
+                        Toast.LENGTH_LONG).show();
             }
         });
     }

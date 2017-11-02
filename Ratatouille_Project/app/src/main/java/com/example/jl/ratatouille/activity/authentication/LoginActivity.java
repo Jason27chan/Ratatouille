@@ -82,7 +82,6 @@ public class LoginActivity extends AppCompatActivity{
                             Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MapsActivity.class);
                     startActivity(intent);
-                    //finish();
                 } else {
                     String msg = response.body().getMsg();
                     Toast.makeText(getApplicationContext(), msg,
