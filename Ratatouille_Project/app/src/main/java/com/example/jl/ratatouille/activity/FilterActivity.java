@@ -42,6 +42,9 @@ public class FilterActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * displays the rat data within a certain date range
+     */
     private void requestData() {
         Intent intent = new Intent(this, DataService.class);
 
