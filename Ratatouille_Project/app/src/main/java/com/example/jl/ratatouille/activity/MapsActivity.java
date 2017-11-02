@@ -65,6 +65,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     };
 
+    /**
+     * adds the markers
+     */
     private void addMarkers() {
         mMap.clear();
         for (Rat r : ratList) {
@@ -149,6 +152,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         startService(intent);
     }*/
 
+    /**
+     * sets up navigation bar at the bottom
+     */
     private void setupNavigation() {
         BottomNavigationView nav = findViewById(R.id.bottom_navigation_maps);
         nav.setOnNavigationItemSelectedListener(
@@ -172,6 +178,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 });
     }
 
+    /**
+     * checks if google play services are available
+     * @return false if they are not
+     *         true if they are
+     */
     private boolean CheckGooglePlayServices() {
         GoogleApiAvailability googleAPI = GoogleApiAvailability.getInstance();
         int result = googleAPI.isGooglePlayServicesAvailable(this);
@@ -185,6 +196,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         return true;
     }
 
+    /**
+     * sets up the buttons on the maps activity
+     */
     private void setupButtons() {
         final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat_maps);
         addRatBtn.setOnClickListener(new View.OnClickListener() {
