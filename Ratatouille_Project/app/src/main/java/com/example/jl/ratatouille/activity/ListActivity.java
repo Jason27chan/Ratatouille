@@ -114,6 +114,7 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
+        /*
         final Button filterBtn = findViewById(R.id.btn_filter);
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +122,7 @@ public class ListActivity extends AppCompatActivity {
                 Intent intent = new Intent(v.getContext(), FilterActivity.class);
                 startActivityForResult(intent, 0);
             }
-        });
+        });*/
     }
 
     private void setupNavigation() {
