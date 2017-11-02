@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.example.jl.ratatouille.R;
@@ -136,8 +137,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void requestData() {
         Intent intent = new Intent(this, DataService.class);
         Map<String, String> options = new HashMap<>();
-        options.put("date_start", "2017-08-23");
-        options.put("date_end", "2017-08-23");
+        EditText endDate = findViewById(R.id.editTxt_endDate);
+        EditText startDate = findViewById(R.id.editTxt_startDate);
+        String endDateString = endDate.getText().toString();
+        String startDateString = startDate.getText().toString();
+        options.put("date_start", startDateString);
+        options.put("date_end", endDateString);
         intent.putExtra("options", (HashMap) options);
         startService(intent);
     }
