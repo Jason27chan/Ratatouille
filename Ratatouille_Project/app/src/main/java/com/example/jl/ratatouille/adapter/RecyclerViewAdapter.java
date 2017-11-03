@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.activity.ViewActivity;
+import com.example.jl.ratatouille.data.Data;
 import com.example.jl.ratatouille.model.Rat;
 
 import java.util.List;
@@ -23,7 +24,7 @@ import java.util.List;
  */
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    private List<Rat> ratList;
+    //private List<Rat> ratList;
     private Context context;
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -51,11 +52,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     /**
      * Initializes the ratList
-     * @param ratList a list of rats
      * @param context the activity
      */
-    public RecyclerViewAdapter(List<Rat> ratList, Context context) {
-        this.ratList = ratList;
+    public RecyclerViewAdapter(Context context) {
+        //this.ratList = ratList;
         this.context = context;
     }
 
@@ -68,7 +68,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Rat rat = ratList.get(position);
+        Rat rat = Data.rats.get(position);
         holder.date.setText(rat.getDate().toString());
         holder.streetAddress.setText(rat.getAddress());
         holder.city.setText(rat.getCity());
@@ -77,9 +77,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
 
+
     @Override
     public int getItemCount() {
-        return ratList.size();
+        return Data.rats.size();
     }
 
 }

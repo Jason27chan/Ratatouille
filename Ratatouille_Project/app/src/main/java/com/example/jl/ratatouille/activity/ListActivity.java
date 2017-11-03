@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import android.widget.ProgressBar;
 
 import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.adapter.RecyclerViewAdapter;
+import com.example.jl.ratatouille.data.Data;
 import com.example.jl.ratatouille.service.DataService;
 import com.example.jl.ratatouille.model.Rat;
 import com.example.jl.ratatouille.util.EndlessOnScrollListener;
@@ -40,31 +42,11 @@ public class ListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private List<Rat> ratList;
     ProgressBar progressBar;
 
     static final int ADD_ACTIVITY_REQUEST = 0;
     static final int FILTER_ACTIVITY_REQUEST = 1;
 
-    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Rat[] rats = (Rat[]) intent.getParcelableArrayExtra(DataService.DATA_SERVICE_PAYLOAD);
-            ratList = Arrays.asList(rats);
-            displayData();
-            progressBar.setVisibility(View.GONE);
-        }
-    };
-
-    /**
-     * displays the dat to the user in a recycler view
-     */
-    private void displayData() {
-        if (ratList != null) {
-            mAdapter = new RecyclerViewAdapter(ratList, this);
-            mRecyclerView.setAdapter(mAdapter);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,27 +55,30 @@ public class ListActivity extends AppCompatActivity {
         progressBar = new ProgressBar(this);
         progressBar.setVisibility(View.VISIBLE);
 
-        LocalBroadcastManager.getInstance(getApplicationContext())
-                .registerReceiver(mBroadcastReceiver, new IntentFilter(DataService.DATA_SERVICE_MSG));
-
         setupRecyclerView();
         setupButtons();
         setupNavigation();
         setupEndlessScroll();
     }
 
+    //todo: create refresh Data method
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == ADD_ACTIVITY_REQUEST) {
             if (resultCode == RESULT_OK) {
                 mAdapter.notifyDataSetChanged();
-                displayData();
+            }
+        }
+        if (requestCode == FILTER_ACTIVITY_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                mAdapter.notifyDataSetChanged();
             }
         }
     }
 
     /**
-     * sets up the recycler view in a particlar format
+     * sets up the recycler view in a particular format
      */
     private void setupRecyclerView() {
         mRecyclerView = findViewById(R.id.rat_recycler_view);
@@ -104,6 +89,8 @@ public class ListActivity extends AppCompatActivity {
                 = new DividerItemDecoration(mRecyclerView.getContext(),
                 LinearLayoutManager.VERTICAL);
         mRecyclerView.addItemDecoration(mDividerItemDecoration);
+        mAdapter = new RecyclerViewAdapter(this);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     /**
@@ -169,10 +156,4 @@ public class ListActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        LocalBroadcastManager.getInstance(getApplicationContext())
-                .unregisterReceiver(mBroadcastReceiver);
-    }
 }

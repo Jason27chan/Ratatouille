@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
+import com.example.jl.ratatouille.data.Data;
 import com.example.jl.ratatouille.model.Rat;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -45,10 +47,9 @@ public class DataService extends IntentService {
             Log.i(TAG, "onHandleIntent: " + e.getMessage());
             return;
         }
-        Intent messageIntent = new Intent(DATA_SERVICE_MSG);
-        messageIntent.putExtra((DATA_SERVICE_PAYLOAD), rats);
-        LocalBroadcastManager manager = LocalBroadcastManager.getInstance(getApplicationContext());
-        manager.sendBroadcast(messageIntent);
+
+        Data.rats = Arrays.asList(rats);
+        Data.options = options;
 
     }
 

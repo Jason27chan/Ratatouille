@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.jl.ratatouille.R;
+import com.example.jl.ratatouille.data.Data;
 import com.example.jl.ratatouille.model.MSG;
 import com.example.jl.ratatouille.service.APIService;
 
@@ -95,6 +96,9 @@ public class AddActivity extends AppCompatActivity {
                     String msg = response.body().getMsg();
                     Toast.makeText(getApplicationContext(),
                             msg, Toast.LENGTH_SHORT).show();
+
+                    Data.updateData(AddActivity.this);
+
                     setResult(RESULT_OK);
                     finish();
                 } else {

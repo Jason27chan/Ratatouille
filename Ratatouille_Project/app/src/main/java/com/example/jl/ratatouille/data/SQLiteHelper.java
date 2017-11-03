@@ -1,10 +1,11 @@
-package com.example.jl.ratatouille.sqlite;
+package com.example.jl.ratatouille.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.jl.ratatouille.adapter.SQLiteAdapter;
+import com.example.jl.ratatouille.adapter.RatLocalDataAdapter;
+import com.example.jl.ratatouille.adapter.UserLocalDataAdapter;
 
 /**
  * Creates and upgrades the database to update version
@@ -28,12 +29,14 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(SQLiteAdapter.DATABASE_CREATE);
+        db.execSQL(UserLocalDataAdapter.DATABASE_CREATE);
+        db.execSQL(RatLocalDataAdapter.DATABASE_CREATE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + SQLiteContract.LoginEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + SQLiteContract.Rats.TABLE_NAME);
         onCreate(db);
     }
 }
