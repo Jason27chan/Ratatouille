@@ -26,7 +26,12 @@ import com.example.jl.ratatouille.data.Data;
 import com.example.jl.ratatouille.service.DataService;
 import com.example.jl.ratatouille.model.Rat;
 import com.example.jl.ratatouille.util.EndlessOnScrollListener;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import net.grandcentrix.tray.AppPreferences;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -43,6 +48,8 @@ public class ListActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     ProgressBar progressBar;
+
+    private List<Rat> ratList = new ArrayList<>();
 
     static final int ADD_ACTIVITY_REQUEST = 0;
     static final int FILTER_ACTIVITY_REQUEST = 1;
@@ -61,20 +68,39 @@ public class ListActivity extends AppCompatActivity {
         setupEndlessScroll();
     }
 
-    //todo: create refresh Data method
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == ADD_ACTIVITY_REQUEST) {
             if (resultCode == RESULT_OK) {
-                mAdapter.notifyDataSetChanged();
+                updateData();
             }
         }
         if (requestCode == FILTER_ACTIVITY_REQUEST) {
             if (resultCode == RESULT_OK) {
-                mAdapter.notifyDataSetChanged();
+                updateData();
             }
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateData();
+    }
+
+    private void updateData() {
+        final AppPreferences prefs = new AppPreferences(getApplicationContext());
+        final String json = prefs.getString("RATS", null);
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<Rat>>() {}.getType();
+
+        Log.v("eeeeee", json);
+        ratList = gson.fromJson(json, type);
+        Log.v("eeeeee", this.ratList.get(0).getAddress());
+
+        ((RecyclerViewAdapter) mAdapter).updateData(ratList);
+
+        //Log.v(mAdapter.)
     }
 
     /**
@@ -128,7 +154,8 @@ public class ListActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_map:
-                                startActivity(new Intent(ListActivity.this, MapsActivity.class));
+                                startActivity(new Intent(ListActivity.this,
+                                        MapsActivity.class));
                                 break;
                             case R.id.action_list:
                                 break;
@@ -136,7 +163,8 @@ public class ListActivity extends AppCompatActivity {
 
                                 break;
                             case R.id.action_settings:
-                                startActivity(new Intent(ListActivity.this, SettingsActivity.class));
+                                startActivity(new Intent(ListActivity.this,
+                                        SettingsActivity.class));
                                 break;
                         }
                         return true;

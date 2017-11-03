@@ -12,7 +12,7 @@ import com.example.jl.ratatouille.data.SQLiteHelper;
 
 public class RatLocalDataAdapter {
     private SQLiteDatabase db;
-    private final Context context;
+    //private final Context context;
     private SQLiteHelper dbHelper;
 
     public static final String DATABASE_CREATE = "CREATE TABLE " + SQLiteContract.Rats.TABLE_NAME + " ("

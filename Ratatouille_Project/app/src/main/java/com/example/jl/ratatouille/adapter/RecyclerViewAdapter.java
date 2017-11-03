@@ -3,6 +3,7 @@ package com.example.jl.ratatouille.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,13 @@ import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.activity.ViewActivity;
 import com.example.jl.ratatouille.data.Data;
 import com.example.jl.ratatouille.model.Rat;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import net.grandcentrix.tray.AppPreferences;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +31,7 @@ import java.util.List;
  */
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    //private List<Rat> ratList;
+    private List<Rat> ratList;
     private Context context;
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -68,19 +75,26 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Rat rat = Data.rats.get(position);
+        Rat rat = ratList.get(position);
         holder.date.setText(rat.getDate().toString());
         holder.streetAddress.setText(rat.getAddress());
         holder.city.setText(rat.getCity());
         holder.rat = rat;
     }
 
-
-
+    public void updateData(List<Rat> rats) {
+        if (ratList != null) {
+            ratList.clear();
+            ratList.addAll(rats);
+        } else {
+            ratList = rats;
+        }
+        notifyDataSetChanged();
+    }
 
     @Override
     public int getItemCount() {
-        return Data.rats.size();
+        return ratList.size();
     }
 
 }
