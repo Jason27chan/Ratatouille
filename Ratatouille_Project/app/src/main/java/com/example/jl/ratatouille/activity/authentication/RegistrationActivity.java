@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.model.MSG;
 import com.example.jl.ratatouille.service.APIService;
-import com.example.jl.ratatouille.adapter.SQLiteAdapter;
+import com.example.jl.ratatouille.adapter.UserLocalDataAdapter;
 
 
 import java.util.HashMap;
@@ -38,7 +38,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private Button registrationButton;
 
-    private SQLiteAdapter dbAdapter;
+    private UserLocalDataAdapter dbAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         //get database adapter
-        dbAdapter = new SQLiteAdapter(this).open();
+        dbAdapter = new UserLocalDataAdapter(this).open();
 
         //get EditText references
         usernameEntry = findViewById(R.id.editTxt_regUsername);

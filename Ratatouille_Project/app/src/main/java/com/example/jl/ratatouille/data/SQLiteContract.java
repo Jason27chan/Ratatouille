@@ -1,4 +1,4 @@
-package com.example.jl.ratatouille.sqlite;
+package com.example.jl.ratatouille.data;
 
 import android.provider.BaseColumns;
 
@@ -25,5 +25,13 @@ public class SQLiteContract {
         public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_PASSWORD = "password";
         public static final String COLUMN_ACC_TYPE = "acc_type";
+    }
+
+    /**
+     * Table for rat information
+     */
+    public class Rats implements BaseColumns {
+        public static final String TABLE_NAME = "rats";
+        public static final String COLUMN_LIST = "list";
     }
 }

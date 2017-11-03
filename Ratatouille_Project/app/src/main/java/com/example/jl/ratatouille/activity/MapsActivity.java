@@ -20,6 +20,7 @@ import android.widget.Button;
 
 
 import com.example.jl.ratatouille.R;
+import com.example.jl.ratatouille.data.Data;
 import com.example.jl.ratatouille.model.Rat;
 import com.example.jl.ratatouille.service.DataService;
 import com.google.android.gms.common.ConnectionResult;
@@ -52,6 +53,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     static final int ADD_ACTIVITY_REQUEST = 0;
     static final int FILTER_ACTIVITY_REQUEST = 1;
 
+    /*
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -63,14 +65,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 addMarkers();
             }
         }
-    };
+    };*/
 
     /**
      * adds the markers
      */
     private void addMarkers() {
         mMap.clear();
-        for (Rat r : ratList) {
+        for (Rat r : Data.rats) {
             if (r.getLatitude() != null && r.getLongitude() != null) {
                 LatLng latlng = new LatLng(Double.parseDouble(r.getLatitude()), r.getLongitude());
                 Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
@@ -87,8 +89,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_maps);
 
         if(CheckGooglePlayServices()) {
-            LocalBroadcastManager.getInstance(getApplicationContext())
-                    .registerReceiver(mBroadcastReceiver, new IntentFilter(DataService.DATA_SERVICE_MSG));
+            //LocalBroadcastManager.getInstance(getApplicationContext())
+                    //.registerReceiver(mBroadcastReceiver, new IntentFilter(DataService.DATA_SERVICE_MSG));
         }
 
         //requestData();
@@ -99,16 +101,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         setupNavigation();
 
-        Intent intent = new Intent(this, DataService.class);
-        Map<String, String> options = new HashMap<>();
-
-
-        options.put("date_start", "2017-08-24");
-        options.put("date_end", "2017-08-24");
-        intent.putExtra("options", (HashMap) options);
-
-        startService(intent);
-        //finish();
         setupButtons();
     }
 
@@ -124,6 +116,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng ny = new LatLng(40.7128, -74.0060);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ny, 11));
 
+        addMarkers();
+
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
@@ -136,6 +130,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == ADD_ACTIVITY_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                addMarkers();
+            }
+        }
+        if (requestCode == FILTER_ACTIVITY_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                Log.v("what", "what");
+                addMarkers();
+            }
+        }
     }
 
     /*
@@ -179,11 +188,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 });
     }
 
-    /**
-     * checks if google play services are available
-     * @return false if they are not
-     *         true if they are
-     */
     private boolean CheckGooglePlayServices() {
         GoogleApiAvailability googleAPI = GoogleApiAvailability.getInstance();
         int result = googleAPI.isGooglePlayServicesAvailable(this);
