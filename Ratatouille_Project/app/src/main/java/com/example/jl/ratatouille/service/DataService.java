@@ -18,7 +18,7 @@ import retrofit2.Call;
 
 public class DataService extends IntentService {
 
-    public static final String TAG = "DataService";
+    private static final String TAG = "DataService";
     public static final String DATA_SERVICE_MSG = "dataServiceMessage";
     public static final String DATA_SERVICE_PAYLOAD = "dataServicePayload";
     public static final String REQUEST_PACKAGE = "requestPackage";

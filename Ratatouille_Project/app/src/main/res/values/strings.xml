@@ -40,5 +40,17 @@
     <string name="YYYY_MM_DD">YYYY_MM_DD</string>
 
     <string name="filter">Filter</string>
+    <string name="Date">Date</string>
+    <string name="FROM">FROM</string>
+    <string name="TO">TO</string>
+    <string name="SORT">SORT</string>
+    <string name="DESC">DESC</string>
+    <string name="ASC">ASC</string>
+    <string name="Login">Login</string>
+    <string name="Register">Register</string>
+    <string name="Map">Map</string>
+    <string name="List">List</string>
+    <string name="Graph">Graph</string>
+    <string name="Settings">Settings</string>
 
 </resources>

@@ -18,7 +18,7 @@ public class SQLiteAdapter {
 
     private SQLiteDatabase db;
     private final Context context;
-    private SQLiteHelper dbHelper;
+    private final SQLiteHelper dbHelper;
 
     public static final String DATABASE_CREATE = "CREATE TABLE " + SQLiteContract.LoginEntry.TABLE_NAME + " ("
             + SQLiteContract.LoginEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"

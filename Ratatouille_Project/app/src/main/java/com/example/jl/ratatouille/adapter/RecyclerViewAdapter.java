@@ -23,12 +23,12 @@ import java.util.List;
  */
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    private List<Rat> ratList;
-    private Context context;
+    private final List<Rat> ratList;
+    private final Context context;
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView date, streetAddress, city;
+        public final TextView date, streetAddress, city;
         public Rat rat;
 
         public ViewHolder(View view) {
