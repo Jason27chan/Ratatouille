@@ -49,10 +49,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private List<Rat> ratList = new ArrayList<>();
     boolean onReceived;
 
-    private static final int ADD_ACTIVITY_REQUEST = 0;
-    private static final int FILTER_ACTIVITY_REQUEST = 1;
+    static final int ADD_ACTIVITY_REQUEST = 0;
+    static final int FILTER_ACTIVITY_REQUEST = 1;
 
-    private final BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             Rat[] rats = (Rat[]) intent.getParcelableArrayExtra(DataService.DATA_SERVICE_PAYLOAD);
@@ -121,11 +121,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap = googleMap;
         //rat_icon = BitmapDescriptorFactory.fromResource(R.drawable.ic_rat);
         //LatLngBounds nyBounds = new LatLngBounds(new LatLng(33.771403, -84.407349), new LatLng(33.781547, -84.390801));
-        double latitude1 = 40.7128;
-        double latitude2 = -74.0060;
-        LatLng ny = new LatLng(latitude1, latitude2);
-        int value = 11;
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ny, value));
+        LatLng ny = new LatLng(40.7128, -74.0060);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ny, 11));
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override

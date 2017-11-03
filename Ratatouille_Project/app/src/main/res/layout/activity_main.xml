@@ -14,7 +14,7 @@
         />
 
     <Button
-        android:text="@string/Login"
+        android:text="Login"
         android:id="@+id/ButtonToLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
         />
 
     <Button
-        android:text="@string/Register"
+        android:text="Register"
         android:id="@+id/ButtonToRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

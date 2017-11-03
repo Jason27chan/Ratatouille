@@ -6,8 +6,8 @@ package com.example.jl.ratatouille.model;
 
 public class User {
 
-    private final String username;
-    private final String password;
+    private String username;
+    private String password;
 
     /**
      * Constructor for the user

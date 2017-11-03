@@ -15,7 +15,7 @@
 
     <EditText
         android:id="@+id/editTxt_created_date"
-        android:hint="@string/Date"
+        android:hint="Date"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         style="@style/EditTextStyle"

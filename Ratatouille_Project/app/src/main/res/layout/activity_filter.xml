@@ -16,7 +16,7 @@
 
         <TextView
             android:id="@+id/text_from"
-            android:text="@string/FROM"
+            android:text="FROM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -33,7 +33,7 @@
 
         <TextView
             android:id="@+id/text_to"
-            android:text="@string/TO"
+            android:text="TO"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
@@ -64,7 +64,7 @@
 
         <TextView
             android:id="@+id/text_sort"
-            android:text="@string/SORT"
+            android:text="SORT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"/>
@@ -80,7 +80,7 @@
 
             <RadioButton
                 android:id="@+id/radioBtn_desc"
-                android:text="@string/DESC"
+                android:text="DESC"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:typeface="monospace"
@@ -88,11 +88,10 @@
 
             <RadioButton
                 android:id="@+id/radioBtn_asc"
-                android:text="@string/ASC"
+                android:text="ASC"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
-                android:typeface="monospace"
-                tools:ignore="HardcodedText" />
+                android:typeface="monospace"/>
 
         </RadioGroup>
 
