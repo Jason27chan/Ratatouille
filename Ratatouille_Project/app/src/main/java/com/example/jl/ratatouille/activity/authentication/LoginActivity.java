@@ -12,7 +12,7 @@ import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.activity.MapsActivity;
 import com.example.jl.ratatouille.model.MSG;
 import com.example.jl.ratatouille.service.APIService;
-import com.example.jl.ratatouille.adapter.UserLocalDataAdapter;
+import com.example.jl.ratatouille.adapter.UserSQLiteAdapter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity{
 
     private static final String TAG = RegistrationActivity.class.getSimpleName();
 
-    private UserLocalDataAdapter dbAdapter;
+    private UserSQLiteAdapter dbAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity{
         _password = findViewById(R.id.editTxt_logPassword);
         _button = findViewById(R.id.btn_logLogin);
 
-        dbAdapter = new UserLocalDataAdapter(this).open();
+        dbAdapter = new UserSQLiteAdapter(this).open();
 
         _button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

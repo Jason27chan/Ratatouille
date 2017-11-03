@@ -1,6 +1,7 @@
 package com.example.jl.ratatouille.service;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -23,6 +24,8 @@ import java.util.Map;
 
 import retrofit2.Call;
 
+import static com.example.jl.ratatouille.data.Data.rats;
+
 /**
  * Created by jav on 10/20/2017.
  */
@@ -40,15 +43,11 @@ public class DataService extends IntentService {
         super("DataService");
     }
 
-    /** Gets rats
-     *
-     * @param intent
-     *
-     */
     @Override
     protected void onHandleIntent(Intent intent) {
         APIService apiService = APIService.retrofit.create(APIService.class);
-        Map<String, String> options = (Map) intent.getSerializableExtra("options");
+        Map<String, String> options =
+                (Map) intent.getSerializableExtra("options");
         Call<Rat[]> call = apiService.rats(options);
         Rat[] rats;
         try {
@@ -58,30 +57,33 @@ public class DataService extends IntentService {
             Log.i(TAG, "onHandleIntent: " + e.getMessage());
             return;
         }
+        updateRats(rats, DataService.this);
+    }
 
-        List<Rat> ratList = Arrays.asList(rats);
-        final AppPreferences prefs = new AppPreferences(getApplicationContext());
+    public static void updateRats(Rat[] rats, Context context) {
+        final AppPreferences prefs = new AppPreferences(
+                context.getApplicationContext());
         Gson gson = new Gson();
-        String json = gson.toJson(ratList);
+        String json = gson.toJson(rats);
         prefs.put("RATS", json);
-
-        Log.v("eeeeeee", "dataservice called");
 
         Intent messageIntent = new Intent(DATA_SERVICE_MSG);
         messageIntent.putExtra((DATA_SERVICE_PAYLOAD), rats);
-        LocalBroadcastManager manager = LocalBroadcastManager.getInstance(getApplicationContext());
+        LocalBroadcastManager manager = LocalBroadcastManager
+                .getInstance(context.getApplicationContext());
         manager.sendBroadcast(messageIntent);
-
-
-
-
-        //final String jsonget = prefs.getString("RATS", null);
-
-        //Log.v("eeee", "" + jsonget);
-
-        //Data.rats = Arrays.asList(rats);
-        //Data.options = options;
-
     }
+
+    public static List<Rat> getRats(Context context) {
+        final AppPreferences prefs = new AppPreferences(
+                context.getApplicationContext());
+        final String json = prefs.getString("RATS", null);
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<Rat>>() {}.getType();
+
+        List<Rat> ratList = gson.fromJson(json, type);
+        return ratList;
+    }
+
 
 }

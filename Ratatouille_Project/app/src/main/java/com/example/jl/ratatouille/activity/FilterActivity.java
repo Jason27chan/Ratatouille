@@ -68,7 +68,6 @@ public class FilterActivity extends AppCompatActivity {
         });
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -87,45 +86,17 @@ public class FilterActivity extends AppCompatActivity {
      * displays the rat data within a certain date range
      */
     private void requestData() {
-        Intent intent = new Intent(this, DataService.class);
-
         Map<String, String> options = new HashMap<>();
         String startDate = mEditStart.getText().toString();
         String endDate = mEditEnd.getText().toString();
-
         mSortOption = findViewById(mSort.getCheckedRadioButtonId());
         String sortBy = mSortOption.getText().toString();
-
         options.put("date_start", startDate);
         options.put("date_end", endDate);
         options.put("orderby", sortBy);
 
-        /*
-        APIService apiService = APIService.retrofit.create(APIService.class)
-        Call<Rat[]> request = apiService.rats(options);
-        request.enqueue(new Callback<Rat[]>() {
-
-            @Override
-            public void onResponse(Call<Rat[]> call, retrofit2.Response<Rat[]> response) {
-                if (response.body() != null) {
-                    setResult(RESULT_OK);
-                    finish();
-                } else {
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Rat[]> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), t.getMessage(),
-                        Toast.LENGTH_LONG).show();
-            }
-        });*/
-
-
+        Intent intent = new Intent(this, DataService.class);
         intent.putExtra("options", (HashMap) options);
-
         startService(intent);
-        Log.v("eeeeee", "filter activity requestdata called");
     }
 }

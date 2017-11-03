@@ -14,6 +14,7 @@ import android.widget.Button;
 
 import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.model.Rat;
+import com.example.jl.ratatouille.service.DataService;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -53,14 +54,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
      * adds the markers
      */
     private void updateMap() {
-        final AppPreferences prefs = new AppPreferences(getApplicationContext());
-
-        final String json = prefs.getString("RATS", null);
-        Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<Rat>>() {}.getType();
-
-        ratList = gson.fromJson(json, type);
-
+        ratList = DataService.getRats(this);
         mMap.clear();
         if (ratList != null) {
             for (Rat r : ratList) {

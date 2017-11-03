@@ -89,18 +89,9 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void updateData() {
-        final AppPreferences prefs = new AppPreferences(getApplicationContext());
-        final String json = prefs.getString("RATS", null);
-        Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<Rat>>() {}.getType();
-
-        Log.v("eeeeee", json);
-        ratList = gson.fromJson(json, type);
-        Log.v("eeeeee", this.ratList.get(0).getAddress());
-
+        ratList = DataService.getRats(this);
         ((RecyclerViewAdapter) mAdapter).updateData(ratList);
 
-        //Log.v(mAdapter.)
     }
 
     /**
