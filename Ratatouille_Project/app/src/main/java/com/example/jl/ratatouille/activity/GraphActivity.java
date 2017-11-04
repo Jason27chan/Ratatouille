@@ -43,7 +43,7 @@ public class GraphActivity extends AppCompatActivity {
      * Performs setup for add button and filter button.
      */
     private void setupButtons() {
-        final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat_maps);
+        final FloatingActionButton addRatBtn = findViewById(R.id.graph_add);
         addRatBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent = new Intent(v.getContext(), AddActivity.class);
@@ -51,7 +51,7 @@ public class GraphActivity extends AppCompatActivity {
             }
         });
 
-        final Button filterBtn = findViewById(R.id.map_filter);
+        final FloatingActionButton filterBtn = findViewById(R.id.graph_filter);
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +65,8 @@ public class GraphActivity extends AppCompatActivity {
      * Performs setup for navigation bar.
      */
     private void setupNavigation() {
-        BottomNavigationView nav = findViewById(R.id.bottom_navigation_maps);
+        BottomNavigationView nav = findViewById(R.id.bottom_navigation_graph);
+        nav.setSelectedItemId(R.id.action_graph);
         nav.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override

@@ -19,25 +19,29 @@ android:layout_height="match_parent">
         android:layout_height="200dip"
         android:id="@+id/graph" />
 
-    <ProgressBar
+    <!--<ProgressBar
         android:id="@+id/progressBar_graph"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_gravity="top|right"/>
-
-    <Button
-        android:id="@+id/map_filter"
-        android:text="@string/filter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_anchor="@+id/btn_addRat_maps"
-        app:layout_anchorGravity="bottom"
-        android:layout_margin="16dp"
-        android:typeface="monospace"/>
+        android:layout_gravity="top|right"/>-->
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btn_addRat_maps"
+        android:id="@+id/graph_filter"
+        android:src="@drawable/ic_search_black_24dp"
+        app:fabSize="mini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:paddingBottom="16dp"
+        android:layout_gravity="top|end"
+        android:backgroundTint="@color/black"
+        android:tint="@color/white"
+        app:borderWidth="0dp"
+        app:elevation="2dp"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/graph_add"
         android:src="@drawable/ic_add_black_24dp"
         app:fabSize="mini"
         android:layout_width="wrap_content"
@@ -54,7 +58,7 @@ android:layout_height="match_parent">
 <android.support.design.widget.BottomNavigationView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bottom_navigation_maps"
+    android:id="@+id/bottom_navigation_graph"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="start"

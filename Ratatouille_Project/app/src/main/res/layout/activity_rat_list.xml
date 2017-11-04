@@ -12,15 +12,15 @@
         android:fitsSystemWindows="true"
         android:layout_above="@+id/bottom_navigation_list">
 
-        <ProgressBar
+        <!--<ProgressBar
             android:id="@+id/progressBar_ratList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:layout_gravity="top|right"/>
+            android:layout_gravity="top|right"/>-->
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btn_addRat"
+            android:id="@+id/list_add"
             android:src="@drawable/ic_add_black_24dp"
             app:fabSize="mini"
             android:layout_width="wrap_content"
@@ -34,16 +34,19 @@
             app:borderWidth="0dp"
             app:elevation="2dp"/>
 
-        <Button
-            android:id="@+id/btn_filter"
-            android:text="@string/filter"
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/list_filter"
+            android:src="@drawable/ic_search_black_24dp"
+            app:fabSize="mini"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:layout_anchor="@+id/rat_recycler_view"
-            app:layout_anchorGravity="bottom"
             android:layout_margin="16dp"
-            android:typeface="monospace"/>
+            android:paddingBottom="16dp"
+            android:layout_gravity="top|end"
+            android:backgroundTint="@color/black"
+            android:tint="@color/white"
+            app:borderWidth="0dp"
+            app:elevation="2dp"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rat_recycler_view"

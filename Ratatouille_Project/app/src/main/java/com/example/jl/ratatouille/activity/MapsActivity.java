@@ -186,7 +186,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-        final Button filterBtn = findViewById(R.id.map_filter);
+        final FloatingActionButton filterBtn = findViewById(R.id.map_filter);
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

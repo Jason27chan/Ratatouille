@@ -99,7 +99,7 @@ public class ListActivity extends AppCompatActivity {
      * Performs setup for add rat and filter buttons.
      */
     private void setupButtons() {
-        final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat);
+        final FloatingActionButton addRatBtn = findViewById(R.id.list_add);
         addRatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +108,7 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-        final Button filterBtn = findViewById(R.id.btn_filter);
+        final FloatingActionButton filterBtn = findViewById(R.id.list_filter);
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
