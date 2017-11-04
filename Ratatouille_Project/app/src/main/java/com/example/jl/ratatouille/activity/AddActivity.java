@@ -78,8 +78,6 @@ public class AddActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //todo:implement date view
                 String date = editDate.getText().toString();
                 String locType = editLocType.getText().toString();
                 String zip = editZip.getText().toString();
@@ -88,7 +86,6 @@ public class AddActivity extends AppCompatActivity {
                 String borough = editBorough.getText().toString();
                 String latitude = editLatitude.getText().toString();
                 String longitude = editLongitude.getText().toString();
-
                 addRat(date, locType, zip, address, city, borough, latitude, longitude);
             }
         });
@@ -101,6 +98,17 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Adds a new rat sighting to the database.
+     * @param date
+     * @param locType
+     * @param zip
+     * @param address
+     * @param city
+     * @param borough
+     * @param latitude
+     * @param longitude
+     */
     private void addRat(final String date, final String locType,
                         final String zip, final String address,
                         final String city, final String borough,

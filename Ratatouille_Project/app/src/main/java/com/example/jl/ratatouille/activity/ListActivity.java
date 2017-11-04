@@ -31,7 +31,7 @@ public class ListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    ProgressBar progressBar;
+    private ProgressBar progressBar;
 
     private List<Rat> ratList = new ArrayList<>();
 
@@ -44,8 +44,6 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_list);
         progressBar = new ProgressBar(this);
-        progressBar.setVisibility(View.VISIBLE);
-
         setupRecyclerView();
         setupButtons();
         setupNavigation();

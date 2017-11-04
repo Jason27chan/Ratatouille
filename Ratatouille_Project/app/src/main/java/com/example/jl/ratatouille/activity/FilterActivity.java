@@ -33,6 +33,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 import static com.example.jl.ratatouille.R.string.submit;
+import static com.example.jl.ratatouille.data.Data.options;
 
 public class FilterActivity extends AppCompatActivity {
 
@@ -68,11 +69,18 @@ public class FilterActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Sets options as last inputs.
+     */
     @Override
     protected void onResume() {
         super.onResume();
         LocalBroadcastManager.getInstance(getApplicationContext())
                 .registerReceiver(mBroadcastReceiver, new IntentFilter(DataService.DATA_SERVICE_MSG));
+
+        Map<String, String> options = DataService.getSharedOptions(this);
+        mEditStart.setText(options.get("date_start"));
+        mEditEnd.setText(options.get("date_end"));
     }
 
     @Override
@@ -83,7 +91,7 @@ public class FilterActivity extends AppCompatActivity {
     }
 
     /**
-     * displays the rat data within a certain date range
+     * Calls DataService to retrieve Rats that meet the specifications.
      */
     private void requestData() {
         Map<String, String> options = new HashMap<>();

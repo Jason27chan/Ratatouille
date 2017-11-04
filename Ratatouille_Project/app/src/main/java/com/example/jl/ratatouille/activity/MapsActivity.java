@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 
 import com.example.jl.ratatouille.R;
@@ -35,9 +36,9 @@ import java.util.List;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
-    private BitmapDescriptor rat_icon;
     private List<Rat> ratList = new ArrayList<>();
-    boolean onReceived;
+    private BitmapDescriptor rat_icon;
+    private ProgressBar progressBar;
 
     private static final int ADD_ACTIVITY_REQUEST = 0;
     private static final int FILTER_ACTIVITY_REQUEST = 1;
