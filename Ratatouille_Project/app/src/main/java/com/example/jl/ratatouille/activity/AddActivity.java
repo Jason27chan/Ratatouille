@@ -35,6 +35,8 @@ public class AddActivity extends AppCompatActivity {
             editCity, editBorough, editLatitude, editLongitude;
     private Button submitButton, cancelButton;
 
+    public static final int ADD_ACTIVITY_REQUEST = 0;
+
     /**
      * Receives broadcast from DataService when Rats in shared preferences
      * have been fully refreshed. Finishes AddActivity and returns to

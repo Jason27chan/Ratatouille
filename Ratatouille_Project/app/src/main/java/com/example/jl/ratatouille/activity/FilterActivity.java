@@ -42,6 +42,8 @@ public class FilterActivity extends AppCompatActivity {
     private RadioButton mSortOption;
     private Button mSubmit;
 
+    public static final int FILTER_ACTIVITY_REQUEST = 1;
+
     /**
      * Receives broadcast from DataService when new Rats have been
      * fully loaded to shared preferences. Finishes FilterActivity

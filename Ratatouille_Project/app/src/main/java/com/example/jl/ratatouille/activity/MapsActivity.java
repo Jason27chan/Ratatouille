@@ -31,6 +31,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.jl.ratatouille.activity.AddActivity.ADD_ACTIVITY_REQUEST;
+import static com.example.jl.ratatouille.activity.FilterActivity.FILTER_ACTIVITY_REQUEST;
+
 /**
  * Created by jav on 10/18/2017.
  */
@@ -42,9 +45,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private ProgressBar progressBar;
 
     public static final String TAG = "MapsActivity";
-    private static final int ADD_ACTIVITY_REQUEST = 0;
-    private static final int FILTER_ACTIVITY_REQUEST = 1;
-
 
     /**
      * Updates the markers on the map to display the sightings
@@ -157,8 +157,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.action_map:
-                                break;
                             case R.id.action_list:
                                 startActivity(new Intent(
                                         MapsActivity.this, ListActivity.class));

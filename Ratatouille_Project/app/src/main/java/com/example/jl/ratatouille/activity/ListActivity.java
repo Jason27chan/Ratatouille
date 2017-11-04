@@ -23,6 +23,9 @@ import com.example.jl.ratatouille.util.EndlessOnScrollListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.jl.ratatouille.activity.AddActivity.ADD_ACTIVITY_REQUEST;
+import static com.example.jl.ratatouille.activity.FilterActivity.FILTER_ACTIVITY_REQUEST;
+
 /**
  * Displays the rat data in a RecyclerView
  */
@@ -34,10 +37,6 @@ public class ListActivity extends AppCompatActivity {
     private ProgressBar progressBar;
 
     private List<Rat> ratList = new ArrayList<>();
-
-    static final int ADD_ACTIVITY_REQUEST = 0;
-    static final int FILTER_ACTIVITY_REQUEST = 1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,10 +133,9 @@ public class ListActivity extends AppCompatActivity {
                                 startActivity(new Intent(ListActivity.this,
                                         MapsActivity.class));
                                 break;
-                            case R.id.action_list:
-                                break;
                             case R.id.action_graph:
-
+                                startActivity(new Intent(
+                                        ListActivity.this, GraphActivity.class));
                                 break;
                             case R.id.action_settings:
                                 startActivity(new Intent(ListActivity.this,
