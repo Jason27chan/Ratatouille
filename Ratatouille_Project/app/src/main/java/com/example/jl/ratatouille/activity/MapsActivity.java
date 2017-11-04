@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -40,12 +41,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private BitmapDescriptor rat_icon;
     private ProgressBar progressBar;
 
+    public static final String TAG = "MapsActivity";
     private static final int ADD_ACTIVITY_REQUEST = 0;
     private static final int FILTER_ACTIVITY_REQUEST = 1;
 
 
     /**
-     * adds the markers
+     * Updates the markers on the map to display the sightings
+     * saved in shared preferences.
      */
     private void updateMap() {
         ratList = DataService.getSharedRats(this);
@@ -53,11 +56,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (ratList != null) {
             for (Rat r : ratList) {
                 if (r.getLatitude() != null && r.getLongitude() != null) {
-                    LatLng latlng = new LatLng(Double.parseDouble(r.getLatitude()), r.getLongitude());
+                    LatLng latlng = new LatLng(
+                            Double.parseDouble(r.getLatitude()), r.getLongitude());
                     Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
                     marker.setTag(r);
                 } else {
-                    //add to error log
+                    Log.v(TAG, "sighting location unavailable");
                 }
             }
         }
@@ -73,9 +77,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
         } else {
-            //google play services error
+            Log.v(TAG, "google play services unavailable");
         }
-
         setupNavigation();
         setupButtons();
     }
@@ -93,27 +96,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
         mMap = googleMap;
         //rat_icon = BitmapDescriptorFactory.fromResource(R.drawable.ic_rat);
-        //LatLngBounds nyBounds = new LatLngBounds(new LatLng(33.771403, -84.407349), new LatLng(33.781547, -84.390801));
+        //LatLngBounds nyBounds = new LatLngBounds(
+        // new LatLng(33.771403, -84.407349), new LatLng(33.781547, -84.390801));
         LatLng ny = new LatLng(40.7128, -74.0060);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ny, 11));
-
-        updateMap();
-
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                Rat rat = (Rat) marker.getTag(); //retrieve Rat object from the marker
+                Rat rat = (Rat) marker.getTag();
                 Intent intent = new Intent(MapsActivity.this, ViewActivity.class);
                 intent.putExtra("user", getIntent().getStringExtra("user"));
-                intent.putExtra("rat", rat); //send rat to detail view
+                intent.putExtra("rat", rat);
                 startActivity(intent);
                 return false;
             }
         });
-
+        updateMap();
     }
 
     @Override
@@ -131,32 +131,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     /**
-     * sets up navigation bar at the bottom
+     * Checks to see if Google Play Services are available.
+     * @return true of Google Play Services are available, false if otherwise
      */
-    private void setupNavigation() {
-        BottomNavigationView nav = findViewById(R.id.bottom_navigation_maps);
-        nav.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.action_map:
-                                break;
-                            case R.id.action_list:
-                                startActivity(new Intent(MapsActivity.this, ListActivity.class));
-                                break;
-                            case R.id.action_graph:
-                                startActivity(new Intent(MapsActivity.this, GraphActivity.class));
-                                break;
-                            case R.id.action_settings:
-                                startActivity(new Intent(MapsActivity.this, SettingsActivity.class));
-                                break;
-                        }
-                        return true;
-                    }
-                });
-    }
-
     private boolean CheckGooglePlayServices() {
         GoogleApiAvailability googleAPI = GoogleApiAvailability.getInstance();
         int result = googleAPI.isGooglePlayServicesAvailable(this);
@@ -171,7 +148,36 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     /**
-     * sets up the buttons on the maps activity
+     * Performs setup for navigation bar.
+     */
+    private void setupNavigation() {
+        BottomNavigationView nav = findViewById(R.id.bottom_navigation_maps);
+        nav.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.action_map:
+                                break;
+                            case R.id.action_list:
+                                startActivity(new Intent(
+                                        MapsActivity.this, ListActivity.class));
+                                break;
+                            case R.id.action_graph:
+                                startActivity(new Intent(
+                                        MapsActivity.this, GraphActivity.class));
+                                break;
+                            case R.id.action_settings:
+                                startActivity(new Intent(
+                                        MapsActivity.this, SettingsActivity.class));
+                                break;
+                        }
+                        return true;
+                    }
+                });
+    }
+    /**
+     * Performs setup for add button and filter button.
      */
     private void setupButtons() {
         final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat_maps);
