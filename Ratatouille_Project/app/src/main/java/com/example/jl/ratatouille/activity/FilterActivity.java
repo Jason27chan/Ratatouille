@@ -42,7 +42,11 @@ public class FilterActivity extends AppCompatActivity {
     private RadioButton mSortOption;
     private Button mSubmit;
 
-
+    /**
+     * Receives broadcast from DataService when new Rats have been
+     * fully loaded to shared preferences. Finishes FilterActivity
+     * and returns to calling activity.
+     */
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -70,7 +74,8 @@ public class FilterActivity extends AppCompatActivity {
     }
 
     /**
-     * Sets options as last inputs.
+     * Sets filter options as last saved inputs.
+     * Obtains last saved inputs from shared preferences.
      */
     @Override
     protected void onResume() {
@@ -91,7 +96,7 @@ public class FilterActivity extends AppCompatActivity {
     }
 
     /**
-     * Calls DataService to retrieve Rats that meet the specifications.
+     * Calls DataService to retrieve Rats that meet specifications.
      */
     private void requestData() {
         Map<String, String> options = new HashMap<>();

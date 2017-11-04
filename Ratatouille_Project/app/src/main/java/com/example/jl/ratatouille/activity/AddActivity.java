@@ -33,9 +33,13 @@ public class AddActivity extends AppCompatActivity {
 
     private EditText editDate, editLocType, editZip, editAddress,
             editCity, editBorough, editLatitude, editLongitude;
-    private DatePicker datePicker;
     private Button submitButton, cancelButton;
 
+    /**
+     * Receives broadcast from DataService when Rats in shared preferences
+     * have been fully refreshed. Finishes AddActivity and returns to
+     * calling activity.
+     */
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -48,7 +52,8 @@ public class AddActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         LocalBroadcastManager.getInstance(getApplicationContext())
-                .registerReceiver(mBroadcastReceiver, new IntentFilter(DataService.DATA_SERVICE_MSG));
+                .registerReceiver(mBroadcastReceiver,
+                        new IntentFilter(DataService.DATA_SERVICE_MSG));
     }
 
     @Override
@@ -89,25 +94,24 @@ public class AddActivity extends AppCompatActivity {
                 addRat(date, locType, zip, address, city, borough, latitude, longitude);
             }
         });
-
         cancelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
             }
         });
-
     }
 
     /**
      * Adds a new rat sighting to the database.
-     * @param date
-     * @param locType
-     * @param zip
-     * @param address
-     * @param city
-     * @param borough
-     * @param latitude
-     * @param longitude
+     *
+     * @param date the date of the sighting
+     * @param locType the type of the location of the setting
+     * @param zip the zip code of the sighting
+     * @param address the address of the sighting
+     * @param city the city where the sighting occurred
+     * @param borough the borough where the sighting occurred
+     * @param latitude the latitude of the sighting
+     * @param longitude the longitude of the sighting
      */
     private void addRat(final String date, final String locType,
                         final String zip, final String address,

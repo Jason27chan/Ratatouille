@@ -108,6 +108,13 @@ public class DataService extends IntentService {
         return ratList;
     }
 
+    /**
+     * Returns the last inputted filter options.
+     * Accessible to all classes.
+     *
+     * @param context the context from which this method is called
+     * @return a Map of the filter options
+     */
     public static Map<String, String> getSharedOptions(Context context) {
         final AppPreferences prefs = new AppPreferences(
                 context.getApplicationContext());
