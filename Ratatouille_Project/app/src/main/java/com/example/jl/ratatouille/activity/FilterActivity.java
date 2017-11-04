@@ -1,21 +1,39 @@
 package com.example.jl.ratatouille.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.jl.ratatouille.R;
+import com.example.jl.ratatouille.data.Data;
+import com.example.jl.ratatouille.model.MSG;
+import com.example.jl.ratatouille.model.Rat;
+import com.example.jl.ratatouille.service.APIService;
 import com.example.jl.ratatouille.service.DataService;
+import com.google.gson.Gson;
 
+import net.grandcentrix.tray.AppPreferences;
+
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+
 import static com.example.jl.ratatouille.R.string.submit;
+import static com.example.jl.ratatouille.data.Data.options;
 
 public class FilterActivity extends AppCompatActivity {
 
@@ -23,6 +41,19 @@ public class FilterActivity extends AppCompatActivity {
     private RadioGroup mSort;
     private RadioButton mSortOption;
     private Button mSubmit;
+
+    /**
+     * Receives broadcast from DataService when new Rats have been
+     * fully loaded to shared preferences. Finishes FilterActivity
+     * and returns to calling activity.
+     */
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            FilterActivity.this.setResult(RESULT_OK);
+            FilterActivity.this.finish();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,25 +74,42 @@ public class FilterActivity extends AppCompatActivity {
     }
 
     /**
-     * displays the rat data within a certain date range
+     * Sets filter options as last saved inputs.
+     * Obtains last saved inputs from shared preferences.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(getApplicationContext())
+                .registerReceiver(mBroadcastReceiver, new IntentFilter(DataService.DATA_SERVICE_MSG));
+
+        Map<String, String> options = DataService.getSharedOptions(this);
+        mEditStart.setText(options.get("date_start"));
+        mEditEnd.setText(options.get("date_end"));
+    }
+
+    @Override
+    protected void onPause() {
+        LocalBroadcastManager.getInstance(getApplicationContext())
+                .unregisterReceiver(mBroadcastReceiver);
+        super.onPause();
+    }
+
+    /**
+     * Calls DataService to retrieve Rats that meet specifications.
      */
     private void requestData() {
-        Intent intent = new Intent(this, DataService.class);
-
         Map<String, String> options = new HashMap<>();
         String startDate = mEditStart.getText().toString();
         String endDate = mEditEnd.getText().toString();
-
         mSortOption = findViewById(mSort.getCheckedRadioButtonId());
         String sortBy = mSortOption.getText().toString();
-
         options.put("date_start", startDate);
         options.put("date_end", endDate);
         options.put("orderby", sortBy);
-        intent.putExtra("options", (HashMap) options);
 
+        Intent intent = new Intent(this, DataService.class);
+        intent.putExtra("options", (HashMap) options);
         startService(intent);
-        setResult(RESULT_OK);
-        finish();
     }
 }

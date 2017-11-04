@@ -1,6 +1,11 @@
 package com.example.jl.ratatouille.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +17,7 @@ import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.data.Data;
 import com.example.jl.ratatouille.model.MSG;
 import com.example.jl.ratatouille.service.APIService;
+import com.example.jl.ratatouille.service.DataService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,8 +33,35 @@ public class AddActivity extends AppCompatActivity {
 
     private EditText editDate, editLocType, editZip, editAddress,
             editCity, editBorough, editLatitude, editLongitude;
-    private DatePicker datePicker;
     private Button submitButton, cancelButton;
+
+    /**
+     * Receives broadcast from DataService when Rats in shared preferences
+     * have been fully refreshed. Finishes AddActivity and returns to
+     * calling activity.
+     */
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            AddActivity.this.setResult(RESULT_OK);
+            AddActivity.this.finish();
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(getApplicationContext())
+                .registerReceiver(mBroadcastReceiver,
+                        new IntentFilter(DataService.DATA_SERVICE_MSG));
+    }
+
+    @Override
+    protected void onPause() {
+        LocalBroadcastManager.getInstance(getApplicationContext())
+                .unregisterReceiver(mBroadcastReceiver);
+        super.onPause();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +83,6 @@ public class AddActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //todo:implement date view
                 String date = editDate.getText().toString();
                 String locType = editLocType.getText().toString();
                 String zip = editZip.getText().toString();
@@ -60,19 +91,28 @@ public class AddActivity extends AppCompatActivity {
                 String borough = editBorough.getText().toString();
                 String latitude = editLatitude.getText().toString();
                 String longitude = editLongitude.getText().toString();
-
                 addRat(date, locType, zip, address, city, borough, latitude, longitude);
             }
         });
-
         cancelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
             }
         });
-
     }
 
+    /**
+     * Adds a new rat sighting to the database.
+     *
+     * @param date the date of the sighting
+     * @param locType the type of the location of the setting
+     * @param zip the zip code of the sighting
+     * @param address the address of the sighting
+     * @param city the city where the sighting occurred
+     * @param borough the borough where the sighting occurred
+     * @param latitude the latitude of the sighting
+     * @param longitude the longitude of the sighting
+     */
     private void addRat(final String date, final String locType,
                         final String zip, final String address,
                         final String city, final String borough,
@@ -96,11 +136,7 @@ public class AddActivity extends AppCompatActivity {
                     String msg = response.body().getMsg();
                     Toast.makeText(getApplicationContext(),
                             msg, Toast.LENGTH_SHORT).show();
-
-                    Data.updateData(AddActivity.this);
-
-                    setResult(RESULT_OK);
-                    finish();
+                    refreshRats();
                 } else {
                     String msg = response.body().getMsg();
                     Toast.makeText(getApplicationContext(),
@@ -114,6 +150,17 @@ public class AddActivity extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    /**
+     * Refreshes the Rats in shared preferences by calling DataService
+     * with current filter options.
+     */
+    private void refreshRats() {
+        Map<String, String> options = DataService.getSharedOptions(this);
+        Intent intent = new Intent(this, DataService.class);
+        intent.putExtra("options", (HashMap) options);
+        startService(intent);
     }
 }
 

@@ -14,7 +14,7 @@ import com.example.jl.ratatouille.data.SQLiteHelper;
  * Created by jav on 9/12/2017.
  */
 
-public class UserLocalDataAdapter {
+public class UserSQLiteAdapter {
 
     private SQLiteDatabase db;
     private final Context context;
@@ -31,7 +31,7 @@ public class UserLocalDataAdapter {
      *
      * @param context information about application environment
      */
-    public UserLocalDataAdapter(Context context) {
+    public UserSQLiteAdapter(Context context) {
         this.context = context;
         dbHelper = new SQLiteHelper(context, SQLiteContract.DATABASE_NAME, null, SQLiteContract.DATABASE_VERSION);
     }
@@ -42,7 +42,7 @@ public class UserLocalDataAdapter {
      * @return the login database adapter is returned
      * @throws SQLException if the database cannot be opened
      */
-    public UserLocalDataAdapter open() throws SQLException {
+    public UserSQLiteAdapter open() throws SQLException {
         db = dbHelper.getWritableDatabase();
         return this;
     }
