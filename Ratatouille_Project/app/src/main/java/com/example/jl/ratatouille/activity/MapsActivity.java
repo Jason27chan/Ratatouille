@@ -25,12 +25,7 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import net.grandcentrix.tray.AppPreferences;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,14 +42,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final int ADD_ACTIVITY_REQUEST = 0;
     private static final int FILTER_ACTIVITY_REQUEST = 1;
 
-    private static final String PREFERENCE_NAME = "DefaultPreferences";
-
 
     /**
      * adds the markers
      */
     private void updateMap() {
-        ratList = DataService.getRats(this);
+        ratList = DataService.getSharedRats(this);
         mMap.clear();
         if (ratList != null) {
             for (Rat r : ratList) {

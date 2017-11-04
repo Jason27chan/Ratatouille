@@ -1,6 +1,11 @@
 package com.example.jl.ratatouille.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +17,7 @@ import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.data.Data;
 import com.example.jl.ratatouille.model.MSG;
 import com.example.jl.ratatouille.service.APIService;
+import com.example.jl.ratatouille.service.DataService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +35,28 @@ public class AddActivity extends AppCompatActivity {
             editCity, editBorough, editLatitude, editLongitude;
     private DatePicker datePicker;
     private Button submitButton, cancelButton;
+
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            AddActivity.this.setResult(RESULT_OK);
+            AddActivity.this.finish();
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(getApplicationContext())
+                .registerReceiver(mBroadcastReceiver, new IntentFilter(DataService.DATA_SERVICE_MSG));
+    }
+
+    @Override
+    protected void onPause() {
+        LocalBroadcastManager.getInstance(getApplicationContext())
+                .unregisterReceiver(mBroadcastReceiver);
+        super.onPause();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,11 +124,7 @@ public class AddActivity extends AppCompatActivity {
                     String msg = response.body().getMsg();
                     Toast.makeText(getApplicationContext(),
                             msg, Toast.LENGTH_SHORT).show();
-
-                    Data.updateData(AddActivity.this);
-
-                    setResult(RESULT_OK);
-                    finish();
+                    refreshRats();
                 } else {
                     String msg = response.body().getMsg();
                     Toast.makeText(getApplicationContext(),
@@ -114,6 +138,17 @@ public class AddActivity extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    /**
+     * Refreshes the Rats in shared preferences by calling DataService
+     * with current filter options.
+     */
+    private void refreshRats() {
+        Map<String, String> options = DataService.getSharedOptions(this);
+        Intent intent = new Intent(this, DataService.class);
+        intent.putExtra("options", (HashMap) options);
+        startService(intent);
     }
 }
 
