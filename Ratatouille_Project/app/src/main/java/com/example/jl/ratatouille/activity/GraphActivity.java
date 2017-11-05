@@ -14,13 +14,16 @@ import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.model.Rat;
 import com.example.jl.ratatouille.service.DataService;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.sql.Array;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,20 +32,35 @@ import static com.example.jl.ratatouille.activity.AddActivity.ADD_ACTIVITY_REQUE
 import static com.example.jl.ratatouille.activity.FilterActivity.FILTER_ACTIVITY_REQUEST;
 
 public class GraphActivity extends AppCompatActivity {
-    private GraphView graph;
+    private GraphView graphDay, graphMonth, graphYear;
     private List<Rat> ratList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
-        graph = findViewById(R.id.graph);
+        graphDay = findViewById(R.id.graph_day);
+        graphMonth = findViewById(R.id.graph_month);
+        graphYear = findViewById(R.id.graph_year);
         setupNavigation();
-        updateGraph();
+        setupButtons();
+        updateGraphs();
     }
 
-    private void updateGraph() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateGraphs();
+    }
+
+    private void updateGraphs() {
         ratList = DataService.getSharedRats(this);
+        updateDayGraph();
+        updateMonthGraph();
+        updateYearGraph();
+    }
+
+    private void updateDayGraph() {
         List<ArrayList<Rat>> list = new ArrayList<>();
         Date date = null;
         int dayCount = -1;
@@ -59,8 +77,53 @@ public class GraphActivity extends AppCompatActivity {
             dataPoints[i] = new DataPoint(i, list.get(i).size());
         }
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
-        graph.addSeries(series);
+        graphDay.addSeries(series);
+    }
 
+    private void updateMonthGraph() {
+        Calendar cal = Calendar.getInstance();
+        List<ArrayList<Rat>> list = new ArrayList<>();
+        int month = -1;
+        int monthCount = -1;
+        for (Rat r : ratList) {
+            cal.setTime(r.getDate());
+            int ratMonth = cal.get(Calendar.MONTH);
+            if (ratMonth != month) {
+                month = ratMonth;
+                list.add(new ArrayList<Rat>());
+                monthCount++;
+            }
+            list.get(monthCount).add(r);
+        }
+        DataPoint[] dataPoints = new DataPoint[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            dataPoints[i] = new DataPoint(i, list.get(i).size());
+        }
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
+        graphMonth.addSeries(series);
+    }
+
+    private void updateYearGraph() {
+        Calendar cal = Calendar.getInstance();
+        List<ArrayList<Rat>> list = new ArrayList<>();
+        int year = -1;
+        int yearCount = -1;
+        for (Rat r : ratList) {
+            cal.setTime(r.getDate());
+            int ratYear = cal.get(Calendar.YEAR);
+            if (ratYear != year) {
+                year = ratYear;
+                list.add(new ArrayList<Rat>());
+                yearCount++;
+            }
+            list.get(yearCount).add(r);
+        }
+        DataPoint[] dataPoints = new DataPoint[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            dataPoints[i] = new DataPoint(i, list.get(i).size());
+        }
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
+        graphYear.addSeries(series);
     }
 
     /**
