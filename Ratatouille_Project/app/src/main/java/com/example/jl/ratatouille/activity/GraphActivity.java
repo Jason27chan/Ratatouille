@@ -11,32 +11,56 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.jl.ratatouille.R;
+import com.example.jl.ratatouille.model.Rat;
+import com.example.jl.ratatouille.service.DataService;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+
+import java.sql.Array;
+import java.sql.Date;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static com.example.jl.ratatouille.activity.AddActivity.ADD_ACTIVITY_REQUEST;
 import static com.example.jl.ratatouille.activity.FilterActivity.FILTER_ACTIVITY_REQUEST;
 
 public class GraphActivity extends AppCompatActivity {
     private GraphView graph;
+    private List<Rat> ratList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
-
-        setupNavigation();
-
         graph = findViewById(R.id.graph);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
-        });
+        setupNavigation();
+        updateGraph();
+    }
+
+    private void updateGraph() {
+        ratList = DataService.getSharedRats(this);
+        List<ArrayList<Rat>> list = new ArrayList<>();
+        Date date = null;
+        int dayCount = -1;
+        for (Rat r : ratList) {
+            if (!r.getDate().equals(date)) {
+                date = r.getDate();
+                list.add(new ArrayList<Rat>());
+                dayCount++;
+            }
+            list.get(dayCount).add(r);
+        }
+        DataPoint[] dataPoints = new DataPoint[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            dataPoints[i] = new DataPoint(i, list.get(i).size());
+        }
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
         graph.addSeries(series);
+
     }
 
     /**
