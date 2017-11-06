@@ -43,8 +43,6 @@ import static com.example.jl.ratatouille.service.DataService.SHARED_RATS;
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private List<Rat> ratList = new ArrayList<>();
-    private BitmapDescriptor rat_icon;
-    private ProgressBar progressBar;
 
     public static final String TAG = "MapsActivity";
 
@@ -67,7 +65,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }
         }
-    };
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
