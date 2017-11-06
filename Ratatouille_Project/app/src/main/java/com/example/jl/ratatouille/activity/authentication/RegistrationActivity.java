@@ -36,8 +36,6 @@ public class RegistrationActivity extends AppCompatActivity {
     private RadioGroup accountTypes;
     private RadioButton accountType;
 
-    private Button registrationButton;
-
     private UserSQLiteAdapter dbAdapter;
 
     @Override
@@ -57,7 +55,7 @@ public class RegistrationActivity extends AppCompatActivity {
         accountTypes = findViewById(R.id.radio_regType);
 
         //get registration Button reference
-        registrationButton = findViewById(R.id.btn_regRegister);
+        final Button registrationButton = findViewById(R.id.btn_regRegister);
 
         //on click of registration button
         registrationButton.setOnClickListener(new View.OnClickListener() {

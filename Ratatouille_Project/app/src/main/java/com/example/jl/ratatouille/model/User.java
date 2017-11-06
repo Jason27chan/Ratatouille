@@ -31,6 +31,11 @@ public class User {
      * Checks if the user is an admin or not
      * @return true if admin, false if not
      */
+
+    public String getUsername() {
+        return this.username;
+    }
+
     public boolean isAdmin() {
         return false;
     }
