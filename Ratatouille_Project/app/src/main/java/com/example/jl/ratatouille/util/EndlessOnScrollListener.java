@@ -4,7 +4,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 /**
- * 
+ * a class that represents an endless scroll listener
  */
 public abstract class EndlessOnScrollListener extends RecyclerView.OnScrollListener {
 
@@ -42,5 +42,8 @@ public abstract class EndlessOnScrollListener extends RecyclerView.OnScrollListe
         }
     }
 
+    /**
+     * Method that loads more rat data
+     */
     public abstract void onLoadMore();
 }

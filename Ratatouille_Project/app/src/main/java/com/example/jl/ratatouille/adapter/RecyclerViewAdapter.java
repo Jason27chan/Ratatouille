@@ -38,7 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public TextView date, streetAddress, city;
         public Rat rat;
-
+        
         public ViewHolder(View view) {
             super(view);
             date = view.findViewById(R.id.date);
