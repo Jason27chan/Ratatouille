@@ -184,6 +184,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                 });
     }
+
     /**
      * Performs setup for add button and filter button.
      */

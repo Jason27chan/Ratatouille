@@ -33,8 +33,6 @@ import static com.example.jl.ratatouille.activity.FilterActivity.FILTER_ACTIVITY
 public class ListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private ProgressBar progressBar;
 
     private List<Rat> ratList = new ArrayList<>();
 
@@ -42,7 +40,6 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_list);
-        progressBar = new ProgressBar(this);
         setupRecyclerView();
         setupButtons();
         setupNavigation();
@@ -85,7 +82,8 @@ public class ListActivity extends AppCompatActivity {
     private void setupRecyclerView() {
         mRecyclerView = findViewById(R.id.rat_recycler_view);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager mLayoutManager
+                = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         DividerItemDecoration mDividerItemDecoration
                 = new DividerItemDecoration(mRecyclerView.getContext(),
