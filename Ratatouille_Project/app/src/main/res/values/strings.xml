@@ -30,12 +30,12 @@
     <string name="Borough">Borough</string>
     <string name="City">City</string>
 
-    <string name="cancel">cancel</string>
-    <string name="submit">submit</string>
-    <string name="Add_Rat">add_rat</string>
+    <string name="cancel">Cancel</string>
+    <string name="submit">Submit</string>
+    <string name="Add_Rat">Add Rat</string>
     <string name="Submit">Submit</string>
-    <string name="EndDate">EndDate</string>
-    <string name="StartDate">StartDate</string>
+    <string name="EndDate">End Date</string>
+    <string name="StartDate">Start Date</string>
     <string name="YYYYMMDD">YYYYMMDD</string>
     <string name="YYYY_MM_DD">YYYY_MM_DD</string>
 
