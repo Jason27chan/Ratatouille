@@ -27,7 +27,8 @@ public class Rat implements Parcelable {
     /**
      * Default constructor for Rat with no data passed in
      */
-    public Rat() {}
+    public Rat() {
+    }
 
     /**
      * a constructor for the rat
