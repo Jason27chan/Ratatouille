@@ -88,12 +88,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         setupNavigation();
         setupButtons();
-        final AppPreferences prefs = new AppPreferences(getApplicationContext());
-        Gson gson = new Gson();
-        Rat[] rats = new Rat[1];
-        rats[0] = new Rat(new Date(2015, 12, 12), "1", 1, "1", "1", "1", "1", 1.0);
-        String jsonRats = gson.toJson(rats);
-        prefs.put(SHARED_RATS, jsonRats);
     }
 
     @Override
