@@ -21,6 +21,11 @@ public class Data {
 
     private Data() {}
 
+    /**
+     * Returns an instance of the rat list
+     *
+     * @return return an instance of the rat list
+     */
     public static List<Rat> getInstance() {
         return rats;
     }

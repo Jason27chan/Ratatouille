@@ -42,6 +42,9 @@ public class DataService extends IntentService {
     public static final String SHARED_RATS = "rats";
     public static final String SHARED_OPTIONS = "options";
 
+    /**
+     * default constructor for DataService()
+     */
     public DataService() {
         super("DataService");
     }
@@ -75,6 +78,7 @@ public class DataService extends IntentService {
      *
      * @param rats an array of Rats obtained from a Retrofit call
      * @param context the context from which this method is called
+     * @param options a hashmap of options that are string mapped to string
      */
     public static void updatePreferences(
             Rat[] rats, Map<String, String> options, Context context) {
