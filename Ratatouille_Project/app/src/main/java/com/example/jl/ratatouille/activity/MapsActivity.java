@@ -6,13 +6,10 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
-
 
 import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.model.Rat;
@@ -91,6 +88,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         setupNavigation();
         setupButtons();
+        final AppPreferences prefs = new AppPreferences(getApplicationContext());
+        Gson gson = new Gson();
+        Rat[] rats = new Rat[1];
+        rats[0] = new Rat(new Date(2015, 12, 12), "1", 1, "1", "1", "1", "1", 1.0);
+        String jsonRats = gson.toJson(rats);
+        prefs.put(SHARED_RATS, jsonRats);
     }
 
     @Override
