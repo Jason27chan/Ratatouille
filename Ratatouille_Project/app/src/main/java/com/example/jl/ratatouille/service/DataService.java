@@ -123,8 +123,10 @@ public class DataService extends IntentService {
         Type type = new TypeToken<Map<String, String>>() {}.getType();
         Map<String, String> optionsTree = gson.fromJson(json, type);
         Map<String, String> options = new HashMap<>();
-        for (String k : optionsTree.keySet()) {
-            options.put(k, optionsTree.get(k));
+        if (optionsTree != null) {
+            for (String k : optionsTree.keySet()) {
+                options.put(k, optionsTree.get(k));
+            }
         }
         return options;
     }
