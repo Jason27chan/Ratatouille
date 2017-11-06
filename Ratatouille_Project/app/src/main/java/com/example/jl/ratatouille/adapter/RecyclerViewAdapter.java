@@ -3,7 +3,6 @@ package com.example.jl.ratatouille.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +10,8 @@ import android.widget.TextView;
 
 import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.activity.ViewActivity;
-import com.example.jl.ratatouille.data.Data;
 import com.example.jl.ratatouille.model.Rat;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import net.grandcentrix.tray.AppPreferences;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

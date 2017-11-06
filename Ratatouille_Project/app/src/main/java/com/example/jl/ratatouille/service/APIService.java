@@ -7,7 +7,6 @@ import com.google.gson.GsonBuilder;
 
 import java.util.Map;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -16,8 +15,6 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
-
-import static com.example.jl.ratatouille.service.APIService.LOGIN;
 
 /**
  * Created by jav on 10/24/2017.
