@@ -31,7 +31,6 @@ public class AddActivity extends AppCompatActivity {
 
     private EditText editDate, editLocType, editZip, editAddress,
             editCity, editBorough, editLatitude, editLongitude;
-    private Button submitButton, cancelButton;
 
     public static final int ADD_ACTIVITY_REQUEST = 0;
 
@@ -68,8 +67,8 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_rat);
 
-        submitButton = findViewById(R.id.btn_submit);
-        cancelButton = findViewById(R.id.btn_cancel);
+        final Button submitButton = findViewById(R.id.btn_submit);
+        final Button cancelButton = findViewById(R.id.btn_cancel);
 
         editDate = findViewById(R.id.editTxt_created_date);
         editLocType = findViewById(R.id.editTxt_loc_type);

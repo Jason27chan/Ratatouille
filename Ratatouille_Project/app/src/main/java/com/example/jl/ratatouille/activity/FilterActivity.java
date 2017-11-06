@@ -26,8 +26,6 @@ public class FilterActivity extends AppCompatActivity {
 
     private EditText mEditStart, mEditEnd;
     private RadioGroup mSort;
-    private RadioButton mSortOption;
-    private Button mSubmit;
 
     public static final int FILTER_ACTIVITY_REQUEST = 1;
 
@@ -49,7 +47,7 @@ public class FilterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
 
-        mSubmit = findViewById(R.id.filter_submit);
+        final Button mSubmit = findViewById(R.id.filter_submit);
         mEditStart = findViewById(R.id.filter_startDate);
         mEditEnd = findViewById(R.id.filter_endDate);
         mSort = findViewById(R.id.radio_sort);
@@ -93,7 +91,8 @@ public class FilterActivity extends AppCompatActivity {
         Map<String, String> options = new HashMap<>();
         String startDate = mEditStart.getText().toString();
         String endDate = mEditEnd.getText().toString();
-        mSortOption = findViewById(mSort.getCheckedRadioButtonId());
+        final RadioButton mSortOption
+                = findViewById(mSort.getCheckedRadioButtonId());
         String sortBy = mSortOption.getText().toString();
         options.put("date_start", startDate);
         options.put("date_end", endDate);
