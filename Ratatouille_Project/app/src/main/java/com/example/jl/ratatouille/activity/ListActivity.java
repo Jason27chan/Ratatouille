@@ -11,13 +11,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ProgressBar;
 
 import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.adapter.RecyclerViewAdapter;
-import com.example.jl.ratatouille.service.DataService;
 import com.example.jl.ratatouille.model.Rat;
+import com.example.jl.ratatouille.service.DataService;
 import com.example.jl.ratatouille.util.EndlessOnScrollListener;
 
 import java.util.ArrayList;
