@@ -133,10 +133,12 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<MSG> call, retrofit2.Response<MSG> response) {
                 if (!response.body().getError()) {
-                    String msg = response.body().getMsg();
-                    Toast.makeText(getApplicationContext(),
-                            msg, Toast.LENGTH_SHORT).show();
-                    refreshRats();
+                    if (response.body().getMsg() != null) {
+                        String msg = response.body().getMsg();
+                        Toast.makeText(getApplicationContext(),
+                                msg, Toast.LENGTH_SHORT).show();
+                        refreshRats();
+                    }
                 } else {
                     String msg = response.body().getMsg();
                     Toast.makeText(getApplicationContext(),
