@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:map="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -28,23 +27,26 @@
                 android:layout_height="match_parent" />
         </FrameLayout>
 
-
-        <ProgressBar
+        <!--<ProgressBar
             android:id="@+id/progressBar_maps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:layout_gravity="top|right"/>
+            android:layout_gravity="top|right"/>-->
 
-        <Button
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/map_filter"
-            android:text="@string/filter"
+            android:src="@drawable/ic_search_black_24dp"
+            app:fabSize="mini"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_anchor="@+id/btn_addRat_maps"
-            app:layout_anchorGravity="bottom"
             android:layout_margin="16dp"
-            android:typeface="monospace"/>
+            android:paddingBottom="16dp"
+            android:layout_gravity="top|end"
+            android:backgroundTint="@color/black"
+            android:tint="@color/white"
+            app:borderWidth="0dp"
+            app:elevation="2dp"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btn_addRat_maps"

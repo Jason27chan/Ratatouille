@@ -1,36 +1,28 @@
 package com.example.jl.ratatouille.activity;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
 
 import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.adapter.RecyclerViewAdapter;
-import com.example.jl.ratatouille.service.DataService;
 import com.example.jl.ratatouille.model.Rat;
+import com.example.jl.ratatouille.service.DataService;
 import com.example.jl.ratatouille.util.EndlessOnScrollListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Filter;
+
+import static com.example.jl.ratatouille.activity.AddActivity.ADD_ACTIVITY_REQUEST;
+import static com.example.jl.ratatouille.activity.FilterActivity.FILTER_ACTIVITY_REQUEST;
 
 /**
  * Displays the rat data in a RecyclerView
@@ -39,43 +31,13 @@ import java.util.logging.Filter;
 public class ListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private List<Rat> ratList;
-    ProgressBar progressBar;
 
-    static final int ADD_ACTIVITY_REQUEST = 0;
-    static final int FILTER_ACTIVITY_REQUEST = 1;
-
-    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Rat[] rats = (Rat[]) intent.getParcelableArrayExtra(DataService.DATA_SERVICE_PAYLOAD);
-            ratList = Arrays.asList(rats);
-            displayData();
-            progressBar.setVisibility(View.GONE);
-        }
-    };
-
-    /**
-     * displays the dat to the user in a recycler view
-     */
-    private void displayData() {
-        if (ratList != null) {
-            mAdapter = new RecyclerViewAdapter(ratList, this);
-            mRecyclerView.setAdapter(mAdapter);
-        }
-    }
+    private List<Rat> ratList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_list);
-        progressBar = new ProgressBar(this);
-        progressBar.setVisibility(View.VISIBLE);
-
-        LocalBroadcastManager.getInstance(getApplicationContext())
-                .registerReceiver(mBroadcastReceiver, new IntentFilter(DataService.DATA_SERVICE_MSG));
-
         setupRecyclerView();
         setupButtons();
         setupNavigation();
@@ -86,31 +48,54 @@ public class ListActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == ADD_ACTIVITY_REQUEST) {
             if (resultCode == RESULT_OK) {
-                mAdapter.notifyDataSetChanged();
-                displayData();
+                updateRecyclerView();
+            }
+        }
+        if (requestCode == FILTER_ACTIVITY_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                updateRecyclerView();
             }
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateRecyclerView();
+    }
+
     /**
-     * sets up the recycler view in a particlar format
+     * Updates the RecyclerView to display ratList data.
+     * ratList contains data that currently exists in shared preferences.
+     */
+    private void updateRecyclerView() {
+        ratList = DataService.getSharedRats(this);
+        ((RecyclerViewAdapter) mAdapter).updateData(ratList);
+
+    }
+
+    /**
+     * Performs basic RecyclerView setup.
      */
     private void setupRecyclerView() {
         mRecyclerView = findViewById(R.id.rat_recycler_view);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager mLayoutManager
+                = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         DividerItemDecoration mDividerItemDecoration
                 = new DividerItemDecoration(mRecyclerView.getContext(),
                 LinearLayoutManager.VERTICAL);
         mRecyclerView.addItemDecoration(mDividerItemDecoration);
+        mAdapter = new RecyclerViewAdapter(this);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     /**
-     * sets up the buttons for filtering the activity and adding a new rat
+     * Performs setup for add rat and filter buttons.
      */
     private void setupButtons() {
-        final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat);
+        final FloatingActionButton addRatBtn = findViewById(R.id.list_add);
         addRatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,7 +104,7 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-        final Button filterBtn = findViewById(R.id.btn_filter);
+        final FloatingActionButton filterBtn = findViewById(R.id.list_filter);
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +115,7 @@ public class ListActivity extends AppCompatActivity {
     }
 
     /**
-     * sets up the bottom drawer for navigation
+     * Performs setup for bottom navigation.
      */
     private void setupNavigation() {
         BottomNavigationView nav = findViewById(R.id.bottom_navigation_list);
@@ -141,15 +126,16 @@ public class ListActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_map:
-                                startActivity(new Intent(ListActivity.this, MapsActivity.class));
-                                break;
-                            case R.id.action_list:
+                                startActivity(new Intent(ListActivity.this,
+                                        MapsActivity.class));
                                 break;
                             case R.id.action_graph:
-
+                                startActivity(new Intent(
+                                        ListActivity.this, GraphActivity.class));
                                 break;
                             case R.id.action_settings:
-                                startActivity(new Intent(ListActivity.this, SettingsActivity.class));
+                                startActivity(new Intent(ListActivity.this,
+                                        SettingsActivity.class));
                                 break;
                         }
                         return true;
@@ -158,7 +144,7 @@ public class ListActivity extends AppCompatActivity {
     }
 
     /**
-     * sets up endless scroll for the list
+     * Performs setup for endless scroll.
      */
     private void setupEndlessScroll() {
         mRecyclerView.addOnScrollListener(new EndlessOnScrollListener() {
@@ -169,10 +155,4 @@ public class ListActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        LocalBroadcastManager.getInstance(getApplicationContext())
-                .unregisterReceiver(mBroadcastReceiver);
-    }
 }

@@ -5,9 +5,6 @@ import android.os.Parcelable;
 
 import java.sql.Date;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
-import static com.example.jl.ratatouille.R.string.longitude;
-
 /**
  * Created by Emily Chang on 10/5/2017.
  */
@@ -83,7 +80,7 @@ public class Rat implements Parcelable {
      * @param date the date at which the rat was spotted
      */
     public void setDate(Date date) {
-        if (date.equals("") || date == null) {
+        if (date == null || date.equals("")) {
             return;
         }
         this.date = date;
@@ -134,7 +131,7 @@ public class Rat implements Parcelable {
      * @param address the new address for the rat
      */
     public void setAddress(String address) {
-        if (address.equals("") || address == null) {
+        if (address == null || address.equals("")) {
             return;
         }
         this.address = address;
@@ -153,7 +150,7 @@ public class Rat implements Parcelable {
      * @param city the new city that the rat is located in
      */
     public void setCity(String city) {
-        if (city.equals("") || city == null) {
+        if (city == null || city.equals("")) {
             return;
         }
         this.city = city;

@@ -1,4 +1,4 @@
-package com.example.jl.ratatouille.sqlite;
+package com.example.jl.ratatouille.data;
 
 import android.provider.BaseColumns;
 

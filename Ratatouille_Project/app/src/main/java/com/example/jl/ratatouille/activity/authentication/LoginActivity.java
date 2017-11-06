@@ -12,7 +12,7 @@ import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.activity.MapsActivity;
 import com.example.jl.ratatouille.model.MSG;
 import com.example.jl.ratatouille.service.APIService;
-import com.example.jl.ratatouille.adapter.SQLiteAdapter;
+import com.example.jl.ratatouille.adapter.UserSQLiteAdapter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,29 +26,28 @@ import retrofit2.Callback;
 
 public class LoginActivity extends AppCompatActivity{
 
-    private EditText _username;
-    private EditText _password;
-    private Button _button;
+    private EditText usernameEdit;
+    private EditText passwordEdit;
 
-    private static final String TAG = RegistrationActivity.class.getSimpleName();
+    private static final String TAG = "Registration Activity";
 
-    private SQLiteAdapter dbAdapter;
+    private UserSQLiteAdapter dbAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        _username = findViewById(R.id.editTxt_logUsername);
-        _password = findViewById(R.id.editTxt_logPassword);
-        _button = findViewById(R.id.btn_logLogin);
+        usernameEdit = findViewById(R.id.editTxt_logUsername);
+        passwordEdit = findViewById(R.id.editTxt_logPassword);
+        final Button buttonLogin = findViewById(R.id.btn_logLogin);
 
-        dbAdapter = new SQLiteAdapter(this).open();
+        dbAdapter = new UserSQLiteAdapter(this).open();
 
-        _button.setOnClickListener(new View.OnClickListener() {
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String userInput = _username.getText().toString();
-                String passInput = _password.getText().toString();
+                String userInput = usernameEdit.getText().toString();
+                String passInput = passwordEdit.getText().toString();
 
                 if (userInput.equals("") || passInput.equals("")) {
                     Toast.makeText(getApplicationContext(),

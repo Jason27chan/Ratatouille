@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.model.MSG;
 import com.example.jl.ratatouille.service.APIService;
-import com.example.jl.ratatouille.adapter.SQLiteAdapter;
+import com.example.jl.ratatouille.adapter.UserSQLiteAdapter;
 
 
 import java.util.HashMap;
@@ -36,9 +36,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private RadioGroup accountTypes;
     private RadioButton accountType;
 
-    private Button registrationButton;
-
-    private SQLiteAdapter dbAdapter;
+    private UserSQLiteAdapter dbAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +44,7 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         //get database adapter
-        dbAdapter = new SQLiteAdapter(this).open();
+        dbAdapter = new UserSQLiteAdapter(this).open();
 
         //get EditText references
         usernameEntry = findViewById(R.id.editTxt_regUsername);
@@ -57,7 +55,7 @@ public class RegistrationActivity extends AppCompatActivity {
         accountTypes = findViewById(R.id.radio_regType);
 
         //get registration Button reference
-        registrationButton = findViewById(R.id.btn_regRegister);
+        final Button registrationButton = findViewById(R.id.btn_regRegister);
 
         //on click of registration button
         registrationButton.setOnClickListener(new View.OnClickListener() {

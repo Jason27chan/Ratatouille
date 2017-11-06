@@ -7,14 +7,14 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.sqlite.SQLiteContract;
-import com.example.jl.ratatouille.sqlite.SQLiteHelper;
+import com.example.jl.ratatouille.data.SQLiteContract;
+import com.example.jl.ratatouille.data.SQLiteHelper;
 
 /**
  * Created by jav on 9/12/2017.
  */
 
-public class SQLiteAdapter {
+public class UserSQLiteAdapter {
 
     private SQLiteDatabase db;
     private final Context context;
@@ -31,7 +31,7 @@ public class SQLiteAdapter {
      *
      * @param context information about application environment
      */
-    public SQLiteAdapter(Context context) {
+    public UserSQLiteAdapter(Context context) {
         this.context = context;
         dbHelper = new SQLiteHelper(context, SQLiteContract.DATABASE_NAME, null, SQLiteContract.DATABASE_VERSION);
     }
@@ -42,7 +42,7 @@ public class SQLiteAdapter {
      * @return the login database adapter is returned
      * @throws SQLException if the database cannot be opened
      */
-    public SQLiteAdapter open() throws SQLException {
+    public UserSQLiteAdapter open() throws SQLException {
         db = dbHelper.getWritableDatabase();
         return this;
     }

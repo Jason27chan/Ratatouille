@@ -8,8 +8,8 @@ public class Admin extends User {
 
     /**
      * Constructor for Admin
-     * @param username
-     * @param password
+     * @param username the username for the Administrator
+     * @param password the password for the Administrator
      */
     public Admin(String username, String password) {
         super(username, password);

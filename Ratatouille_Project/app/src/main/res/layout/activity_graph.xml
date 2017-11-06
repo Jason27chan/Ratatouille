@@ -5,37 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/list_coordinator"
+        android:id="@+id/graph_coordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        android:layout_above="@+id/bottom_navigation_list">
+        android:layout_above="@+id/bottom_navigation_graph">
 
         <!--<ProgressBar
-            android:id="@+id/progressBar_ratList"
+            android:id="@+id/progressBar_maps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_gravity="top|right"/>-->
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/list_add"
-            android:src="@drawable/ic_add_black_24dp"
-            app:fabSize="mini"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_gravity="bottom|end"
-            app:layout_anchor="@+id/rat_recycler_view"
-            app:layout_anchorGravity="bottom|right|end"
-            android:backgroundTint="@color/black"
-            android:tint="@color/white"
-            app:borderWidth="0dp"
-            app:elevation="2dp"/>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/list_filter"
+            android:id="@+id/graph_filter"
             android:src="@drawable/ic_search_black_24dp"
             app:fabSize="mini"
             android:layout_width="wrap_content"
@@ -48,18 +34,51 @@
             app:borderWidth="0dp"
             app:elevation="2dp"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rat_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/graph_add"
+            android:src="@drawable/ic_add_black_24dp"
+            app:fabSize="mini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_gravity="bottom|end"
+            android:backgroundTint="@color/black"
+            android:tint="@color/white"
+            app:borderWidth="0dp"
+            app:elevation="2dp"/>
 
     </android.support.design.widget.CoordinatorLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/graph_day"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:gravity="center_horizontal"/>
+
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/graph_month"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="16dp"/>
+
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/graph_year"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="16dp"/>
+    </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/bottom_navigation_list"
+        android:id="@+id/bottom_navigation_graph"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"

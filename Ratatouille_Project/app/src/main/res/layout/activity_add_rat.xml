@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -15,7 +14,7 @@
 
     <EditText
         android:id="@+id/editTxt_created_date"
-        android:hint="Date"
+        android:hint="@string/Date"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         style="@style/EditTextStyle"
@@ -60,7 +59,6 @@
         style="@style/EditTextStyle"
         android:layout_marginTop="12dp"
         android:layout_below="@+id/editTxt_city"
-        android:layout_alignLeft="@+id/editTxt_loc_type"
         android:layout_alignStart="@+id/editTxt_loc_type" />
 
     <EditText
@@ -77,7 +75,6 @@
         android:inputType="text"
         style="@style/EditTextStyle"
         android:layout_below="@+id/editTxt_borough"
-        android:layout_alignLeft="@+id/editTxt_borough"
         android:layout_alignStart="@+id/editTxt_borough"
         android:layout_marginTop="12dp" />
 
@@ -86,12 +83,10 @@
         android:hint="@string/cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
         android:layout_marginEnd="35dp"
         android:layout_marginTop="22dp"
         android:typeface="monospace"
         android:layout_below="@+id/editTxt_latitude"
-        android:layout_alignRight="@+id/editTxt_latitude"
         android:layout_alignEnd="@+id/editTxt_latitude" />
 
     <Button
@@ -101,9 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btn_cancel"
         android:layout_alignBottom="@+id/btn_cancel"
-        android:layout_toLeftOf="@+id/btn_cancel"
         android:layout_toStartOf="@+id/btn_cancel"
-        android:layout_marginRight="20dp"
         android:layout_marginEnd="16dp"
         android:typeface="monospace"/>
 

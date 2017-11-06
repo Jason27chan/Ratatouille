@@ -30,7 +30,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public TextView date, streetAddress, city;
         public Rat rat;
-
+        
         public ViewHolder(View view) {
             super(view);
             date = view.findViewById(R.id.date);
@@ -51,11 +51,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     /**
      * Initializes the ratList
-     * @param ratList a list of rats
      * @param context the activity
      */
-    public RecyclerViewAdapter(List<Rat> ratList, Context context) {
-        this.ratList = ratList;
+    public RecyclerViewAdapter(Context context) {
+        //this.ratList = ratList;
         this.context = context;
     }
 
@@ -75,7 +74,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.rat = rat;
     }
 
-
+    public void updateData(List<Rat> rats) {
+        if (ratList != null) {
+            ratList.clear();
+            ratList.addAll(rats);
+        } else {
+            ratList = rats;
+        }
+        notifyDataSetChanged();
+    }
 
     @Override
     public int getItemCount() {
