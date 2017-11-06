@@ -35,6 +35,9 @@ import retrofit2.Callback;
 import static com.example.jl.ratatouille.R.string.submit;
 import static com.example.jl.ratatouille.data.Data.options;
 
+/**
+ * a class that filters the dates for the map, list, and graph
+ */
 public class FilterActivity extends AppCompatActivity {
 
     private EditText mEditStart, mEditEnd;

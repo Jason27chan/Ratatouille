@@ -3,10 +3,13 @@ package com.example.jl.ratatouille.util;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+/**
+ * a class that represents an endless scroll listener
+ */
 public abstract class EndlessOnScrollListener extends RecyclerView.OnScrollListener {
 
     /**
-     * The total number of items in the dataset after the last load
+     * The total number of items in the data set after the last load
      */
     private int mPreviousTotal = 0;
     /**
@@ -39,5 +42,8 @@ public abstract class EndlessOnScrollListener extends RecyclerView.OnScrollListe
         }
     }
 
+    /**
+     * Method that loads more rat data
+     */
     public abstract void onLoadMore();
 }

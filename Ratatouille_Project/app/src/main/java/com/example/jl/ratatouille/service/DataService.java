@@ -21,8 +21,6 @@ import java.util.Map;
 
 import retrofit2.Call;
 
-import static com.example.jl.ratatouille.data.Data.options;
-
 /**
  * /**
  * Gets Rats from database based on filter queries.
@@ -42,6 +40,9 @@ public class DataService extends IntentService {
     public static final String SHARED_RATS = "rats";
     public static final String SHARED_OPTIONS = "options";
 
+    /**
+     * default constructor for DataService()
+     */
     public DataService() {
         super("DataService");
     }
@@ -75,6 +76,7 @@ public class DataService extends IntentService {
      *
      * @param rats an array of Rats obtained from a Retrofit call
      * @param context the context from which this method is called
+     * @param options a hash map of options that are string mapped to string
      */
     public static void updatePreferences(
             Rat[] rats, Map<String, String> options, Context context) {

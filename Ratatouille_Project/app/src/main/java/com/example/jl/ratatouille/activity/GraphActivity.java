@@ -31,6 +31,9 @@ import java.util.Map;
 import static com.example.jl.ratatouille.activity.AddActivity.ADD_ACTIVITY_REQUEST;
 import static com.example.jl.ratatouille.activity.FilterActivity.FILTER_ACTIVITY_REQUEST;
 
+/**
+ * the class that represents graphs
+ */
 public class GraphActivity extends AppCompatActivity {
     private GraphView graphDay, graphMonth, graphYear;
     private List<Rat> ratList;
