@@ -27,12 +27,17 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 
+import net.grandcentrix.tray.AppPreferences;
+
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.jl.ratatouille.activity.AddActivity.ADD_ACTIVITY_REQUEST;
 import static com.example.jl.ratatouille.activity.FilterActivity.FILTER_ACTIVITY_REQUEST;
+import static com.example.jl.ratatouille.service.DataService.SHARED_RATS;
 
 /**
  * Created by jav on 10/18/2017.
@@ -71,6 +76,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        final AppPreferences prefs = new AppPreferences(getApplicationContext());
+        Gson gson = new Gson();
+        Rat[] rats = new Rat[1];
+        rats[0] = new Rat(new Date(2015, 12, 12), "1", 1, "1", "1", "1", "1", 1.0);
+        String jsonRats = gson.toJson(rats);
+        prefs.put(SHARED_RATS, jsonRats);
 
         if(CheckGooglePlayServices()) {
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
