@@ -86,8 +86,10 @@ public class FilterActivity extends AppCompatActivity {
                 .registerReceiver(mBroadcastReceiver, new IntentFilter(DataService.DATA_SERVICE_MSG));
 
         Map<String, String> options = DataService.getSharedOptions(this);
-        mEditStart.setText(options.get("date_start"));
-        mEditEnd.setText(options.get("date_end"));
+        if (options != null) {
+            mEditStart.setText(options.get("date_start"));
+            mEditEnd.setText(options.get("date_end"));
+        }
     }
 
     @Override
