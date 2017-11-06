@@ -75,7 +75,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         final AppPreferences prefs = new AppPreferences(getApplicationContext());
         Gson gson = new Gson();
         Rat[] rats = new Rat[1];
-        rats[0] = new Rat(new Date(2015, 12, 12), "1", 1, "1", "1", "1", "1", 1.0);
+        int year = 2015;
+        int month = 12;
+        int day = 12;
+        String loc_type = "1";
+        int zip = 1;
+        String address = "1";
+        String city = "1";
+        String borough = "1";
+        String latitude = "1";
+        double longitude = 1.0;
+        rats[0] = new Rat(new Date(year, month, day), loc_type, zip, address, city, borough, latitude, longitude);
         String jsonRats = gson.toJson(rats);
         prefs.put(SHARED_RATS, jsonRats);
 
@@ -107,8 +117,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //rat_icon = BitmapDescriptorFactory.fromResource(R.drawable.ic_rat);
         //LatLngBounds nyBounds = new LatLngBounds(
         // new LatLng(33.771403, -84.407349), new LatLng(33.781547, -84.390801));
-        LatLng ny = new LatLng(40.7128, -74.0060);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ny, 11));
+        double v = 40.7128;
+        double v1 = -74.0060;
+        LatLng ny = new LatLng(v, v1);
+        int v2 = 11;
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ny, v2));
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
