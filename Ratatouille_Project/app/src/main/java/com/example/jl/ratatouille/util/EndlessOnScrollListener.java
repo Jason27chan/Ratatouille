@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 public abstract class EndlessOnScrollListener extends RecyclerView.OnScrollListener {
 
     /**
-     * The total number of items in the dataset after the last load
+     * The total number of items in the data set after the last load
      */
     private int mPreviousTotal = 0;
     /**
