@@ -13,14 +13,7 @@
     <string name="radio_user">User</string>
 
     <string name="not_found">.NOT FOUND.</string>
-    <string name="title_activity_add_rat">AddRatActivity</string>
 
-
-    <string name="unique_key">unique_key</string>
-    <string name="city">City</string>
-    <string name="borough">Borough</string>
-    <string name="latitude">Latitude</string>
-    <string name="longitude">Longitude</string>
     <string name="Date">Date</string>
     <string name="LocationType">LocationType</string>
     <string name="IncidentZip">IncidentZip</string>
@@ -32,14 +25,8 @@
 
     <string name="cancel">Cancel</string>
     <string name="submit">Submit</string>
-    <string name="Add_Rat">Add Rat</string>
     <string name="Submit">Submit</string>
-    <string name="EndDate">End Date</string>
-    <string name="StartDate">Start Date</string>
-    <string name="YYYYMMDD">YYYYMMDD</string>
     <string name="YYYY_MM_DD">YYYY_MM_DD</string>
-
-    <string name="filter">Filter</string>
 
     <string name="from">FROM</string>
     <string name="to">TO</string>
