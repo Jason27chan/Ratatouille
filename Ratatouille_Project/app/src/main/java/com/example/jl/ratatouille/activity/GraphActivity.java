@@ -54,10 +54,12 @@ public class GraphActivity extends AppCompatActivity {
     }
 
     private void updateGraphs() {
-        ratList = DataService.getSharedRats(this);
-        updateDayGraph();
-        updateMonthGraph();
-        updateYearGraph();
+
+            ratList = DataService.getSharedRats(this);
+            updateDayGraph();
+            updateMonthGraph();
+            updateYearGraph();
+
     }
 
     private void updateDayGraph() {
@@ -78,6 +80,7 @@ public class GraphActivity extends AppCompatActivity {
         }
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
         graphDay.addSeries(series);
+
     }
 
     private void updateMonthGraph() {
@@ -175,5 +178,13 @@ public class GraphActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+    }
+
+    private List<Rat> getRatList() {
+        return ratList;
+    }
+
+    private List<Rat> setRatList(List<Rat> ratList) {
+        this.ratList = ratList;
     }
 }
