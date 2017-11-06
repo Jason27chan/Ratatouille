@@ -5,9 +5,6 @@ import android.os.Parcelable;
 
 import java.sql.Date;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
-import static com.example.jl.ratatouille.R.string.longitude;
-
 /**
  * Created by Emily Chang on 10/5/2017.
  */
@@ -27,8 +24,7 @@ public class Rat implements Parcelable {
     /**
      * Default constructor for Rat with no data passed in
      */
-    public Rat() {
-    }
+    public Rat() {}
 
     /**
      * a constructor for the rat

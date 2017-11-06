@@ -21,7 +21,7 @@
     <string name="borough">Borough</string>
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
-    <string name="DateCreated">DateCreated</string>
+    <string name="Date">Date</string>
     <string name="LocationType">LocationType</string>
     <string name="IncidentZip">IncidentZip</string>
     <string name="IncidentAddress">IncidentAddress</string>
@@ -40,5 +40,16 @@
     <string name="YYYY_MM_DD">YYYY_MM_DD</string>
 
     <string name="filter">Filter</string>
+
+    <string name="from">FROM</string>
+    <string name="to">TO</string>
+    <string name="sort">SORT</string>
+    <string name="desc">DESC</string>
+    <string name="asc">ASC</string>
+
+    <string name="map">Map</string>
+    <string name="list">List</string>
+    <string name="graph">Graph</string>
+    <string name="settings">Settings</string>
 
 </resources>
