@@ -13,27 +13,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.example.jl.ratatouille.R;
-import com.example.jl.ratatouille.data.Data;
-import com.example.jl.ratatouille.model.MSG;
-import com.example.jl.ratatouille.model.Rat;
-import com.example.jl.ratatouille.service.APIService;
 import com.example.jl.ratatouille.service.DataService;
-import com.google.gson.Gson;
 
-import net.grandcentrix.tray.AppPreferences;
-
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-
-import static com.example.jl.ratatouille.R.string.submit;
-import static com.example.jl.ratatouille.data.Data.options;
 
 /**
  * a class that filters the dates for the map, list, and graph

@@ -57,7 +57,7 @@ public class DataService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         APIService apiService = APIService.retrofit.create(APIService.class);
         Map<String, String> options =
-                (Map) intent.getSerializableExtra("options");
+                (Map<String, String>) intent.getSerializableExtra("options");
         Call<Rat[]> call = apiService.rats(options);
         Rat[] rats;
         try {
