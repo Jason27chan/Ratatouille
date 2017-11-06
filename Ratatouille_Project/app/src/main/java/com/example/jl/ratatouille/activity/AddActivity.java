@@ -130,6 +130,7 @@ public class AddActivity extends AppCompatActivity {
         options.put("lat", latitude);
         options.put("lng", longitude);
         Call<MSG> request = apiService.addRat(options);
+
         request.enqueue(new Callback<MSG>() {
 
             @Override
