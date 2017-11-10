@@ -21,6 +21,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 /**
+ * Class that allows a user to login
+ *
  * Created by jav on 9/12/2017.
  */
 

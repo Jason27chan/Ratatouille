@@ -23,6 +23,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 /**
+ * Class that allows a user to register
+ * as an admin or a typical user
+ *
  * Created by jav on 9/12/2017.
  */
 
