@@ -45,6 +45,8 @@ dependencies {
     compile 'com.jjoe64:graphview:4.2.1'
     compile 'net.grandcentrix.tray:tray:0.12.0'
     testCompile 'org.testng:testng:6.9.6'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestCompile 'com.android.support.test:runner:1.0.1'
 }
 
 apply plugin: 'com.google.gms.google-services'
