@@ -80,7 +80,6 @@ public class GraphActivity extends AppCompatActivity {
         }
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
         graphDay.addSeries(series);
-        return series;
     }
 
     /**

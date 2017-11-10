@@ -22,12 +22,17 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 
+import net.grandcentrix.tray.AppPreferences;
+
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.jl.ratatouille.activity.AddActivity.ADD_ACTIVITY_REQUEST;
 import static com.example.jl.ratatouille.activity.FilterActivity.FILTER_ACTIVITY_REQUEST;
+import static com.example.jl.ratatouille.service.DataService.SHARED_RATS;
 
 /**
  * Represents the Map and the data that is shows
