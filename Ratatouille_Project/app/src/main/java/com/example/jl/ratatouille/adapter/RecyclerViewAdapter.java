@@ -24,17 +24,22 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private List<Rat> ratList;
-    private Context context;
+    private final Context context;
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private final TextView date, address, city;
+        private Rat rat;
 
-        public TextView date, streetAddress, city;
-        public Rat rat;
-        
+        /**
+         * Creates a ViewHolder. Sets the date, address, and city to be
+         * displayed.
+         *
+         * @param view the View to create the ViewHolder from
+         */
         public ViewHolder(View view) {
             super(view);
             date = view.findViewById(R.id.date);
-            streetAddress = view.findViewById(R.id.street_address);
+            address = view.findViewById(R.id.street_address);
             city = view.findViewById(R.id.city);
             view.setOnClickListener(this);
         }
@@ -42,26 +47,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(context, ViewActivity.class);
-            //todo: add call to another method which retrieves all the rat info instead of just date, address, city
-            //currently all data is loaded in ListActivity but this is inefficient because only 3 fields are displayed in the main view?
             intent.putExtra("rat", rat);
             context.startActivity(intent);
         }
     }
 
     /**
-     * Initializes the ratList
-     * @param context the activity
+     * Creates a RecyclerViewAdapter.
+     * @param context the context from which this activity is called
      */
     public RecyclerViewAdapter(Context context) {
-        //this.ratList = ratList;
         this.context = context;
     }
 
-    //inflates the views in the rat list
     @Override
-    public RecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View ratView = LayoutInflater.from(parent.getContext()).inflate(R.layout.rat_list_row, parent, false);
+    public RecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,int viewType) {
+        View ratView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.rat_list_row, parent, false);
         return new RecyclerViewAdapter.ViewHolder(ratView);
     }
 
@@ -69,11 +71,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
         Rat rat = ratList.get(position);
         holder.date.setText(rat.getDate().toString());
-        holder.streetAddress.setText(rat.getAddress());
+        holder.address.setText(rat.getAddress());
         holder.city.setText(rat.getCity());
         holder.rat = rat;
     }
-
+    
+    /**
+     * Clears the RecyclerView and adds new rat sighting data.
+     *
+     * @param rats the List of new rat sighting data to be displayed
+     *             by the RecyclerView
+    */
     public void updateData(List<Rat> rats) {
         if (ratList != null) {
             ratList.clear();

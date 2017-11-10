@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         
         final Button buttonLogin = findViewById(R.id.ButtonToLogin);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(v.getContext(), LoginActivity.class);
                 startActivityForResult(myIntent, 0);
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         final Button buttonRegister = findViewById(R.id.ButtonToRegister);
         buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(v.getContext(), RegistrationActivity.class);
                 startActivityForResult(myIntent, 0);

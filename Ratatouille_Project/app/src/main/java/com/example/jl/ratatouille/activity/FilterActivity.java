@@ -20,7 +20,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * a class that filters the dates for the map, list, and graph
+ * Requests rat sighting data from the database based on parameters
+ * requested by the user.
  */
 public class FilterActivity extends AppCompatActivity {
 
@@ -34,7 +35,7 @@ public class FilterActivity extends AppCompatActivity {
      * fully loaded to shared preferences. Finishes FilterActivity
      * and returns to calling activity.
      */
-    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             FilterActivity.this.setResult(RESULT_OK);
@@ -68,7 +69,8 @@ public class FilterActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         LocalBroadcastManager.getInstance(getApplicationContext())
-                .registerReceiver(mBroadcastReceiver, new IntentFilter(DataService.DATA_SERVICE_MSG));
+                .registerReceiver(mBroadcastReceiver, new IntentFilter(
+                        DataService.DATA_SERVICE_MSG));
 
         Map<String, String> options = DataService.getSharedOptions(this);
         if (options != null) {
@@ -96,7 +98,7 @@ public class FilterActivity extends AppCompatActivity {
         String sortBy = mSortOption.getText().toString();
         options.put("date_start", startDate);
         options.put("date_end", endDate);
-        options.put("orderby", sortBy);
+        options.put("order_by", sortBy);
 
         Intent intent = new Intent(this, DataService.class);
         intent.putExtra("options", (HashMap) options);
