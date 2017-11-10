@@ -24,6 +24,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 /**
+ * Activity that allows for the addition of a new rat instance
+ *
  * Created by Shannon on 10/14/2017.
  */
 

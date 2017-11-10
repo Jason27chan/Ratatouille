@@ -1,6 +1,9 @@
 package com.example.jl.ratatouille.model;
 
 /**
+ * Class that represents an Administer
+ * which is a type of User
+ *
  * Created by Catherine on 10/2/2017.
  */
 

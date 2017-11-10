@@ -17,6 +17,8 @@ import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
 
 /**
+ * Class for APIService usage for Google Maps
+ *
  * Created by jav on 10/24/2017.
  */
 
