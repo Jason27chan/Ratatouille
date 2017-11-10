@@ -32,7 +32,7 @@ public class GraphActivity extends AppCompatActivity {
     private List<Rat> ratList;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
         graphDay = findViewById(R.id.graph_day);
@@ -56,7 +56,7 @@ public class GraphActivity extends AppCompatActivity {
         updateYearGraph();
     }
 
-    private void updateDayGraph() {
+    public void updateDayGraph() {
         List<ArrayList<Rat>> list = new ArrayList<>();
         Date date = null;
         int dayCount = -1;
@@ -172,4 +172,15 @@ public class GraphActivity extends AppCompatActivity {
                     }
                 });
     }
+<<<<<<< Updated upstream
+=======
+
+    public List<Rat> getRatList() {
+        return ratList;
+    }
+
+    public void setRatList(List<Rat> ratList) {
+        this.ratList = ratList;
+    }
+>>>>>>> Stashed changes
 }
