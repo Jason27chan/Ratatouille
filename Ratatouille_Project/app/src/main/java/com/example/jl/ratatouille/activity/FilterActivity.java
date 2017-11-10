@@ -20,7 +20,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * a class that filters the dates for the map, list, and graph
+ * Requests rat sighting data from the database based on parameters
+ * requested by the user.
  */
 public class FilterActivity extends AppCompatActivity {
 

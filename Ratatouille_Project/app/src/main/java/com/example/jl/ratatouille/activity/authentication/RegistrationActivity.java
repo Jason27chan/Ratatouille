@@ -78,7 +78,8 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     /**
-     *  Registers the user into the database
+     *  Registers a new user.
+     *
      * @param username the desired username
      * @param password desired password
      * @param confirm desired password entered again for confirmation
