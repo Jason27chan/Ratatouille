@@ -182,5 +182,4 @@ public class GraphActivity extends AppCompatActivity {
     public void setRatList(List<Rat> ratList) {
         this.ratList = ratList;
     }
-
 }

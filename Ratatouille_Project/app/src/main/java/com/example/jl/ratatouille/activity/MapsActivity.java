@@ -41,10 +41,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     /**
      * Updates the markers on the map to display the sightings
-     * saved in shared preferences.
+     * saved in shared preferences. (Public for testing purposes)
+     *
+     * @return a List of Rats added to the GoogleMap (for testing purposes)
      */
-    private void updateMap() {
+    public List<Rat> updateMap() {
         ratList = DataService.getSharedRats(this);
+        List<Rat> mapList = new ArrayList<>();
         mMap.clear();
         if (ratList != null) {
             for (Rat r : ratList) {
@@ -53,11 +56,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             Double.parseDouble(r.getLatitude()), r.getLongitude());
                     Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
                     marker.setTag(r);
+                    mapList.add(r);
                 } else {
                     Log.v(TAG, "sighting location unavailable");
                 }
             }
         }
+        return mapList;
     }
 
     @Override
