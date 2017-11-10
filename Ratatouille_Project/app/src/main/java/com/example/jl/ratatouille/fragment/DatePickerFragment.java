@@ -5,6 +5,8 @@ import android.app.DialogFragment;
 import android.os.Bundle;
 
 /**
+ * Fragment for a Date Picker
+ *
  * Created by jav on 10/25/2017.
  */
 

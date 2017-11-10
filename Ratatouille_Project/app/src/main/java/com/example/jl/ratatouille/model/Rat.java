@@ -6,6 +6,10 @@ import android.os.Parcelable;
 import java.sql.Date;
 
 /**
+ * Class that represents a Rat object with
+ * a id, date , location type, zip, address,
+ * city, latitude, and longitude, and borough
+ *
  * Created by Emily Chang on 10/5/2017.
  */
 

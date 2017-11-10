@@ -20,7 +20,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * a class that filters the dates for the map, list, and graph
+ * Requests rat sighting data from the database based on parameters
+ * requested by the user.
  */
 public class FilterActivity extends AppCompatActivity {
 
@@ -96,7 +97,7 @@ public class FilterActivity extends AppCompatActivity {
         String sortBy = mSortOption.getText().toString();
         options.put("date_start", startDate);
         options.put("date_end", endDate);
-        options.put("orderby", sortBy);
+        options.put("order_by", sortBy);
 
         Intent intent = new Intent(this, DataService.class);
         intent.putExtra("options", (HashMap) options);
