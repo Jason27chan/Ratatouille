@@ -44,7 +44,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private List<Rat> ratList = new ArrayList<>();
 
-    public static final String TAG = "MapsActivity";
+    private static final String TAG = "MapsActivity";
 
     /**
      * Updates the markers on the map to display the sightings
@@ -85,7 +85,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         String borough = "1";
         String latitude = "1";
         double longitude = 1.0;
-        rats[0] = new Rat(new Date(year, month, day), loc_type, zip, address, city, borough, latitude, longitude);
+        rats[0] = new Rat(new Date(year, month, day),
+                loc_type, zip, address, city, borough, latitude, longitude);
         String jsonRats = gson.toJson(rats);
         prefs.put(SHARED_RATS, jsonRats);
 
@@ -201,6 +202,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void setupButtons() {
         final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat_maps);
         addRatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(v.getContext(), AddActivity.class);
                 startActivityForResult(myIntent, ADD_ACTIVITY_REQUEST);

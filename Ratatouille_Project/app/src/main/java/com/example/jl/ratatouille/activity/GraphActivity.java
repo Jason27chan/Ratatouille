@@ -140,6 +140,7 @@ public class GraphActivity extends AppCompatActivity {
     private void setupButtons() {
         final FloatingActionButton addRatBtn = findViewById(R.id.graph_add);
         addRatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(v.getContext(), AddActivity.class);
                 startActivityForResult(myIntent, ADD_ACTIVITY_REQUEST);

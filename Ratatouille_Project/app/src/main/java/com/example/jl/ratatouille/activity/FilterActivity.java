@@ -35,7 +35,7 @@ public class FilterActivity extends AppCompatActivity {
      * fully loaded to shared preferences. Finishes FilterActivity
      * and returns to calling activity.
      */
-    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             FilterActivity.this.setResult(RESULT_OK);
@@ -69,7 +69,8 @@ public class FilterActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         LocalBroadcastManager.getInstance(getApplicationContext())
-                .registerReceiver(mBroadcastReceiver, new IntentFilter(DataService.DATA_SERVICE_MSG));
+                .registerReceiver(mBroadcastReceiver, new IntentFilter(
+                        DataService.DATA_SERVICE_MSG));
 
         Map<String, String> options = DataService.getSharedOptions(this);
         if (options != null) {

@@ -24,11 +24,11 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private List<Rat> ratList;
-    private Context context;
+    private final Context context;
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView date, address, city;
-        public Rat rat;
+        private final TextView date, address, city;
+        private Rat rat;
 
         /**
          * Creates a ViewHolder. Sets the date, address, and city to be

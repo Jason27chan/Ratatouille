@@ -43,7 +43,8 @@ public class Rat implements Parcelable {
      * @param lat the latitude at which the rat was found
      * @param lng the longitude at which the rat was found
      */
-    public Rat(Date date, String loc_type, int zip, String address, String city, String borough, String lat, Double lng) {
+    public Rat(Date date, String loc_type, int zip, String address,
+               String city, String borough, String lat, Double lng) {
         id = numRats++;
         this.date = date;
         this.loc_type = loc_type;
@@ -232,6 +233,7 @@ public class Rat implements Parcelable {
          * @param in the parcel in which the object's data is stored
          * @return new instance of the parcelable class
          */
+        @Override
         public Rat createFromParcel(Parcel in) {
             return new Rat(in);
         }
@@ -241,6 +243,7 @@ public class Rat implements Parcelable {
          * @param size size of the array
          * @return the new Rat array of the specified size
          */
+        @Override
         public Rat[] newArray(int size) {
             return new Rat[size];
         }

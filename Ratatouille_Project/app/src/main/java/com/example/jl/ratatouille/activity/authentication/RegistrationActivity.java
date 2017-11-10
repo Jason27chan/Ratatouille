@@ -62,6 +62,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         //on click of registration button
         registrationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
 
                 //get account type RadioButton reference

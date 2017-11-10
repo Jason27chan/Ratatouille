@@ -41,7 +41,7 @@ public class AddActivity extends AppCompatActivity {
      * have been fully refreshed. Finishes AddActivity and returns to
      * calling activity.
      */
-    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             AddActivity.this.setResult(RESULT_OK);
@@ -96,6 +96,7 @@ public class AddActivity extends AppCompatActivity {
             }
         });
         cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 finish();
             }

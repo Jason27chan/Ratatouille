@@ -22,6 +22,7 @@ public class Admin extends User {
      * Checks if the user is an admin or not
      * @return true if admin, false if not
      */
+    @Override
     public boolean isAdmin() {
         return true;
     }

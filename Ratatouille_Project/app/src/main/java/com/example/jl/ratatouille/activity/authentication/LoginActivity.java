@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity{
     private EditText usernameEdit;
     private EditText passwordEdit;
 
-    private static final String TAG = "Registration Activity";
+    //private static final String TAG = "Registration Activity";
 
     private UserSQLiteAdapter dbAdapter;
 
@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity{
         dbAdapter = new UserSQLiteAdapter(this).open();
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 String userInput = usernameEdit.getText().toString();
                 String passInput = passwordEdit.getText().toString();

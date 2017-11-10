@@ -38,6 +38,11 @@ public class User {
         return this.username;
     }
 
+    /**
+     * Checks to see if the User is an a
+     * @return True if the user is an admin
+     * False if the user is not an admin
+     */
     public boolean isAdmin() {
         return false;
     }

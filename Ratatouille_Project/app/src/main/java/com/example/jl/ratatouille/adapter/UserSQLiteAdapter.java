@@ -22,7 +22,8 @@ public class UserSQLiteAdapter {
     private final Context context;
     private SQLiteHelper dbHelper;
 
-    public static final String DATABASE_CREATE = "CREATE TABLE " + SQLiteContract.LoginEntry.TABLE_NAME + " ("
+    public static final String DATABASE_CREATE = "CREATE TABLE "
+            + SQLiteContract.LoginEntry.TABLE_NAME + " ("
             + SQLiteContract.LoginEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + SQLiteContract.LoginEntry.COLUMN_USERNAME + " TEXT,"
             + SQLiteContract.LoginEntry.COLUMN_PASSWORD + " TEXT,"
@@ -35,7 +36,8 @@ public class UserSQLiteAdapter {
      */
     public UserSQLiteAdapter(Context context) {
         this.context = context;
-        dbHelper = new SQLiteHelper(context, SQLiteContract.DATABASE_NAME, null, SQLiteContract.DATABASE_VERSION);
+        dbHelper = new SQLiteHelper(context, SQLiteContract.DATABASE_NAME,
+                null, SQLiteContract.DATABASE_VERSION);
     }
 
     /**
@@ -89,7 +91,8 @@ public class UserSQLiteAdapter {
      */
     public int deleteEntry(String username) {
         String where = SQLiteContract.LoginEntry.COLUMN_USERNAME + "=?";
-        int numberDeleted = db.delete(SQLiteContract.LoginEntry.TABLE_NAME, where, new String[]{username});
+        int numberDeleted = db.delete(
+                SQLiteContract.LoginEntry.TABLE_NAME, where, new String[]{username});
         return numberDeleted;
     }
 
@@ -99,11 +102,14 @@ public class UserSQLiteAdapter {
      * @return the password needed
      */
     public String getPassword(String username) {
-        Cursor cursor = db.query(SQLiteContract.LoginEntry.TABLE_NAME, null, " " + SQLiteContract.LoginEntry.COLUMN_USERNAME + "=?", new String[]{username}, null, null, null);
+        Cursor cursor = db.query(SQLiteContract.LoginEntry.TABLE_NAME,
+                null, " " + SQLiteContract.LoginEntry.COLUMN_USERNAME
+                        + "=?", new String[]{username}, null, null, null);
         String password = context.getString(R.string.not_found);
         if (cursor.getCount() >= 1) {
             cursor.moveToFirst();
-            password = cursor.getString(cursor.getColumnIndex(SQLiteContract.LoginEntry.COLUMN_PASSWORD));
+            password = cursor.getString(cursor.getColumnIndex(
+                    SQLiteContract.LoginEntry.COLUMN_PASSWORD));
         }
         cursor.close();
         return password;
@@ -115,11 +121,16 @@ public class UserSQLiteAdapter {
      * @return the account type associated with the username
      */
     public String getAccType(String username) {
-        Cursor cursor = db.query(SQLiteContract.LoginEntry.TABLE_NAME, null, " " + SQLiteContract.LoginEntry.COLUMN_USERNAME + "=?", new String[]{username}, null, null, null);
+        Cursor cursor = db.query(
+                SQLiteContract.LoginEntry.TABLE_NAME, null, " "
+                        + SQLiteContract.LoginEntry.COLUMN_USERNAME
+                        + "=?", new String[]{username},
+                null, null, null);
         String accType = context.getString(R.string.not_found);
         if (cursor.getCount() >= 1) {
             cursor.moveToFirst();
-            accType = cursor.getString(cursor.getColumnIndex(SQLiteContract.LoginEntry.COLUMN_ACC_TYPE));
+            accType = cursor.getString(cursor.getColumnIndex(
+                    SQLiteContract.LoginEntry.COLUMN_ACC_TYPE));
         }
         cursor.close();
         return accType;
