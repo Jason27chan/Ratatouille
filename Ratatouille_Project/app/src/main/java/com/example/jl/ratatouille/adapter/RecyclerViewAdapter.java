@@ -97,4 +97,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return ratList.size();
     }
 
+    public List<Rat> getRatList() {
+        return this.ratList;
+    }
+
+    public void setRatList(List<Rat> ratList) {
+        this.ratList = ratList;
+    }
+
 }

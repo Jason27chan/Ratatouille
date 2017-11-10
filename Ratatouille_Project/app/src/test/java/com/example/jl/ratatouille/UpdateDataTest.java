@@ -4,8 +4,13 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.example.jl.ratatouille.model.Rat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -14,29 +19,18 @@ import static org.junit.Assert.*;
  */
 
 /**
- * Instrumentation test, which will execute on an Android device.
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
-@RunWith(AndroidJUnit4.class)
-public class ExampleInstrumentedTest {
-    @Test
-    public void useAppContext() throws Exception {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
-
-        assertEquals("com.example.jl.ratatouille", appContext.getPackageName());
-    }
-}
-
-/**
  * Method JUnit Test, which tests if the RecyclerView is updating the RecyclerView
  */
 public class UpdateDataTest {
+    private List<Rat> myRatList = new ArrayList<>();
+    Rat rat = new Rat();
+    // create many rats
+
     @Test
     public void useUpdateData() throws Exception {
-        // make an ArrayList<Rat> rats
+        // make an ArrayList<Rat> rats to be passed in
         // call updateData(List<Rat> rats) from RecyclerViewAdapter =
-        //
+        // check ratList with ArrayList
+        // lots of assert statments
     }
 }
