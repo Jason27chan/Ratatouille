@@ -80,14 +80,13 @@ public class RegistrationActivity extends AppCompatActivity {
     /**
      *  Registers a new user.
      *
-     * @param username the desired username
-     * @param password desired password
-     * @param confirm desired password entered again for confirmation
-     * @param account_type whether its a user or admin
+     * @param username the username of the new user
+     * @param password the password of the new user
+     * @param confirm the password of the new user
+     * @param account_type the account type (User or Admin) of the new user
      */
     private void registerUser(final String username, final String password,
                               final String confirm, final String account_type) {
-
         APIService apiService = APIService.retrofit.create(APIService.class);
         Map<String, String> options = new HashMap<>();
         options.put("username", username);
