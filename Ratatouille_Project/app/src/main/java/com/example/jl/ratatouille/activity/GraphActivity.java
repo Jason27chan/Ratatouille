@@ -56,7 +56,7 @@ public class GraphActivity extends AppCompatActivity {
         updateYearGraph();
     }
 
-    public void updateDayGraph() {
+    public LineGraphSeries<DataPoint> updateDayGraph() {
         List<ArrayList<Rat>> list = new ArrayList<>();
         Date date = null;
         int dayCount = -1;
@@ -74,6 +74,7 @@ public class GraphActivity extends AppCompatActivity {
         }
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
         graphDay.addSeries(series);
+        return series;
     }
 
     private void updateMonthGraph() {
@@ -172,8 +173,7 @@ public class GraphActivity extends AppCompatActivity {
                     }
                 });
     }
-<<<<<<< Updated upstream
-=======
+
 
     public List<Rat> getRatList() {
         return ratList;
@@ -182,5 +182,5 @@ public class GraphActivity extends AppCompatActivity {
     public void setRatList(List<Rat> ratList) {
         this.ratList = ratList;
     }
->>>>>>> Stashed changes
+
 }
