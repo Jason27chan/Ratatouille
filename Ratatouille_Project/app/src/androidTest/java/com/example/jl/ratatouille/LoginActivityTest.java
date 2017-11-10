@@ -16,9 +16,12 @@ import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 /**
+ * JUnit tests for LoginActivity
+ * Three use incorrect login information
+ * Two use correct login information
+ *
  * Created by Catherine on 11/10/2017.
  */
 @RunWith(AndroidJUnit4.class)
