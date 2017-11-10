@@ -75,13 +75,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.city.setText(rat.getCity());
         holder.rat = rat;
     }
-
+    
     /**
      * Clears the RecyclerView and adds new rat sighting data.
      *
      * @param rats the List of new rat sighting data to be displayed
      *             by the RecyclerView
-     */
+    */
     public void updateData(List<Rat> rats) {
         if (ratList != null) {
             ratList.clear();
