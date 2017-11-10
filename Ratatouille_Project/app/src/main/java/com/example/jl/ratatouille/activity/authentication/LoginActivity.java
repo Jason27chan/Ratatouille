@@ -61,9 +61,10 @@ public class LoginActivity extends AppCompatActivity{
     }
 
     /**
-     * Checks to the login to make sure that the username and password are correct
-     * @param username the username for the user
-     * @param password the password for the user
+     * Checks if user login credentials are valid.
+     *
+     * @param username the username to be checked
+     * @param password the password to be checked
      */
     private void checkLogin(final String username, final String password) {
         APIService apiService = APIService.retrofit.create(APIService.class);
