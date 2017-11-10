@@ -172,8 +172,6 @@ public class GraphActivity extends AppCompatActivity {
                     }
                 });
     }
-<<<<<<< Updated upstream
-=======
 
     public List<Rat> getRatList() {
         return ratList;
@@ -182,5 +180,4 @@ public class GraphActivity extends AppCompatActivity {
     public void setRatList(List<Rat> ratList) {
         this.ratList = ratList;
     }
->>>>>>> Stashed changes
 }
