@@ -49,6 +49,9 @@ public class GraphActivity extends AppCompatActivity {
         updateGraphs();
     }
 
+    /**
+     * update graphs when a new date range is selected
+     */
     private void updateGraphs() {
         ratList = DataService.getSharedRats(this);
         updateDayGraph();
@@ -56,6 +59,9 @@ public class GraphActivity extends AppCompatActivity {
         updateYearGraph();
     }
 
+    /**
+     * updates the day graph when the date range is selected
+     */
     private void updateDayGraph() {
         List<ArrayList<Rat>> list = new ArrayList<>();
         Date date = null;
@@ -76,6 +82,9 @@ public class GraphActivity extends AppCompatActivity {
         graphDay.addSeries(series);
     }
 
+    /**
+     * month graph is updated when the new date range is selected
+     */
     private void updateMonthGraph() {
         Calendar cal = Calendar.getInstance();
         List<ArrayList<Rat>> list = new ArrayList<>();
@@ -99,6 +108,9 @@ public class GraphActivity extends AppCompatActivity {
         graphMonth.addSeries(series);
     }
 
+    /**
+     * year graph is updated when the new date range is selected
+     */
     private void updateYearGraph() {
         Calendar cal = Calendar.getInstance();
         List<ArrayList<Rat>> list = new ArrayList<>();
