@@ -70,15 +70,6 @@ public class UpdateMapTest {
         expected.add(goodRatGoodLoc);
         expected.add(goodRatGoodLoc);
         activity.setRatList(input);
-
-        for (int i = 0; i < input.size(); i++) {
-            System.out.println(input.get(i));
-        }
-        System.out.println();
-        for (int i = 0; i < activity.updateMap().size(); i++) {
-            System.out.println(activity.updateMap().get(i));
-        }
-
         assertEquals(expected.size(), activity.updateMap().size());
         assertEquals(expected, activity.updateMap());
     }
@@ -122,19 +113,6 @@ public class UpdateMapTest {
         input.add(goodRatGoodLoc);
         expected.add(goodRatGoodLoc);
         activity.setRatList(input);
-
-        for (int i = 0; i < input.size(); i++) {
-            System.out.println(input.get(i));
-        }
-        System.out.println();
-        for (int i = 0; i < activity.updateMap().size(); i++) {
-            System.out.println(activity.updateMap().get(i));
-        }
-        System.out.println();
-        for (Rat r : activity.getRatList()) {
-            System.out.println(r);
-        }
-
         assertEquals(expected.size(), activity.updateMap().size());
         assertEquals(expected, activity.updateMap());
     }
