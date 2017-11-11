@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 /**
+ * A broadcast receiver for the rat class
  * Created by jav on 10/26/2017.
  */
 

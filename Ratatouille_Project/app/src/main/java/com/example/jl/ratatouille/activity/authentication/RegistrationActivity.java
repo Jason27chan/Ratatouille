@@ -23,6 +23,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 /**
+ * Class that allows a user to register
+ * as an admin or a typical user
+ *
  * Created by jav on 9/12/2017.
  */
 
@@ -59,6 +62,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         //on click of registration button
         registrationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
 
                 //get account type RadioButton reference
@@ -78,15 +82,15 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     /**
-     *  Registers the user into the database
-     * @param username the desired username
-     * @param password desired password
-     * @param confirm desired password entered again for confirmation
-     * @param account_type whether its a user or admin
+     *  Registers a new user.
+     *
+     * @param username the username of the new user
+     * @param password the password of the new user
+     * @param confirm the password of the new user
+     * @param account_type the account type (User or Admin) of the new user
      */
     private void registerUser(final String username, final String password,
                               final String confirm, final String account_type) {
-
         APIService apiService = APIService.retrofit.create(APIService.class);
         Map<String, String> options = new HashMap<>();
         options.put("username", username);

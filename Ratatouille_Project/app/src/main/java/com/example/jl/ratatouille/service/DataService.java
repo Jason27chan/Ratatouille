@@ -34,13 +34,13 @@ import retrofit2.Call;
 
 public class DataService extends IntentService {
 
-    public static final String TAG = "DataService";
+    private static final String TAG = "DataService";
     public static final String DATA_SERVICE_MSG = "dataServiceMessage";
-    public static final String DATA_SERVICE_PAYLOAD = "dataServicePayload";
-    public static final String REQUEST_PACKAGE = "requestPackage";
+    //public static final String DATA_SERVICE_PAYLOAD = "dataServicePayload";
+    //public static final String REQUEST_PACKAGE = "requestPackage";
 
     public static final String SHARED_RATS = "rats";
-    public static final String SHARED_OPTIONS = "options";
+    private static final String SHARED_OPTIONS = "options";
 
     /**
      * default constructor for DataService()
@@ -80,7 +80,7 @@ public class DataService extends IntentService {
      * @param context the context from which this method is called
      * @param options a hash map of options that are string mapped to string
      */
-    public static void updatePreferences(
+    private static void updatePreferences(
             Rat[] rats, Map<String, String> options, Context context) {
         //final AppPreferences prefs = new AppPreferences(
           //      context.getApplicationContext());

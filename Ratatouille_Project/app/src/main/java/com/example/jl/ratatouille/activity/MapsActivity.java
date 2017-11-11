@@ -35,6 +35,8 @@ import static com.example.jl.ratatouille.activity.FilterActivity.FILTER_ACTIVITY
 import static com.example.jl.ratatouille.service.DataService.SHARED_RATS;
 
 /**
+ * Represents the Map and the data that is shows
+ *
  * Created by jav on 10/18/2017.
  */
 
@@ -42,7 +44,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private List<Rat> ratList = new ArrayList<>();
 
-    public static final String TAG = "MapsActivity";
+    private static final String TAG = "MapsActivity";
 
     /**
      * Updates the markers on the map to display the sightings
@@ -79,6 +81,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        final AppPreferences prefs = new AppPreferences(getApplicationContext());
+        Gson gson = new Gson();
+        Rat[] rats = new Rat[1];
+        int year = 2015;
+        int month = 12;
+        int day = 12;
+        String loc_type = "1";
+        int zip = 1;
+        String address = "1";
+        String city = "1";
+        String borough = "1";
+        String latitude = "1";
+        double longitude = 1.0;
+        rats[0] = new Rat(new Date(year, month, day),
+                loc_type, zip, address, city, borough, latitude, longitude);
+        String jsonRats = gson.toJson(rats);
+        prefs.put(SHARED_RATS, jsonRats);
 
         if(CheckGooglePlayServices()) {
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -192,6 +212,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void setupButtons() {
         final FloatingActionButton addRatBtn = findViewById(R.id.btn_addRat_maps);
         addRatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(v.getContext(), AddActivity.class);
                 startActivityForResult(myIntent, ADD_ACTIVITY_REQUEST);

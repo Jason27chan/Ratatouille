@@ -22,7 +22,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
      * @param factory used to create cursor objects or null for object
      * @param version the number of the database
      */
-    public SQLiteHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public SQLiteHelper(Context context, String name,
+                        SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
