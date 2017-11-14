@@ -89,7 +89,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         } else {
             ratList = rats;
         }
-//        notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 
     @Override
