@@ -3,6 +3,8 @@ package com.example.jl.ratatouille.service;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
@@ -80,13 +82,21 @@ public class DataService extends IntentService {
      */
     private static void updatePreferences(
             Rat[] rats, Map<String, String> options, Context context) {
-        final AppPreferences prefs = new AppPreferences(
-                context.getApplicationContext());
+        //final AppPreferences prefs = new AppPreferences(
+          //      context.getApplicationContext());
+
+        final SharedPreferences prefs = PreferenceManager
+                .getDefaultSharedPreferences(context.getApplicationContext());
+        SharedPreferences.Editor editor = prefs.edit();
+
         Gson gson = new Gson();
         String jsonRats = gson.toJson(rats);
         String jsonOptions = gson.toJson(options);
-        prefs.put(SHARED_RATS, jsonRats);
-        prefs.put(SHARED_OPTIONS, jsonOptions);
+
+        editor.putString(SHARED_RATS, jsonRats);
+        editor.putString(SHARED_OPTIONS, jsonOptions);
+        editor.apply();
+
         Intent messageIntent = new Intent(DATA_SERVICE_MSG);
         LocalBroadcastManager manager = LocalBroadcastManager
                 .getInstance(context.getApplicationContext());
@@ -101,8 +111,12 @@ public class DataService extends IntentService {
      * @return a list of the Rats in shared preferences
      */
     public static List<Rat> getSharedRats(Context context) {
-        final AppPreferences prefs = new AppPreferences(
-                context.getApplicationContext());
+        //final AppPreferences prefs = new AppPreferences(
+          //      context.getApplicationContext());
+
+        final SharedPreferences prefs = PreferenceManager
+                .getDefaultSharedPreferences(context.getApplicationContext());
+
         final String json = prefs.getString(SHARED_RATS, null);
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<Rat>>() {}.getType();
@@ -118,8 +132,12 @@ public class DataService extends IntentService {
      * @return a Map of the filter options
      */
     public static Map<String, String> getSharedOptions(Context context) {
-        final AppPreferences prefs = new AppPreferences(
-                context.getApplicationContext());
+        //final AppPreferences prefs = new AppPreferences(
+          //      context.getApplicationContext());
+
+        final SharedPreferences prefs = PreferenceManager
+                .getDefaultSharedPreferences(context.getApplicationContext());
+
         final String json = prefs.getString(SHARED_OPTIONS, null);
         Gson gson = new Gson();
         Type type = new TypeToken<Map<String, String>>() {}.getType();

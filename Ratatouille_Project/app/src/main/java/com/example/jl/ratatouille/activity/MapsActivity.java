@@ -53,16 +53,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
      * @return a List of Rats added to the GoogleMap (for testing purposes)
      */
     public List<Rat> updateMap() {
-        ratList = DataService.getSharedRats(this);
+        //Map null checks added for testing purposes. Below line commented out for testing purposes.
+        //ratList = DataService.getSharedRats(this);
         List<Rat> mapList = new ArrayList<>();
-        mMap.clear();
+        if (mMap != null) {
+            mMap.clear();
+        }
         if (ratList != null) {
             for (Rat r : ratList) {
-                if (r.getLatitude() != null && r.getLongitude() != null) {
+                if (r != null && r.getLatitude() != null && r.getLongitude() != null) {
                     LatLng latlng = new LatLng(
                             Double.parseDouble(r.getLatitude()), r.getLongitude());
-                    Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
-                    marker.setTag(r);
+                    if (mMap != null) {
+                        Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));
+                        marker.setTag(r);
+                    }
                     mapList.add(r);
                 } else {
                     Log.v(TAG, "sighting location unavailable");
@@ -222,6 +227,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 startActivityForResult(intent, FILTER_ACTIVITY_REQUEST);
             }
         });
+    }
+
+    /**
+     * Gets the MapsActivity ratList.
+     * Used for testing purposes.
+     * @return a List of Rats for MapsActivity
+     */
+    public List<Rat> getRatList() {
+        return this.ratList;
+    }
+
+    /**
+     * Sets the MapsActivity ratList.
+     * Used for testing purposes.
+     * @param ratList the List to set the ratList as
+     */
+    public void setRatList(List<Rat> ratList) {
+        this.ratList = ratList;
     }
 
 }
