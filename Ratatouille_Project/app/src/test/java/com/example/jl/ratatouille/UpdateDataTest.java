@@ -48,7 +48,6 @@ public class UpdateDataTest extends AndroidTestCase {
      */
     @Before
     public void setUp() {
-        input = new ArrayList<>();
 //        context = new MockContext();
         date = new java.sql.Date(2017-11-11);
         goodRat = new Rat(date, "city", 30332, "564 Jefferson St", "Atlanta", "", "34.123", 24.44);
@@ -61,6 +60,7 @@ public class UpdateDataTest extends AndroidTestCase {
      */
     @Test
     public void testAllGoodRats() {
+        input = new ArrayList<>();
         input.add(goodRat);
         input.add(goodRat);
         input.add(goodRat);
@@ -75,24 +75,47 @@ public class UpdateDataTest extends AndroidTestCase {
     }
 
     /*
-     * Test null list
+     * Test a list that has not been initialized (a null list)
      */
+    @Test
     public void testNullList() {
-        
+        input = null;
+        newRecyclerView.updateData(input);
+        actual = newRecyclerView.getRatList();
+
+//        assertEquals(input.size(), newRecyclerView.getItemCount());
+        assertEquals(null, actual);
     }
 
     /*
      * Test empty list
      */
+    @Test
     public void testEmptyList() {
+        input = new ArrayList<>();
+
+        newRecyclerView.updateData(input);
+        actual = newRecyclerView.getRatList();
+        assertEquals(input, actual);
 
     }
 
     /*
      * Test some good and bad rats in list
      */
+    @Test
     public void testGoodAndBadRats() {
+        input = new ArrayList<>();
+        input.add(goodRat);
+        input.add(badRat);
+        input.add(badRat);
 
+        newRecyclerView.updateData(input);
+        actual = newRecyclerView.getRatList();
+        assertEquals(input.size(), actual.size());
+        assertEquals(input.get(0), actual.get(0));
+        assertEquals(input.get(1), actual.get(1));
+        assertEquals(input.get(2), actual.get(2));
     }
 
     /*
@@ -100,6 +123,7 @@ public class UpdateDataTest extends AndroidTestCase {
      */
     @Test
     public void testAllBadRats() {
+        input = new ArrayList<>();
         input.add(badRat);
         input.add(badRat);
         input.add(badRat);
