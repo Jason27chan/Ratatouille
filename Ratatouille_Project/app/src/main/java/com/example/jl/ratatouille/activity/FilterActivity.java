@@ -1,5 +1,6 @@
 package com.example.jl.ratatouille.activity;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.service.DataService;
@@ -89,19 +91,26 @@ public class FilterActivity extends AppCompatActivity {
     /**
      * Calls DataService to retrieve Rats that meet specifications.
      */
+    @SuppressLint("SetTextI18n")
     private void requestData() {
         Map<String, String> options = new HashMap<>();
         String startDate = mEditStart.getText().toString();
         String endDate = mEditEnd.getText().toString();
-        final RadioButton mSortOption
-                = findViewById(mSort.getCheckedRadioButtonId());
-        String sortBy = mSortOption.getText().toString();
-        options.put("date_start", startDate);
-        options.put("date_end", endDate);
-        options.put("order_by", sortBy);
 
-        Intent intent = new Intent(this, DataService.class);
-        intent.putExtra("options", (HashMap) options);
-        startService(intent);
+        if (startDate.contains("/") || endDate.contains("/") || startDate.contains(".") || endDate.contains(".")) {
+            TextView textview = findViewById(R.id.error_text);
+            textview.setText("Invalid input: try again");
+        } else {
+            final RadioButton mSortOption
+                    = findViewById(mSort.getCheckedRadioButtonId());
+            String sortBy = mSortOption.getText().toString();
+            options.put("date_start", startDate);
+            options.put("date_end", endDate);
+            options.put("order_by", sortBy);
+
+            Intent intent = new Intent(this, DataService.class);
+            intent.putExtra("options", (HashMap) options);
+            startService(intent);
+        }
     }
 }

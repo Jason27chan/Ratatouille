@@ -100,6 +100,13 @@
         android:layout_marginTop="16dp"
         android:typeface="monospace"/>
 
+    <TextView
+        android:id="@+id/error_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/filter_submit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp" />
 
 
 </RelativeLayout>
