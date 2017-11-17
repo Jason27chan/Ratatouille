@@ -25,8 +25,8 @@ public class ViewActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_view);
-
-        rat = getIntent().getExtras().getParcelable("rat");
+        if (getIntent().getExtras() != null)
+            rat = getIntent().getExtras().getParcelable("rat");
         ratData = new ArrayList<>();
         ratData.add(Integer.toString(rat.getRatId()));
         ratData.add(rat.getDate().toString());
