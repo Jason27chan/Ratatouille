@@ -33,7 +33,7 @@ public abstract class EndlessOnScrollListener extends RecyclerView.OnScrollListe
             }
         }
         int visibleThreshold = 5;
-        if (!mLoading && (totalItemCount - visibleItemCount)
+        if ((!mLoading) && (totalItemCount - visibleItemCount)
                 <= (firstVisibleItem + visibleThreshold)) {
             // End has been reached
 

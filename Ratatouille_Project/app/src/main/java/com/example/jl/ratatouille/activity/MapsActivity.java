@@ -55,7 +55,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.clear();
         if (ratList != null) {
             for (Rat r : ratList) {
-                if (r.getLatitude() != null && r.getLongitude() != null) {
+                if ((r.getLatitude() != null) && (r.getLongitude() != null)) {
                     LatLng latlng = new LatLng(
                             Double.parseDouble(r.getLatitude()), r.getLongitude());
                     Marker marker = mMap.addMarker(new MarkerOptions().position(latlng));

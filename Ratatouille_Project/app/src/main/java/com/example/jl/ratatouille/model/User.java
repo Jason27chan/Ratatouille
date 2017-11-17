@@ -6,10 +6,10 @@ package com.example.jl.ratatouille.model;
  * Created by Catherine on 10/2/2017.
  */
 
-public class User {
+class User {
 
-    private String username;
-    private String password;
+    private final String username;
+    private final String password;
 
     /**
      * Constructor for the user
@@ -17,7 +17,7 @@ public class User {
      * @param username the username of the user
      * @param password the password for the user
      */
-    public User(String username, String password) {
+    User(String username, String password) {
         this.password = password;
         this.username = username;
     }
@@ -25,7 +25,7 @@ public class User {
     /**
      * Constructor for user
      */
-    public User() {
+    User() {
         this("", "123456");
     }
 

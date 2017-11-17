@@ -12,6 +12,7 @@ import com.example.jl.ratatouille.R;
 import com.example.jl.ratatouille.activity.ViewActivity;
 import com.example.jl.ratatouille.model.Rat;
 
+import java.util.Collections;
 import java.util.List;
 
 /**

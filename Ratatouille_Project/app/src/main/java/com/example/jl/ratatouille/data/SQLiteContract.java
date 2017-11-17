@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
  * Created by jav on 9/12/2017.
  */
 
-public class SQLiteContract {
+public final class SQLiteContract {
     public static final String DATABASE_NAME = "ratatouille_database";
     public static final int DATABASE_VERSION = 2;
 

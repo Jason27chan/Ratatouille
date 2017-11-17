@@ -45,7 +45,8 @@ public class Rat implements Parcelable {
      */
     public Rat(Date date, String loc_type, int zip, String address,
                String city, String borough, String lat, Double lng) {
-        id = numRats++;
+        id = numRats;
+        numRats += 1;
         this.date = date;
         this.loc_type = loc_type;
         this.zip = zip;
@@ -85,7 +86,7 @@ public class Rat implements Parcelable {
      * @param date the date at which the rat was spotted
      */
     public void setDate(Date date) {
-        if (date == null || date.equals("")) {
+        if (date == null) {
             return;
         }
         this.date = date;
@@ -136,7 +137,7 @@ public class Rat implements Parcelable {
      * @param address the new address for the rat
      */
     public void setAddress(String address) {
-        if (address == null || address.equals("")) {
+        if ((address == null) || ("".equals(address))) {
             return;
         }
         this.address = address;
@@ -155,7 +156,7 @@ public class Rat implements Parcelable {
      * @param city the new city that the rat is located in
      */
     public void setCity(String city) {
-        if (city == null || city.equals("")) {
+        if ((city == null) || ("".equals(city))) {
             return;
         }
         this.city = city;

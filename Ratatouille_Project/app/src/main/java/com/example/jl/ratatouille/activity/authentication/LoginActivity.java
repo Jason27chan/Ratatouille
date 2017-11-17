@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity{
                 String userInput = usernameEdit.getText().toString();
                 String passInput = passwordEdit.getText().toString();
 
-                if (userInput.equals("") || passInput.equals("")) {
+                if ("".equals(userInput) || "".equals(passInput)) {
                     Toast.makeText(getApplicationContext(),
                             "please enter a username and password",
                             Toast.LENGTH_LONG).show();
