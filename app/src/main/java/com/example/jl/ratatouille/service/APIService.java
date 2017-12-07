@@ -25,10 +25,10 @@ import retrofit2.http.QueryMap;
 public interface APIService {
 
     String BASE_URL = "http://192.241.145.60/";
-    String FEED = "ratatouille/rat/jsonfeed.php";
-    String ADD = "ratatouille/rat/addrat.php";
-    String LOGIN = "ratatouille/authenticate/login.php";
-    String REGISTER = "ratatouille/authenticate/register.php";
+    String FEED = "ratatouille/php/jsonfeed.php";
+    String ADD = "ratatouille/php/add.php";
+    String LOGIN = "ratatouille/php/authenticate/login.php";
+    String REGISTER = "ratatouille/php/authenticate/register.php";
 
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
