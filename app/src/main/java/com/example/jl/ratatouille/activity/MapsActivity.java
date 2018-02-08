@@ -71,25 +71,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
         final AppPreferences prefs = new AppPreferences(getApplicationContext());
         Gson gson = new Gson();
-        Rat[] rats = new Rat[1];
-        int year = 2015;
-        int month = 12;
-        int day = 12;
-        String loc_type = "1";
-        int zip = 1;
-        String address = "1";
-        String city = "1";
-        String borough = "1";
-        String latitude = "1";
-        double longitude = 1.0;
-        rats[0] = new Rat(new Date(year, month, day),
-                loc_type, zip, address, city, borough, latitude, longitude);
-        String jsonRats = gson.toJson(rats);
-        prefs.put(SHARED_RATS, jsonRats);
-
         if(CheckGooglePlayServices()) {
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
