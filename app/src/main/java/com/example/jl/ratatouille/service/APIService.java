@@ -52,4 +52,8 @@ public interface APIService {
     @POST(REGISTER)
     Call<MSG> register(@FieldMap Map<String, String> data);
 
+    @FormUrlEncoded
+    @POST("http://f8316695.ngrok.io/sms")
+    Call<MSG> sms(@FieldMap Map<String, String> data);
+
 }

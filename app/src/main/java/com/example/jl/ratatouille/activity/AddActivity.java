@@ -22,6 +22,7 @@ import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Activity that allows for the addition of a new rat instance
@@ -140,6 +141,25 @@ public class AddActivity extends AppCompatActivity {
                         String msg = response.body().getMsg();
                         Toast.makeText(getApplicationContext(),
                                 msg, Toast.LENGTH_SHORT).show();
+
+                        //Twilio SMS
+                        APIService apiService = APIService.retrofit.create(APIService.class);
+                        Map<String, String> params = new HashMap<>();
+                        params.put("Body", "Success");
+                        params.put("To", "+16789956118");
+                        Call<MSG> request = apiService.sms(params);
+                        request.enqueue(new Callback<MSG>() {
+                            @Override
+                            public void onResponse(Call<MSG> call, Response<MSG> response) {
+                                Toast.makeText(getApplicationContext(),
+                                        "SMS sent", Toast.LENGTH_SHORT).show();
+                            }
+                            @Override
+                            public void onFailure(Call<MSG> call, Throwable t) {
+
+                            }
+                        });
+
                         refreshRats();
                     }
                 } else {
