@@ -15,7 +15,7 @@ import com.example.jl.ratatouille.R;
  * Class that represents the settings
  * which is the logout button
  *
- * Created by jav on 10/19/2017.
+ * Created by Jasmine on 10/19/2017.
  */
 
 public class SettingsActivity extends AppCompatActivity {

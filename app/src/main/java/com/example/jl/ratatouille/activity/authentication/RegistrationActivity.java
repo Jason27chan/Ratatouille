@@ -26,7 +26,7 @@ import retrofit2.Callback;
  * Class that allows a user to register
  * as an admin or a typical user
  *
- * Created by jav on 9/12/2017.
+ * Created by Jasmine on 9/12/2017.
  */
 
 public class RegistrationActivity extends AppCompatActivity {

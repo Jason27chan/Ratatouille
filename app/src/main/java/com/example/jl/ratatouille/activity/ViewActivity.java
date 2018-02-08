@@ -11,7 +11,7 @@ import com.example.jl.ratatouille.model.Rat;
 import java.util.ArrayList;
 
 /**
- * Created by jav on 10/9/2017.
+ * Created by Jasmine on 10/9/2017.
  *
  * Detailed view for a Rat
  */

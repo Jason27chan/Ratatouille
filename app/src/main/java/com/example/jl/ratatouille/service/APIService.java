@@ -19,16 +19,16 @@ import retrofit2.http.QueryMap;
 /**
  * Class for APIService usage for Google Maps
  *
- * Created by jav on 10/24/2017.
+ * Created by Jasmine on 10/24/2017.
  */
 
 public interface APIService {
 
     String BASE_URL = "http://192.241.145.60/";
-    String FEED = "ratatouille/php/jsonfeed.php";
-    String ADD = "ratatouille/php/add.php";
-    String LOGIN = "ratatouille/php/authenticate/login.php";
-    String REGISTER = "ratatouille/php/authenticate/register.php";
+    String FEED = "php/jsonfeed.php";
+    String ADD = "php/add.php";
+    String LOGIN = "php/authenticate/login.php";
+    String REGISTER = "php/authenticate/register.php";
 
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 

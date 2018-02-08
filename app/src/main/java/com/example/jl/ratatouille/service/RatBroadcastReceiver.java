@@ -6,7 +6,7 @@ import android.content.Intent;
 
 /**
  * A broadcast receiver for the rat class
- * Created by jav on 10/26/2017.
+ * Created by Jasmine on 10/26/2017.
  */
 
 public class RatBroadcastReceiver extends BroadcastReceiver {

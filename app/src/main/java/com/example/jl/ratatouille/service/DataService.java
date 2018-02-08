@@ -27,7 +27,7 @@ import retrofit2.Call;
  * Updates Rats in shared preferences.
  * Returns a List of Rats from shared preferences.
  *
- * Created by jav on 10/20/2017.
+ * Created by Jasmine on 10/20/2017.
  */
 
 public class DataService extends IntentService {

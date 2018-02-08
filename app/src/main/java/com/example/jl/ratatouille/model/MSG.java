@@ -3,7 +3,7 @@ package com.example.jl.ratatouille.model;
 /**
  * Class that represents an error message
  *
- * Created by jav on 11/2/2017.
+ * Created by Jasmine on 11/2/2017.
  */
 
 public class MSG {

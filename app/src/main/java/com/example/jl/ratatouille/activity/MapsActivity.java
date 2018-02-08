@@ -37,7 +37,7 @@ import static com.example.jl.ratatouille.service.DataService.SHARED_RATS;
 /**
  * Represents the Map and the data that is shows
  *
- * Created by jav on 10/18/2017.
+ * Created by Jasmine on 10/18/2017.
  */
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {

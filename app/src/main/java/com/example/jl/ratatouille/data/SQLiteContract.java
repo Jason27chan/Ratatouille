@@ -5,7 +5,7 @@ import android.provider.BaseColumns;
 /**
  * Database schema for ratatouille app
  *
- * Created by jav on 9/12/2017.
+ * Created by Jasmine on 9/12/2017.
  */
 
 public class SQLiteContract {

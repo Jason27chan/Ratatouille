@@ -15,7 +15,7 @@ import com.example.jl.ratatouille.model.Rat;
 import java.util.List;
 
 /**
- * Created by jav on 10/8/2017.
+ * Created by Jasmine on 10/8/2017.
  *
  * Adapter for the rat list RecyclerView in ListActivity
  * Displays date, address, and city in each row

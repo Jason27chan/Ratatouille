@@ -23,7 +23,7 @@ import retrofit2.Callback;
 /**
  * Class that allows a user to login
  *
- * Created by jav on 9/12/2017.
+ * Created by Jasmine on 9/12/2017.
  */
 
 public class LoginActivity extends AppCompatActivity{

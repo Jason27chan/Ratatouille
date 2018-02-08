@@ -9,7 +9,7 @@ import com.example.jl.ratatouille.adapter.UserSQLiteAdapter;
 /**
  * Creates and upgrades the database to update version
  *
- * Created by jav on 9/12/2017.
+ * Created by Jasmine on 9/12/2017.
  */
 
 public class SQLiteHelper extends SQLiteOpenHelper {

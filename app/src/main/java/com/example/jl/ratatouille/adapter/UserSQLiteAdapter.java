@@ -13,7 +13,7 @@ import com.example.jl.ratatouille.data.SQLiteHelper;
 /**
  * Class that acts as the SQLite Adapter
  *
- * Created by jav on 9/12/2017.
+ * Created by Jasmine on 9/12/2017.
  */
 
 public class UserSQLiteAdapter {
